@@ -1,0 +1,20 @@
+body {
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+}
+
+strong {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: rgb(200, 200, 200);
+}
+
+.move.selected {
+    color: rgb(0, 0, 0);
+    background-color: rgb(200, 220, 255);
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none
+}
