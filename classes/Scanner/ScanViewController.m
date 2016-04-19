@@ -34,6 +34,8 @@
 @property (nonatomic, assign) BOOL didShowCaptureWarning;
 @property (nonatomic, strong) AnimatedGameView *animatedGameView;
 @property (nonatomic, strong) UILabel *progress;
+@property (nonatomic, strong) UIWebView *webViewGif;
+
 
 @end
 
@@ -55,9 +57,10 @@
     NSTimer *timer;
     int currSeconds;
     BOOL codeAlreadyRead;
+    UIWebView *webViewGif;
 }
 
-@synthesize boardViewController, animatedGameView, viewOfInterest, aimIv, toggleScanningButton, toggleTorchButton, didShowCaptureWarning, gameController, captureIsFrozen, previewView, switchCameraButton, progress;
+@synthesize boardViewController, animatedGameView, viewOfInterest, aimIv, toggleScanningButton, toggleTorchButton, didShowCaptureWarning, gameController, captureIsFrozen, previewView, switchCameraButton, progress, webViewGif;
 
 #pragma mark - Lifecycle
 
@@ -100,12 +103,92 @@
     contentView = [[UIView alloc] initWithFrame: appRect];
     [rootView addSubview: contentView];
     [self setView: rootView];
+    CGPoint superCenter = CGPointMake(CGRectGetMidX([rootView bounds]), CGRectGetMidY([rootView bounds]));
     
     self.previewView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, appRect.size.width-40, 427.0f)];
     [self.previewView setHidden:YES];
-    
-    CGPoint superCenter = CGPointMake(CGRectGetMidX([rootView bounds]), CGRectGetMidY([rootView bounds]));
     [self.previewView setCenter:superCenter];
+    
+    UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 250.0f, 250.0f)];
+    animatedImageView.animationImages = [NSArray arrayWithObjects:
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan2"],
+                                         [UIImage imageNamed:@"scan3"],
+                                         [UIImage imageNamed:@"scan4"],
+                                         [UIImage imageNamed:@"scan5"],
+                                         [UIImage imageNamed:@"scan6"],
+                                         [UIImage imageNamed:@"scan7"],
+                                         [UIImage imageNamed:@"scan8"],
+                                         [UIImage imageNamed:@"scan9"],
+                                         [UIImage imageNamed:@"scan10"],
+                                         [UIImage imageNamed:@"scan11"],
+                                         [UIImage imageNamed:@"scan12"],
+                                         [UIImage imageNamed:@"scan13"],
+                                         [UIImage imageNamed:@"scan14"],
+                                         [UIImage imageNamed:@"scan15"],
+                                         [UIImage imageNamed:@"scan16"],
+                                         [UIImage imageNamed:@"scan17"],
+                                         [UIImage imageNamed:@"scan18"],
+                                         [UIImage imageNamed:@"scan19"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan20"],
+                                         [UIImage imageNamed:@"scan19"],
+                                         [UIImage imageNamed:@"scan18"],
+                                         [UIImage imageNamed:@"scan17"],
+                                         [UIImage imageNamed:@"scan16"],
+                                         [UIImage imageNamed:@"scan15"],
+                                         [UIImage imageNamed:@"scan14"],
+                                         [UIImage imageNamed:@"scan13"],
+                                         [UIImage imageNamed:@"scan12"],
+                                         [UIImage imageNamed:@"scan11"],
+                                         [UIImage imageNamed:@"scan10"],
+                                         [UIImage imageNamed:@"scan9"],
+                                         [UIImage imageNamed:@"scan8"],
+                                         [UIImage imageNamed:@"scan7"],
+                                         [UIImage imageNamed:@"scan6"],
+                                         [UIImage imageNamed:@"scan5"],
+                                         [UIImage imageNamed:@"scan4"],
+                                         [UIImage imageNamed:@"scan3"],
+                                         [UIImage imageNamed:@"scan2"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         [UIImage imageNamed:@"scan1"],
+                                         
+                                          nil];
+    animatedImageView.animationDuration = 5.0f;
+    [animatedImageView setCenter:superCenter];
+    animatedImageView.animationRepeatCount = 0;
+    [animatedImageView startAnimating];
+    [contentView addSubview: animatedImageView];
+    
     
     [self.previewView setBackgroundColor:[UIColor lightGrayColor]];
     [contentView addSubview:self.previewView];
