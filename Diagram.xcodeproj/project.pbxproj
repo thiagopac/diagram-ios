@@ -1347,7 +1347,7 @@
 		17EB9AF415C4430500AFF87A /* Capture7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Capture7.wav; path = Sounds/Capture7.wav; sourceTree = "<group>"; };
 		17EB9AF515C4430500AFF87A /* Capture8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Capture8.wav; path = Sounds/Capture8.wav; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Chess Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chess Codes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Chess Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Chess Codes.app"; path = Diagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1EE176EE1CBFD23200DDAD41 /* ScanViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ScanViewController.m; sourceTree = "<group>"; };
 		1EE176EF1CBFD23200DDAD41 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };

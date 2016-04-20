@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/BoardViewController.mm"
-            timestampString = "482842743.686088"
+            timestampString = "482874225.224598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1146"
-            endingLineNumber = "1146"
+            startingLineNumber = "1140"
+            endingLineNumber = "1140"
             landmarkName = "-startActivityIndicator"
             landmarkType = "5">
          </BreakpointContent>

@@ -245,11 +245,11 @@
       // Board
        
 #pragma-mark ALTEREI O FRAME ONDE O TABULEIRO É POSICIONADO
-//       boardView = [[BoardView alloc] initWithFrame: CGRectMake((appRect.size.width-appRect.size.width+40)/2, (self.view.frame.size.height/2)-(appRect.size.width/2+25), appRect.size.width-40, appRect.size.width-40)];
+       boardView = [[BoardView alloc] initWithFrame: CGRectMake(0.0f, 0.0f/*38.0f*//*18.0f*/, appRect.size.width, appRect.size.width)]; //ORIGINAL
        
-       boardView = [[BoardView alloc] initWithFrame: CGRectMake(0, 0, appRect.size.width-40, appRect.size.width-40)];
+//       boardView = [[BoardView alloc] initWithFrame: CGRectMake(0, 0, appRect.size.width-40, appRect.size.width-40)]; //CENTRALIZADO
        
-       [boardView setCenter:superCenter];
+//       [boardView setCenter:superCenter];
        
 //      boardView =
 //         [[BoardView alloc] initWithFrame: CGRectMake(0.0f, self.view.frame.size.height/4/*38.0f*//*18.0f*/, appRect.size.width, appRect.size.width)];
@@ -282,17 +282,17 @@
       
 #pragma-mark CRIEI UMA VIEW PARA ADICIONAR OS BOTÕES DE NAVEGAÇÃO ENTRE AS JOGADAS
        
-       movesHistoryView = [[UIView alloc] initWithFrame: CGRectMake(0, 35.0f, appRect.size.width, 40.0f)];
+       movesHistoryView = [[UIView alloc] initWithFrame: CGRectMake(0, appRect.size.width, appRect.size.width, 30.0f)];
 //       [movesHistoryView setBackgroundColor:[UIColor blueColor]];
 
        //Botão para voltar tudo
        UIButton *btnBackAll = [UIButton buttonWithType:UIButtonTypeCustom];
        [btnBackAll addTarget:self action:@selector(threadTakeBackAllMoves) forControlEvents:UIControlEventTouchUpInside];
        [btnBackAll setTitle:@"\u25C2\u25C2" forState:UIControlStateNormal];
-       btnBackAll.titleLabel.font = [UIFont systemFontOfSize: 40];
+       btnBackAll.titleLabel.font = [UIFont systemFontOfSize: 30];
        [btnBackAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnBackAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       btnBackAll.frame = CGRectMake(20.0f, 0, 60.0f, 40.0f);
+       btnBackAll.frame = CGRectMake(20.0f, 0, 60.0f, 30.0f);
        [movesHistoryView addSubview:btnBackAll];
        [contentView addSubview: movesHistoryView];
        
@@ -303,7 +303,7 @@
        btnBack.titleLabel.font = [UIFont systemFontOfSize: 40];
        [btnBack setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnBack setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       btnBack.frame = CGRectMake(100.0f, 0, 40.0f, 40.0f);
+       btnBack.frame = CGRectMake(100.0f, 0, 40.0f, 30.0f);
        [movesHistoryView addSubview:btnBack];
        [contentView addSubview: movesHistoryView];
        
@@ -314,7 +314,7 @@
        btnForward.titleLabel.font = [UIFont systemFontOfSize: 40];
        [btnForward setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnForward setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       btnForward.frame = CGRectMake(180.0f, 0, 40.0f, 40.0f);
+       btnForward.frame = CGRectMake(180.0f, 0, 40.0f, 30.0f);
        [movesHistoryView addSubview:btnForward];
       [contentView addSubview: movesHistoryView];
        
@@ -325,7 +325,7 @@
        btnForwardAll.titleLabel.font = [UIFont systemFontOfSize: 40];
        [btnForwardAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnForwardAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       btnForwardAll.frame = CGRectMake(240.0f, 0, 60.0f, 40.0f);
+       btnForwardAll.frame = CGRectMake(240.0f, 0, 60.0f, 30.0f);
        [movesHistoryView addSubview:btnForwardAll];
        [contentView addSubview: movesHistoryView];
        
@@ -354,14 +354,8 @@
 
       // Move list
       float frameHeight = appRect.size.height;
-      moveListView =
-         [[MoveListView alloc]
-            initWithFrame:
-               CGRectMake(0.0f, appRect.size.width + /*56.0f*/ 36.0f, appRect.size.width,
-                     frameHeight - appRect.size.width - /*56.0f*/ 36.0f - 44.0f)];
-       
-#pragma-mark RETIREI A LISTA DE MOVIMENTOS ABAIXO DO TABULEIRO
-//       [contentView addSubview: moveListView];
+      moveListView = [[MoveListView alloc]initWithFrame:CGRectMake(0.0f, appRect.size.width + /*56.0f*/ 36.0f, appRect.size.width,frameHeight - appRect.size.width - /*56.0f*/ 36.0f - 44.0f)];
+      [contentView addSubview: moveListView];
 
       // Toolbar
       toolbar =
@@ -424,7 +418,7 @@
       // Activity indicator
       self.activityIndicator =
          [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake(0,0,30,30)];
-      [self.activityIndicator setCenter: CGPointMake(0.5f * appRect.size.width, (23.0f / 16.0f) * appRect.size.width)];
+      [self.activityIndicator setCenter: CGPointMake(0.5f * appRect.size.width, appRect.size.width + 18.0f)];
       [self.activityIndicator
          setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
       [contentView addSubview: self.activityIndicator];
@@ -455,12 +449,12 @@
                                destructiveButtonTitle: nil
                                     otherButtonTitles:
                                            @"Play white", @"Play black", @"Play both", @"Analysis", nil];
-   moveMenu = [[UIActionSheet alloc] initWithTitle: nil
-                                          delegate: self
-                                 cancelButtonTitle: @"Cancel"
-                            destructiveButtonTitle: nil
-                                 otherButtonTitles:
-                                        @"Take back", @"Step forward", @"Take back all", @"Step forward all", @"Move list", @"Move now", nil];
+//   moveMenu = [[UIActionSheet alloc] initWithTitle: nil
+//                                          delegate: self
+//                                 cancelButtonTitle: @"Cancel"
+//                            destructiveButtonTitle: nil
+//                                 otherButtonTitles:
+//                                        @"Take back", @"Step forward", @"Take back all", @"Step forward all", @"Move list", @"Move now", nil];
    optionsMenu = nil;
    saveMenu = nil;
    emailMenu = nil;

@@ -1,17 +1,26 @@
 body {
-    font-family: "Helvetica Neue";
-    font-size: 14px
+    font-family: "Courier New";
+    font-size: 14px;
+    padding: 2px;
+    font-weight: bold;
 }
 
 strong {
     font-weight: bold;
-    color: rgb(0, 0, 0);
-    background: rgb(200, 200, 200);
+    color: #D2527F;
+    text-decoration: none;
+    border-bottom: 1px dotted #D2527F;
+    /*background: rgb(200, 200, 200);*/
+}
+
+.move.moves {
+    font-weight: normal;
+    color: #000;
 }
 
 .move.selected {
     color: rgb(0, 0, 0);
-    background-color: rgb(200, 220, 255);
+    /*background-color: rgb(200, 220, 255);*/
 }
 
 * {

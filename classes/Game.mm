@@ -804,14 +804,17 @@ static NSString* breakLinesInString(NSString *string) {
 
 - (void)computeOpeningString {
    // Look through the game history backwards in order to find the opening name.
-   for (NSInteger i = [moves count]; i >= 0; i--) {
-      NSString *s = [[ECO sharedInstance] openingDescriptionForKey:
-                                             currentPosition->get_key((int)i)];
-      if (s != nil) {
-         openingString = s;
-         break;
-      }
-   }
+    
+#pragma-mark COMENTEI O CORPO DO MÉTODO PARA ELE PARAR DE DEVOLVER O NOME DA ABERTURA, QUE VAI PARA A LISTA DE MOVIMENTOS
+//   for (NSInteger i = [moves count]; i >= 0; i--) {
+//      NSString *s = [[ECO sharedInstance] openingDescriptionForKey:
+//                                             currentPosition->get_key((int)i)];
+//      if (s != nil) {
+//         openingString = s;
+//         break;
+//      }
+//   }
+    
 }
 
 

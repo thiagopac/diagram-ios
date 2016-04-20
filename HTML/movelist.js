@@ -52,17 +52,68 @@ var scrollToPly = function (ply) {
 // addMoveEventHandlers loops throgh all moves in the document and adds
 // event handlers for detecting taps on moves and jumping to the right place
 // in ghe game.
+
+
+var addMoveEventHandlers = function () {
+    var moves = document.getElementsByClassName('move'), m, i
+    
+    for (i = 0; i < moves.length; i++) {
+        m = moves[i]
+        
+        
+        ;(function () {
+          
+          var touchLeftMove
+          var move = m
+          
+          move.classList.add('moves')
+          
+          move.addEventListener(function () {
+                                touchLeftMove = false
+                                move.classList.add('selected')
+                                })
+          
+          // When the touch moves, check whether we have left the move element.
+          move.addEventListener(function (event) {
+                                var touch, x, y
+                                if (!touchLeftMove) {
+                                touch = event.touches[0], x = touch.pageX, y = touch.pageY
+                                if (document.elementFromPoint(x, y) !== move) {
+                                touchLeftMove = true
+                                move.classList.remove('selected')
+                                }
+                                }
+                                })
+          
+          move.addEventListener(function (event) {
+                                if (!touchLeftMove) {
+                                // Stop the event from propagating up to the document, in
+                                // order to avoid misenterpreting this as a swiping gesture.
+                                event.stopPropagation()
+                                move.classList.remove('selected')
+                                objcCall('jumpToPly', move.id.substring(3))
+                                }
+                                })
+          } ())
+    }
+}
+
+/* pragma-mark COMENTEI TODO O CÓDIGO QUE IDENTIFICA OS TOQUES NOS MOVIMENTOS E TAMBÉM PARA DIREITA E ESQUERDA QUE MOVEM PEÇAS E NAVEGAM PELO HISTÓRICO
+
 var addMoveEventHandlers = function () {
    var moves = document.getElementsByClassName('move'), m, i
 
    for (i = 0; i < moves.length; i++) {
       m = moves[i]
-
+       
+       
       ;(function () {
 
          var touchLeftMove
          var move = m
 
+         move.classList.add('moves')
+        
          move.addEventListener(
             'touchstart'
           , function () {
@@ -100,6 +151,7 @@ var addMoveEventHandlers = function () {
 }
 
 
+ 
 // Listen to touch events on the document object, in order to detect swiping
 // gestures for making/unmaking moves.
 ;(function () {
@@ -161,3 +213,5 @@ var addMoveEventHandlers = function () {
       })
 
 } ())
+ 
+ */
