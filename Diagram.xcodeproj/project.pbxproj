@@ -467,30 +467,7 @@
 		1773FF4D17EC9A7D00CB6DD3 /* USCFWQueen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1773FE5E17EC9A7D00CB6DD3 /* USCFWQueen@2x.png */; };
 		1773FF4E17EC9A7D00CB6DD3 /* USCFWRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1773FE5F17EC9A7D00CB6DD3 /* USCFWRook.png */; };
 		1773FF4F17EC9A7D00CB6DD3 /* USCFWRook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1773FE6017EC9A7D00CB6DD3 /* USCFWRook@2x.png */; };
-		177C360417F1D06F00FF576F /* Alekhine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35EC17F1D06F00FF576F /* Alekhine.pgn */; };
-		177C360517F1D06F00FF576F /* Anderssen.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35ED17F1D06F00FF576F /* Anderssen.pgn */; };
-		177C360617F1D06F00FF576F /* Botvinnik.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35EE17F1D06F00FF576F /* Botvinnik.pgn */; };
-		177C360717F1D06F00FF576F /* Bronstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35EF17F1D06F00FF576F /* Bronstein.pgn */; };
-		177C360817F1D06F00FF576F /* Capablanca.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F017F1D06F00FF576F /* Capablanca.pgn */; };
-		177C360917F1D06F00FF576F /* Chigorin.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F117F1D06F00FF576F /* Chigorin.pgn */; };
-		177C360A17F1D06F00FF576F /* Euwe.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F217F1D06F00FF576F /* Euwe.pgn */; };
 		177C360B17F1D06F00FF576F /* Fischer.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F317F1D06F00FF576F /* Fischer.pgn */; };
-		177C360C17F1D06F00FF576F /* Karpov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F417F1D06F00FF576F /* Karpov.pgn */; };
-		177C360D17F1D06F00FF576F /* Kasparov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F517F1D06F00FF576F /* Kasparov.pgn */; };
-		177C360E17F1D06F00FF576F /* Keres.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F617F1D06F00FF576F /* Keres.pgn */; };
-		177C360F17F1D06F00FF576F /* Korchnoi.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F717F1D06F00FF576F /* Korchnoi.pgn */; };
-		177C361017F1D06F00FF576F /* Larsen.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F817F1D06F00FF576F /* Larsen.pgn */; };
-		177C361117F1D06F00FF576F /* Lasker.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35F917F1D06F00FF576F /* Lasker.pgn */; };
-		177C361217F1D06F00FF576F /* Marshall.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FA17F1D06F00FF576F /* Marshall.pgn */; };
-		177C361317F1D06F00FF576F /* Morphy.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FB17F1D06F00FF576F /* Morphy.pgn */; };
-		177C361417F1D06F00FF576F /* Petrosian.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FC17F1D06F00FF576F /* Petrosian.pgn */; };
-		177C361517F1D06F00FF576F /* Philidor.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FD17F1D06F00FF576F /* Philidor.pgn */; };
-		177C361617F1D06F00FF576F /* Rubinstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FE17F1D06F00FF576F /* Rubinstein.pgn */; };
-		177C361717F1D06F00FF576F /* Smyslov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C35FF17F1D06F00FF576F /* Smyslov.pgn */; };
-		177C361817F1D06F00FF576F /* Spassky.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C360017F1D06F00FF576F /* Spassky.pgn */; };
-		177C361917F1D06F00FF576F /* Spielmann.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C360117F1D06F00FF576F /* Spielmann.pgn */; };
-		177C361A17F1D06F00FF576F /* Steinitz.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C360217F1D06F00FF576F /* Steinitz.pgn */; };
-		177C361B17F1D06F00FF576F /* Tal.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 177C360317F1D06F00FF576F /* Tal.pgn */; };
 		177F563719DB012D001D2F20 /* AlphaBBishop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F560719DB012D001D2F20 /* AlphaBBishop@3x.png */; };
 		177F563819DB012D001D2F20 /* AlphaBKing@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F560819DB012D001D2F20 /* AlphaBKing@3x.png */; };
 		177F563919DB012D001D2F20 /* AlphaBKnight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F560919DB012D001D2F20 /* AlphaBKnight@3x.png */; };
@@ -1127,30 +1104,7 @@
 		1773FFFD17EC9AA200CB6DD3 /* MeridaWKing96@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MeridaWKing96@2x.png"; path = "Images-iPad/MeridaWKing96@2x.png"; sourceTree = "<group>"; };
 		1773FFFE17EC9AA200CB6DD3 /* MeridaWKnight96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MeridaWKnight96.png; path = "Images-iPad/MeridaWKnight96.png"; sourceTree = "<group>"; };
 		1773FFFF17EC9AA200CB6DD3 /* MeridaWKnight96@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MeridaWKnight96@2x.png"; path = "Images-iPad/MeridaWKnight96@2x.png"; sourceTree = "<group>"; };
-		177C35EC17F1D06F00FF576F /* Alekhine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Alekhine.pgn; path = PGN/Alekhine.pgn; sourceTree = "<group>"; };
-		177C35ED17F1D06F00FF576F /* Anderssen.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Anderssen.pgn; path = PGN/Anderssen.pgn; sourceTree = "<group>"; };
-		177C35EE17F1D06F00FF576F /* Botvinnik.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Botvinnik.pgn; path = PGN/Botvinnik.pgn; sourceTree = "<group>"; };
-		177C35EF17F1D06F00FF576F /* Bronstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Bronstein.pgn; path = PGN/Bronstein.pgn; sourceTree = "<group>"; };
-		177C35F017F1D06F00FF576F /* Capablanca.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Capablanca.pgn; path = PGN/Capablanca.pgn; sourceTree = "<group>"; };
-		177C35F117F1D06F00FF576F /* Chigorin.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Chigorin.pgn; path = PGN/Chigorin.pgn; sourceTree = "<group>"; };
-		177C35F217F1D06F00FF576F /* Euwe.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Euwe.pgn; path = PGN/Euwe.pgn; sourceTree = "<group>"; };
 		177C35F317F1D06F00FF576F /* Fischer.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fischer.pgn; path = PGN/Fischer.pgn; sourceTree = "<group>"; };
-		177C35F417F1D06F00FF576F /* Karpov.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Karpov.pgn; path = PGN/Karpov.pgn; sourceTree = "<group>"; };
-		177C35F517F1D06F00FF576F /* Kasparov.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Kasparov.pgn; path = PGN/Kasparov.pgn; sourceTree = "<group>"; };
-		177C35F617F1D06F00FF576F /* Keres.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Keres.pgn; path = PGN/Keres.pgn; sourceTree = "<group>"; };
-		177C35F717F1D06F00FF576F /* Korchnoi.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Korchnoi.pgn; path = PGN/Korchnoi.pgn; sourceTree = "<group>"; };
-		177C35F817F1D06F00FF576F /* Larsen.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Larsen.pgn; path = PGN/Larsen.pgn; sourceTree = "<group>"; };
-		177C35F917F1D06F00FF576F /* Lasker.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Lasker.pgn; path = PGN/Lasker.pgn; sourceTree = "<group>"; };
-		177C35FA17F1D06F00FF576F /* Marshall.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Marshall.pgn; path = PGN/Marshall.pgn; sourceTree = "<group>"; };
-		177C35FB17F1D06F00FF576F /* Morphy.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Morphy.pgn; path = PGN/Morphy.pgn; sourceTree = "<group>"; };
-		177C35FC17F1D06F00FF576F /* Petrosian.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Petrosian.pgn; path = PGN/Petrosian.pgn; sourceTree = "<group>"; };
-		177C35FD17F1D06F00FF576F /* Philidor.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Philidor.pgn; path = PGN/Philidor.pgn; sourceTree = "<group>"; };
-		177C35FE17F1D06F00FF576F /* Rubinstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Rubinstein.pgn; path = PGN/Rubinstein.pgn; sourceTree = "<group>"; };
-		177C35FF17F1D06F00FF576F /* Smyslov.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Smyslov.pgn; path = PGN/Smyslov.pgn; sourceTree = "<group>"; };
-		177C360017F1D06F00FF576F /* Spassky.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Spassky.pgn; path = PGN/Spassky.pgn; sourceTree = "<group>"; };
-		177C360117F1D06F00FF576F /* Spielmann.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Spielmann.pgn; path = PGN/Spielmann.pgn; sourceTree = "<group>"; };
-		177C360217F1D06F00FF576F /* Steinitz.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Steinitz.pgn; path = PGN/Steinitz.pgn; sourceTree = "<group>"; };
-		177C360317F1D06F00FF576F /* Tal.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Tal.pgn; path = PGN/Tal.pgn; sourceTree = "<group>"; };
 		177F560719DB012D001D2F20 /* AlphaBBishop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AlphaBBishop@3x.png"; path = "Images/AlphaBBishop@3x.png"; sourceTree = "<group>"; };
 		177F560819DB012D001D2F20 /* AlphaBKing@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AlphaBKing@3x.png"; path = "Images/AlphaBKing@3x.png"; sourceTree = "<group>"; };
 		177F560919DB012D001D2F20 /* AlphaBKnight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AlphaBKnight@3x.png"; path = "Images/AlphaBKnight@3x.png"; sourceTree = "<group>"; };
@@ -1401,13 +1355,13 @@
 		1EE176F11CBFD23200DDAD41 /* MTBBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTBBarcodeScanner.m; sourceTree = "<group>"; };
 		1EE176F41CBFD42C00DDAD41 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* Chess Codes_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chess Codes_Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Diagram_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Diagram_Prefix.pch; sourceTree = "<group>"; };
 		3669E10D3A8EE40F981232B6 /* ColorUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorUtils.mm; sourceTree = "<group>"; };
 		3669E50F4255300CE2D0FAD3 /* ArrowView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrowView.mm; sourceTree = "<group>"; };
 		3669E8F40602BE7AC99B4F60 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		3669EFA6EE823426143F23FE /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
 		6E4D110E1CC5C4A0003D5BCB /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Chess Codes-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chess Codes-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Diagram-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Diagram-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1782,30 +1736,7 @@
 		1773012317EE2B6300CB6DD3 /* PGN */ = {
 			isa = PBXGroup;
 			children = (
-				177C35EC17F1D06F00FF576F /* Alekhine.pgn */,
-				177C35ED17F1D06F00FF576F /* Anderssen.pgn */,
-				177C35EE17F1D06F00FF576F /* Botvinnik.pgn */,
-				177C35EF17F1D06F00FF576F /* Bronstein.pgn */,
-				177C35F017F1D06F00FF576F /* Capablanca.pgn */,
-				177C35F117F1D06F00FF576F /* Chigorin.pgn */,
-				177C35F217F1D06F00FF576F /* Euwe.pgn */,
 				177C35F317F1D06F00FF576F /* Fischer.pgn */,
-				177C35F417F1D06F00FF576F /* Karpov.pgn */,
-				177C35F517F1D06F00FF576F /* Kasparov.pgn */,
-				177C35F617F1D06F00FF576F /* Keres.pgn */,
-				177C35F717F1D06F00FF576F /* Korchnoi.pgn */,
-				177C35F817F1D06F00FF576F /* Larsen.pgn */,
-				177C35F917F1D06F00FF576F /* Lasker.pgn */,
-				177C35FA17F1D06F00FF576F /* Marshall.pgn */,
-				177C35FB17F1D06F00FF576F /* Morphy.pgn */,
-				177C35FC17F1D06F00FF576F /* Petrosian.pgn */,
-				177C35FD17F1D06F00FF576F /* Philidor.pgn */,
-				177C35FE17F1D06F00FF576F /* Rubinstein.pgn */,
-				177C35FF17F1D06F00FF576F /* Smyslov.pgn */,
-				177C360017F1D06F00FF576F /* Spassky.pgn */,
-				177C360117F1D06F00FF576F /* Spielmann.pgn */,
-				177C360217F1D06F00FF576F /* Steinitz.pgn */,
-				177C360317F1D06F00FF576F /* Tal.pgn */,
 			);
 			name = PGN;
 			sourceTree = "<group>";
@@ -2260,7 +2191,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* Chess Codes_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* Diagram_Prefix.pch */,
 				1796FEA011D391570074E5B7 /* main.mm */,
 			);
 			name = "Other Sources";
@@ -2275,7 +2206,7 @@
 				17510064127325D800A59D5B /* Images-iPad */,
 				1796004511D392740074E5B7 /* Sounds */,
 				6E4D110E1CC5C4A0003D5BCB /* images.xcassets */,
-				8D1107310486CEB800E47090 /* Chess Codes-Info.plist */,
+				8D1107310486CEB800E47090 /* Diagram-Info.plist */,
 				17D23EF1127C162B0018E053 /* iTunesArtwork */,
 				17CD831917E6041A00D4B532 /* book.bin */,
 				1799C31715DA88310042DE41 /* eco.txt */,
@@ -2299,9 +2230,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Chess Codes */ = {
+		1D6058900D05DD3D006BFB54 /* Diagram */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chess Codes" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Diagram" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -2311,7 +2242,7 @@
 			);
 			dependencies = (
 			);
-			name = "Chess Codes";
+			name = Diagram;
 			productName = Glaurung;
 			productReference = 1D6058910D05DD3D006BFB54 /* Chess Codes.app */;
 			productType = "com.apple.product-type.application";
@@ -2329,7 +2260,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "chess codes" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Diagram" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -2343,7 +2274,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Chess Codes */,
+				1D6058900D05DD3D006BFB54 /* Diagram */,
 			);
 		};
 /* End PBXProject section */
@@ -2362,7 +2293,6 @@
 				177F564519DB012D001D2F20 /* LeipzigBKnight@3x.png in Resources */,
 				177300AC17EC9AA300CB6DD3 /* LightNewspaper96.png in Resources */,
 				1773FE8D17EC9A7D00CB6DD3 /* AlphaWQueen.png in Resources */,
-				177C360917F1D06F00FF576F /* Chigorin.pgn in Resources */,
 				1773FEE217EC9A7D00CB6DD3 /* LeipzigWPawn.png in Resources */,
 				1773FE9517EC9A7D00CB6DD3 /* BerlinBKnight.png in Resources */,
 				172D6C9218D84B60003A7303 /* RussianBRook96.png in Resources */,
@@ -2389,7 +2319,6 @@
 				1773FF1F17EC9A7D00CB6DD3 /* MeridaWRook@2x.png in Resources */,
 				1773FF2417EC9A7D00CB6DD3 /* ModernBKnight.png in Resources */,
 				177300D317EC9AA300CB6DD3 /* MeridaBRook96@2x.png in Resources */,
-				177C360817F1D06F00FF576F /* Capablanca.pgn in Resources */,
 				1773005D17EC9AA300CB6DD3 /* BerlinBKing96@2x.png in Resources */,
 				1773FE8417EC9A7D00CB6DD3 /* AlphaBRook@2x.png in Resources */,
 				1773FF2617EC9A7D00CB6DD3 /* ModernBPawn.png in Resources */,
@@ -2418,7 +2347,6 @@
 				172D6C6A18D84B43003A7303 /* RussianWPawn.png in Resources */,
 				1773004C17EC9AA300CB6DD3 /* AlphaBRook96.png in Resources */,
 				1796004C11D392F20074E5B7 /* about.html in Resources */,
-				177C361017F1D06F00FF576F /* Larsen.pgn in Resources */,
 				177300FA17EC9AA300CB6DD3 /* USCFBKing96.png in Resources */,
 				177300C417EC9AA300CB6DD3 /* MayaWQueen96.png in Resources */,
 				177300EA17EC9AA300CB6DD3 /* ModernBRook96.png in Resources */,
@@ -2426,7 +2354,6 @@
 				1773007E17EC9AA300CB6DD3 /* CheqWBishop96.png in Resources */,
 				177300C817EC9AA300CB6DD3 /* MeridaBBishop96.png in Resources */,
 				177F564D19DB012D001D2F20 /* LeipzigWQueen@3x.png in Resources */,
-				177C361B17F1D06F00FF576F /* Tal.pgn in Resources */,
 				17CD831A17E6041A00D4B532 /* book.bin in Resources */,
 				1773006517EC9AA300CB6DD3 /* BerlinBRook96@2x.png in Resources */,
 				1773FEE317EC9A7D00CB6DD3 /* LeipzigWPawn@2x.png in Resources */,
@@ -2439,7 +2366,6 @@
 				1773FEF917EC9A7D00CB6DD3 /* MayaBQueen@2x.png in Resources */,
 				177300B117EC9AA300CB6DD3 /* MayaBBishop96@2x.png in Resources */,
 				1773FEA017EC9A7D00CB6DD3 /* BerlinWKing@2x.png in Resources */,
-				177C360C17F1D06F00FF576F /* Karpov.pgn in Resources */,
 				177C360B17F1D06F00FF576F /* Fischer.pgn in Resources */,
 				177300D417EC9AA300CB6DD3 /* MeridaWBishop96.png in Resources */,
 				1773FE9B17EC9A7D00CB6DD3 /* BerlinBRook.png in Resources */,
@@ -2454,7 +2380,6 @@
 				1773FF3A17EC9A7D00CB6DD3 /* USCFBKing.png in Resources */,
 				1773FE7F17EC9A7D00CB6DD3 /* AlphaBPawn.png in Resources */,
 				1773004D17EC9AA300CB6DD3 /* AlphaBRook96@2x.png in Resources */,
-				177C360417F1D06F00FF576F /* Alekhine.pgn in Resources */,
 				1773010717EC9AA300CB6DD3 /* USCFWKing96@2x.png in Resources */,
 				1773FF1017EC9A7D00CB6DD3 /* MeridaBQueen.png in Resources */,
 				1773FE9017EC9A7D00CB6DD3 /* AlphaWRook@2x.png in Resources */,
@@ -2477,7 +2402,6 @@
 				172D6C8E18D84B60003A7303 /* RussianBPawn96.png in Resources */,
 				1773FED817EC9A7D00CB6DD3 /* LeipzigBQueen.png in Resources */,
 				177300DB17EC9AA300CB6DD3 /* MeridaWPawn96@2x.png in Resources */,
-				177C361717F1D06F00FF576F /* Smyslov.pgn in Resources */,
 				177F566419DB012D001D2F20 /* USCFWPawn@3x.png in Resources */,
 				1773008217EC9AA300CB6DD3 /* CheqWKnight96.png in Resources */,
 				17D23EF2127C162B0018E053 /* iTunesArtwork in Resources */,
@@ -2523,23 +2447,19 @@
 				172D6C8F18D84B60003A7303 /* RussianBPawn96@2x.png in Resources */,
 				1773006917EC9AA300CB6DD3 /* BerlinWKing96@2x.png in Resources */,
 				1773007117EC9AA300CB6DD3 /* BerlinWRook96@2x.png in Resources */,
-				177C361217F1D06F00FF576F /* Marshall.pgn in Resources */,
 				1773FE7C17EC9A7D00CB6DD3 /* AlphaBKing@2x.png in Resources */,
 				1773FF4817EC9A7D00CB6DD3 /* USCFWKnight.png in Resources */,
 				172D6C6918D84B43003A7303 /* RussianWKnight@2x.png in Resources */,
 				1773010317EC9AA300CB6DD3 /* USCFBRook96@2x.png in Resources */,
 				1773FEAF17EC9A7D00CB6DD3 /* CheqBPawn.png in Resources */,
 				1773FEB317EC9A7D00CB6DD3 /* CheqBRook.png in Resources */,
-				177C360A17F1D06F00FF576F /* Euwe.pgn in Resources */,
 				1773FF0717EC9A7D00CB6DD3 /* MayaWRook@2x.png in Resources */,
 				1773008717EC9AA300CB6DD3 /* CheqWQueen96@2x.png in Resources */,
 				1773FEA517EC9A7D00CB6DD3 /* BerlinWQueen.png in Resources */,
 				1773FEB617EC9A7D00CB6DD3 /* CheqWBishop@2x.png in Resources */,
 				1773009A17EC9AA300CB6DD3 /* LeipzigBQueen96@2x.png in Resources */,
 				177F566119DB012D001D2F20 /* USCFWBishop@3x.png in Resources */,
-				177C360717F1D06F00FF576F /* Bronstein.pgn in Resources */,
 				172D6C5B18D84B43003A7303 /* RussianBKing@2x.png in Resources */,
-				177C361317F1D06F00FF576F /* Morphy.pgn in Resources */,
 				1773FEEC17EC9A7D00CB6DD3 /* LightNewspaper.png in Resources */,
 				1773FF2B17EC9A7D00CB6DD3 /* ModernBRook@2x.png in Resources */,
 				1773FE8A17EC9A7D00CB6DD3 /* AlphaWKnight@2x.png in Resources */,
@@ -2556,7 +2476,6 @@
 				1773FEF717EC9A7D00CB6DD3 /* MayaBPawn@2x.png in Resources */,
 				1773FF3817EC9A7D00CB6DD3 /* USCFBBishop.png in Resources */,
 				1773FEB017EC9A7D00CB6DD3 /* CheqBPawn@2x.png in Resources */,
-				177C360F17F1D06F00FF576F /* Korchnoi.pgn in Resources */,
 				1773005217EC9AA300CB6DD3 /* AlphaWKnight96.png in Resources */,
 				172D6C9318D84B60003A7303 /* RussianBRook96@2x.png in Resources */,
 				1773FE7D17EC9A7D00CB6DD3 /* AlphaBKnight.png in Resources */,
@@ -2564,7 +2483,6 @@
 				177F566319DB012D001D2F20 /* USCFWKnight@3x.png in Resources */,
 				177300D617EC9AA300CB6DD3 /* MeridaWKing96.png in Resources */,
 				1773FE9C17EC9A7D00CB6DD3 /* BerlinBRook@2x.png in Resources */,
-				177C361417F1D06F00FF576F /* Petrosian.pgn in Resources */,
 				1773FEF517EC9A7D00CB6DD3 /* MayaBKnight@2x.png in Resources */,
 				177300A617EC9AA300CB6DD3 /* LeipzigWQueen96@2x.png in Resources */,
 				1773FE8117EC9A7D00CB6DD3 /* AlphaBQueen.png in Resources */,
@@ -2588,7 +2506,6 @@
 				1773FF3117EC9A7D00CB6DD3 /* ModernWKnight@2x.png in Resources */,
 				177300C217EC9AA300CB6DD3 /* MayaWPawn96.png in Resources */,
 				1773FE9317EC9A7D00CB6DD3 /* BerlinBKing.png in Resources */,
-				177C360517F1D06F00FF576F /* Anderssen.pgn in Resources */,
 				1773FEB417EC9A7D00CB6DD3 /* CheqBRook@2x.png in Resources */,
 				1773FEFF17EC9A7D00CB6DD3 /* MayaWKing@2x.png in Resources */,
 				1773FE9117EC9A7D00CB6DD3 /* BerlinBBishop.png in Resources */,
@@ -2613,7 +2530,6 @@
 				1773FEA717EC9A7D00CB6DD3 /* BerlinWRook.png in Resources */,
 				177300BF17EC9AA300CB6DD3 /* MayaWKing96@2x.png in Resources */,
 				177300E517EC9AA300CB6DD3 /* ModernBKnight96@2x.png in Resources */,
-				177C361A17F1D06F00FF576F /* Steinitz.pgn in Resources */,
 				1773FEBE17EC9A7D00CB6DD3 /* CheqWQueen@2x.png in Resources */,
 				177300B917EC9AA300CB6DD3 /* MayaBQueen96@2x.png in Resources */,
 				1773FED617EC9A7D00CB6DD3 /* LeipzigBPawn.png in Resources */,
@@ -2622,7 +2538,6 @@
 				172117B4143E12B60065C2B1 /* movelist-ipad.css in Resources */,
 				172117B5143E12B60065C2B1 /* movelist-iphone.css in Resources */,
 				177F564919DB012D001D2F20 /* LeipzigWBishop@3x.png in Resources */,
-				177C361817F1D06F00FF576F /* Spassky.pgn in Resources */,
 				172D6C5918D84B43003A7303 /* RussianBBishop@2x.png in Resources */,
 				1773006E17EC9AA300CB6DD3 /* BerlinWQueen96.png in Resources */,
 				177300C517EC9AA300CB6DD3 /* MayaWQueen96@2x.png in Resources */,
@@ -2652,7 +2567,6 @@
 				1773005917EC9AA300CB6DD3 /* AlphaWRook96@2x.png in Resources */,
 				1773FEBD17EC9A7D00CB6DD3 /* CheqWQueen.png in Resources */,
 				1773010117EC9AA300CB6DD3 /* USCFBQueen96@2x.png in Resources */,
-				177C360D17F1D06F00FF576F /* Kasparov.pgn in Resources */,
 				1773009217EC9AA300CB6DD3 /* LeipzigBBishop96@2x.png in Resources */,
 				172D6C8818D84B60003A7303 /* RussianBBishop96.png in Resources */,
 				1773007717EC9AA300CB6DD3 /* CheqBKnight96@2x.png in Resources */,
@@ -2714,7 +2628,6 @@
 				177F565D19DB012D001D2F20 /* USCFBKnight@3x.png in Resources */,
 				177300FF17EC9AA300CB6DD3 /* USCFBPawn96@2x.png in Resources */,
 				1773FE9217EC9A7D00CB6DD3 /* BerlinBBishop@2x.png in Resources */,
-				177C360E17F1D06F00FF576F /* Keres.pgn in Resources */,
 				1773010F17EC9AA300CB6DD3 /* USCFWRook96@2x.png in Resources */,
 				1773006117EC9AA300CB6DD3 /* BerlinBPawn96@2x.png in Resources */,
 				1773FEA217EC9A7D00CB6DD3 /* BerlinWKnight@2x.png in Resources */,
@@ -2782,7 +2695,6 @@
 				177F566619DB012D001D2F20 /* USCFWRook@3x.png in Resources */,
 				1773007517EC9AA300CB6DD3 /* CheqBKing96@2x.png in Resources */,
 				1773009117EC9AA300CB6DD3 /* LeipzigBBishop96.png in Resources */,
-				177C361617F1D06F00FF576F /* Rubinstein.pgn in Resources */,
 				1773FF2F17EC9A7D00CB6DD3 /* ModernWKing@2x.png in Resources */,
 				1773007417EC9AA300CB6DD3 /* CheqBKing96.png in Resources */,
 				177300E417EC9AA300CB6DD3 /* ModernBKnight96.png in Resources */,
@@ -2800,7 +2712,6 @@
 				1773FE9817EC9A7D00CB6DD3 /* BerlinBPawn@2x.png in Resources */,
 				1773004A17EC9AA300CB6DD3 /* AlphaBQueen96.png in Resources */,
 				1773FF4217EC9A7D00CB6DD3 /* USCFBRook.png in Resources */,
-				177C361517F1D06F00FF576F /* Philidor.pgn in Resources */,
 				172D6C8C18D84B60003A7303 /* RussianBKnight96.png in Resources */,
 				1773FF1817EC9A7D00CB6DD3 /* MeridaWKnight.png in Resources */,
 				177F563F19DB012D001D2F20 /* AlphaWKnight@3x.png in Resources */,
@@ -2814,7 +2725,6 @@
 				1773010E17EC9AA300CB6DD3 /* USCFWRook96.png in Resources */,
 				1773004617EC9AA300CB6DD3 /* AlphaBKnight96.png in Resources */,
 				177300F617EC9AA300CB6DD3 /* ModernWRook96.png in Resources */,
-				177C361917F1D06F00FF576F /* Spielmann.pgn in Resources */,
 				177300CF17EC9AA300CB6DD3 /* MeridaBPawn96@2x.png in Resources */,
 				1773006617EC9AA300CB6DD3 /* BerlinWBishop96.png in Resources */,
 				1773006C17EC9AA300CB6DD3 /* BerlinWPawn96.png in Resources */,
@@ -2824,7 +2734,6 @@
 				177300BC17EC9AA300CB6DD3 /* MayaWBishop96.png in Resources */,
 				172D6C6318D84B43003A7303 /* RussianBRook@2x.png in Resources */,
 				1773FEF417EC9A7D00CB6DD3 /* MayaBKnight.png in Resources */,
-				177C360617F1D06F00FF576F /* Botvinnik.pgn in Resources */,
 				177300E117EC9AA300CB6DD3 /* ModernBBishop96@2x.png in Resources */,
 				1773FEF617EC9A7D00CB6DD3 /* MayaBPawn.png in Resources */,
 				172D6C9518D84B60003A7303 /* RussianWBishop96@2x.png in Resources */,
@@ -2867,7 +2776,6 @@
 				1773FED317EC9A7D00CB6DD3 /* LeipzigBKing@2x.png in Resources */,
 				1773FE8217EC9A7D00CB6DD3 /* AlphaBQueen@2x.png in Resources */,
 				1773009317EC9AA300CB6DD3 /* LeipzigBKing96.png in Resources */,
-				177C361117F1D06F00FF576F /* Lasker.pgn in Resources */,
 				1773008D17EC9AA300CB6DD3 /* DarkNewspaper96.png in Resources */,
 				172D6C9B18D84B60003A7303 /* RussianWPawn96@2x.png in Resources */,
 				1773FEFD17EC9A7D00CB6DD3 /* MayaWBishop@2x.png in Resources */,
@@ -3043,12 +2951,12 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chess Codes_Prefix.pch";
+				GCC_PREFIX_HEADER = Diagram_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_STRICT_ALIASING = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Chess Codes-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diagram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -3058,8 +2966,8 @@
 					"-DNDEBUG",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chesscodes;
-				PRODUCT_NAME = "Chess Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = club.diagram;
+				PRODUCT_NAME = Diagram;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3099,12 +3007,12 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chess Codes_Prefix.pch";
+				GCC_PREFIX_HEADER = Diagram_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_STRICT_ALIASING = YES;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Chess Codes-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diagram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -3114,8 +3022,8 @@
 					"-DNDEBUG",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chesscodes;
-				PRODUCT_NAME = "Chess Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = club.diagram;
+				PRODUCT_NAME = Diagram;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3138,12 +3046,12 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chess Codes_Prefix.pch";
+				GCC_PREFIX_HEADER = Diagram_Prefix.pch;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Chess Codes-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diagram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chesscodes;
-				PRODUCT_NAME = "Chess Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = club.diagram;
+				PRODUCT_NAME = Diagram;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3166,11 +3074,11 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chess Codes_Prefix.pch";
+				GCC_PREFIX_HEADER = Diagram_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "Chess Codes-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diagram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -3180,8 +3088,8 @@
 					"-DNDEBUG",
 					"$(OTHER_CFLAGS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chesscodes;
-				PRODUCT_NAME = "Chess Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = club.diagram;
+				PRODUCT_NAME = Diagram;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3224,7 +3132,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Chess Codes" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Diagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -3235,7 +3143,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "chess codes" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Diagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

@@ -33,7 +33,7 @@
 
 @implementation BoardViewController
 
-@synthesize analysisView, bookMovesView, boardView, whiteClockView, blackClockView, moveListView, gameController, searchStatsView, movesHistoryView;
+@synthesize analysisView, bookMovesView, boardView, whiteClockView, blackClockView, moveListView, gameController, searchStatsView, movesHistoryView, activityIndicator;
 
 /// init
 
@@ -66,6 +66,9 @@
 /// the engine analysis and the clocks.
 
 - (void)loadView {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startActivityIndicator) name:@"startActivityIndicator" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopActivityIndicator) name:@"stopActivityIndicator" object:nil];
     
    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
       BOOL portrait = UIInterfaceOrientationIsPortrait([self interfaceOrientation]);
@@ -210,13 +213,14 @@
       [contentView bringSubviewToFront: boardView];
 
       // Activity indicator
-      activityIndicator =
+      self.activityIndicator =
          [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake(0,0,30,30)];
-      [activityIndicator setCenter: [boardView center]];
-      [activityIndicator
-         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite];
-      [contentView addSubview: activityIndicator];
-      [activityIndicator startAnimating];
+      [self.activityIndicator setCenter: [boardView center]];
+      [self.activityIndicator
+         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
+      [contentView addSubview: self.activityIndicator];
+      [self startActivityIndicator];
+      [self.activityIndicator setHidesWhenStopped:YES];
    }
     
 #pragma-mark INÍCIO DA CRIAÇÃO DE VIEW PARA IPHONE
@@ -278,41 +282,52 @@
       
 #pragma-mark CRIEI UMA VIEW PARA ADICIONAR OS BOTÕES DE NAVEGAÇÃO ENTRE AS JOGADAS
        
-       movesHistoryView =
-       [[UIView alloc] initWithFrame: CGRectMake(0, 20.0f, appRect.size.width, 40.0f)];
+       movesHistoryView = [[UIView alloc] initWithFrame: CGRectMake(0, 35.0f, appRect.size.width, 40.0f)];
 //       [movesHistoryView setBackgroundColor:[UIColor blueColor]];
+
+       //Botão para voltar tudo
+       UIButton *btnBackAll = [UIButton buttonWithType:UIButtonTypeCustom];
+       [btnBackAll addTarget:self action:@selector(threadTakeBackAllMoves) forControlEvents:UIControlEventTouchUpInside];
+       [btnBackAll setTitle:@"\u25C2\u25C2" forState:UIControlStateNormal];
+       btnBackAll.titleLabel.font = [UIFont systemFontOfSize: 40];
+       [btnBackAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnBackAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+       btnBackAll.frame = CGRectMake(20.0f, 0, 60.0f, 40.0f);
+       [movesHistoryView addSubview:btnBackAll];
+       [contentView addSubview: movesHistoryView];
        
        //Botão para passar pra trás
        UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-       [btnBack addTarget:self
-                      action:@selector(threadTakeBackMove)
-            forControlEvents:UIControlEventTouchUpInside];
+       [btnBack addTarget:self action:@selector(threadTakeBackMove) forControlEvents:UIControlEventTouchUpInside];
        [btnBack setTitle:@"\u25C2" forState:UIControlStateNormal];
        btnBack.titleLabel.font = [UIFont systemFontOfSize: 40];
        [btnBack setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnBack setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       
-       btnBack.frame = CGRectMake(80.0f, 0, 40.0f, 40.0f);
-//       [btnBack setBackgroundColor:[UIColor redColor]];
+       btnBack.frame = CGRectMake(100.0f, 0, 40.0f, 40.0f);
        [movesHistoryView addSubview:btnBack];
-       
        [contentView addSubview: movesHistoryView];
        
        //Botão para passar pra frente
        UIButton *btnForward = [UIButton buttonWithType:UIButtonTypeCustom];
-       [btnForward addTarget:self
-                  action:@selector(threadReplayMove)
-        forControlEvents:UIControlEventTouchUpInside];
+       [btnForward addTarget:self action:@selector(threadReplayMove) forControlEvents:UIControlEventTouchUpInside];
        [btnForward setTitle:@"\u25B8" forState:UIControlStateNormal];
        btnForward.titleLabel.font = [UIFont systemFontOfSize: 40];
        [btnForward setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnForward setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-       
-       btnForward.frame = CGRectMake(200.0f, 0, 40.0f, 40.0f);
-//       [btnForward setBackgroundColor:[UIColor redColor]];
+       btnForward.frame = CGRectMake(180.0f, 0, 40.0f, 40.0f);
        [movesHistoryView addSubview:btnForward];
-       
       [contentView addSubview: movesHistoryView];
+       
+       //Botão para avançar tudo
+       UIButton *btnForwardAll = [UIButton buttonWithType:UIButtonTypeCustom];
+       [btnForwardAll addTarget:self action:@selector(threadReplayAllMoves) forControlEvents:UIControlEventTouchUpInside];
+       [btnForwardAll setTitle:@"\u25B8\u25B8" forState:UIControlStateNormal];
+       btnForwardAll.titleLabel.font = [UIFont systemFontOfSize: 40];
+       [btnForwardAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnForwardAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+       btnForwardAll.frame = CGRectMake(240.0f, 0, 60.0f, 40.0f);
+       [movesHistoryView addSubview:btnForwardAll];
+       [contentView addSubview: movesHistoryView];
        
 #pragma-mark RETIREI OS RELÓGIOS ACIMA DO TABULEIRO
 //      [contentView addSubview: whiteClockView];
@@ -407,13 +422,14 @@
       [contentView bringSubviewToFront: boardView];
 
       // Activity indicator
-      activityIndicator =
+      self.activityIndicator =
          [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake(0,0,30,30)];
-      [activityIndicator setCenter: CGPointMake(0.5f * appRect.size.width, (18.0f / 16.0f) * appRect.size.width)];
-      [activityIndicator
-         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite];
-      [contentView addSubview: activityIndicator];
-      [activityIndicator startAnimating];
+      [self.activityIndicator setCenter: CGPointMake(0.5f * appRect.size.width, (23.0f / 16.0f) * appRect.size.width)];
+      [self.activityIndicator
+         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
+      [contentView addSubview: self.activityIndicator];
+      [self.activityIndicator setHidesWhenStopped:YES];
+      [self startActivityIndicator];
    }
 
    // Action sheets for menus.
@@ -454,6 +470,9 @@
    popoverMenu = nil;
 }
 
+-(void)threadTakeBackAllMoves{
+    dispatch_async(dispatch_get_main_queue(), ^{[gameController takeBackAllMoves];});
+}
 
 -(void)threadTakeBackMove{
     dispatch_async(dispatch_get_main_queue(), ^{[gameController takeBackMove];});
@@ -462,6 +481,13 @@
 -(void)threadReplayMove{
     dispatch_async(dispatch_get_main_queue(), ^{[gameController replayMove];});
 }
+
+
+-(void)threadReplayAllMoves{
+    dispatch_async(dispatch_get_main_queue(), ^{[gameController replayAllMoves];});
+}
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -493,7 +519,7 @@
    if ([self interfaceOrientation] == UIInterfaceOrientationLandscapeLeft ||
        [self interfaceOrientation] == UIInterfaceOrientationLandscapeRight) {
       [boardView setFrame: iPadBoardRectLandscape];
-      if (activityIndicator) [activityIndicator setCenter: [boardView center]];
+      if (self.activityIndicator) [self.activityIndicator setCenter: [boardView center]];
       [whiteClockView setFrame: iPadWhiteClockRectLandscape];
       [blackClockView setFrame: iPadBlackClockRectLandscape];
       [moveListView setFrame: iPadMoveListRectLandscape];
@@ -873,25 +899,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 }
 
 
+//PODE TROCAR TODO O MÉTODO
 - (void)editPositionDonePressed:(NSString *)fen {
-    NSLog(@"FEN Atual: %@", fen);
-
-    if (Position::is_valid_fen([fen UTF8String])) {
-        NSLog(@"É um FEN válido!");
-    } else {
-        NSLog(@"Não é um FEN válido.");
-    }
     
-   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-      [popoverMenu dismissPopoverAnimated: YES];
-      popoverMenu = nil;
-   } else {
-      [rootView flipSubviewsRight];
-      [[navigationController view] removeFromSuperview];
-   }
-   [boardView hideLastMove];
-   [boardView stopHighlighting];
-   [gameController gameFromFEN: fen];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [popoverMenu dismissPopoverAnimated: YES];
+        popoverMenu = nil;
+    } else {
+        [rootView flipSubviewsRight];
+        [[navigationController view] removeFromSuperview];
+    }
+    [boardView hideLastMove];
+    [boardView stopHighlighting];
+    [gameController gameFromFEN: fen];
 }
 
 
@@ -1120,13 +1140,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    }
 }
 
+- (void)startActivityIndicator {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.activityIndicator startAnimating];
+        });
+    });
+}
+
 
 - (void)stopActivityIndicator {
-   if (activityIndicator) {
-      [activityIndicator stopAnimating];
-      [activityIndicator removeFromSuperview];
-      activityIndicator = nil;
-   }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.activityIndicator stopAnimating];
+        });
+    });
 }
 
 

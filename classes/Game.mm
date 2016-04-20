@@ -162,22 +162,22 @@
       }
       
 #pragma ESTE BLOCO ESTÁ RESULTANDO EM UM RETORNO NULO DE MOVIMENTO QUANDO HÁ UM CÓDIGO FEN INCOMPLETO, CAINDO EM UMA EXCEÇÃO DE ERRO FATAL
-//      else if (depth == 0 && token->type == TOKEN_SYMBOL) {
-//         // This should be a move. Try to parse it:
-//         Move m = move_from_san(*currentPosition, token->string);
-//         if (m != MOVE_NONE) {
-//            UndoInfo u;
-//            currentPosition->do_move(m, u);
-//            ChessMove *cm = [[ChessMove alloc] initWithMove: m undoInfo: u];
-//            [moves addObject: cm];
-//            currentMoveIndex++;
-//         }
-//         else {
-//            [[NSException exceptionWithName: @"PGNException"
-//                                     reason: @"Illegal move"
-//                                   userInfo: nil] raise];
-//         }
-//      }
+      else if (depth == 0 && token->type == TOKEN_SYMBOL) {
+         // This should be a move. Try to parse it:
+         Move m = move_from_san(*currentPosition, token->string);
+         if (m != MOVE_NONE) {
+            UndoInfo u;
+            currentPosition->do_move(m, u);
+            ChessMove *cm = [[ChessMove alloc] initWithMove: m undoInfo: u];
+            [moves addObject: cm];
+            currentMoveIndex++;
+         }
+         else {
+            [[NSException exceptionWithName: @"PGNException"
+                                     reason: @"Illegal move"
+                                   userInfo: nil] raise];
+         }
+      }
        
        
       else if (token->type == TOKEN_RESULT || token->type == TOKEN_EOF) {
@@ -736,13 +736,13 @@ static NSString* breakLinesInString(NSString *string) {
    switch(currentPosition->is_immediate_draw()) {
 
    case DRAW_MATERIAL:
-      return @"No mating material";
+      return @"NO MATE POSSIBLE";
    case DRAW_50_MOVES:
-      return @"50 non-reversible moves";
+      return @"50 NON-REVERSIBLE MOVES";
    case DRAW_REPETITION:
-      return @"Third repetition";
+      return @"3rd REPETITION";
    case DRAW_STALEMATE:
-      return @"Stalemate";
+      return @"STALEMATE";
    default:
       assert(NO);
       return nil;

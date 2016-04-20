@@ -1459,6 +1459,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
           (gameMode==GAME_MODE_COMPUTER_WHITE && [game sideToMove]==WHITE)) {
          // Computer's turn to move.  First look for a book move.  If no book move
          // is found, start a search.
+          
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"startActivityIndicator" object:nil];
+          
          Move m;
          if ([[Options sharedOptions] maxStrength] ||
              [game currentMoveIndex] < 10 + [[Options sharedOptions] strength] * 2)
@@ -1587,14 +1590,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    if ([game positionIsMate]) {
       [[[UIAlertView alloc] initWithTitle: (([game sideToMove] == WHITE)?
                                              @"Black wins" : @"White wins")
-                                   message: @"Checkmate!"
+                                   message: @"CHECKMATE"
                                   delegate: self
                          cancelButtonTitle: nil
                          otherButtonTitles: @"OK", nil]
          show];
       [game setResult: (([game sideToMove] == WHITE)? @"0-1" : @"1-0")];
    } else if ([game positionIsDraw]) {
-      [[[UIAlertView alloc] initWithTitle: @"Game drawn"
+      [[[UIAlertView alloc] initWithTitle: @"DRAW"
                                    message: [game drawReason]
                                   delegate: self
                          cancelButtonTitle: nil

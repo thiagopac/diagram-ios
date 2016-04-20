@@ -14,12 +14,13 @@
 @interface ScanViewController : UIViewController{
     BoardViewController *__weak boardViewController;
     NSString *fen;
+    NSString *pgn;
 }
 
 @property (weak, nonatomic, readonly) BoardViewController *boardViewController;
 
 - (id)init;
 - (id)initWithBoardViewController:(BoardViewController *)bvc;
-- (UIView *)overlayForCodeString:(NSString *)codeString bounds:(CGRect)bounds valid:(BOOL)valid;
+- (UIView *)overlayForCodeString:(NSString *)codeString bounds:(CGRect)bounds kind:(NSString *)aKind;
 
 @end

@@ -80,26 +80,24 @@
 }
 
 - (void)loadView {
-
-// iPhone or iPod touch
-// Content view
+    
+    // iPhone or iPod touch
+    // Content view
     CGRect appRect = [[UIScreen mainScreen] applicationFrame];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithTitle: @"Cancel" style: UIBarButtonItemStylePlain target: self action: @selector(cancelPressed)];
     
-   [cancelBtn setTintColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0]];
+    [cancelBtn setTintColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0]];
     
-   [[self navigationItem]setLeftBarButtonItem: cancelBtn];
-    
-    
+    [[self navigationItem]setLeftBarButtonItem: cancelBtn];
     
     rootView = [[RootView alloc] initWithFrame: appRect];
     //[rootView setBackgroundColor: [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha: 1.0]];
     [rootView setBackgroundColor: [UIColor colorWithRed:0.934 green:0.934 blue:0.953 alpha: 1.0]];
-
+    
     //appRect.origin = CGPointMake(0.0f, 20.0f);
     //appRect.size.height -= 20.0f;
-
+    
     contentView = [[UIView alloc] initWithFrame: appRect];
     [rootView addSubview: contentView];
     [self setView: rootView];
@@ -182,7 +180,7 @@
                                          [UIImage imageNamed:@"scan1"],
                                          [UIImage imageNamed:@"scan1"],
                                          
-                                          nil];
+                                         nil];
     animatedImageView.animationDuration = 5.0f;
     [animatedImageView setCenter:superCenter];
     animatedImageView.animationRepeatCount = 0;
@@ -241,29 +239,29 @@
     currSeconds=3;
     [contentView addSubview:progress];
     
-//    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
-//
-//
-//    // I have no idea why, but the vertical view coordinates are different in
-//    // iOS 7 and iOS 8. We need to compensate for this to be able to handle both
-//    // OS versions correctly.
-//    BOOL isRunningiOS7 = [UIDevice currentDevice].systemVersion.floatValue < 8.0f;
-//    float sqSize;
-//    float dy = isIpad ? 50.0f : 64.0f;
-//    if (isIpad && isRunningiOS7) dy -= 34.0f;
-//    
-//
-//    if (isIpad) {
-//        sqSize = 40.0f;
-//        
-//    } else {
-//        sqSize = [UIScreen mainScreen].applicationFrame.size.width / 8.0f;
-//        
-//    }
-//    
-//    // Setup board view
-//    dy = isIpad ? 40.0f : 64.0f;
-//    if (isIpad && isRunningiOS7) dy -= 34.0f;
+    //    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    //
+    //
+    //    // I have no idea why, but the vertical view coordinates are different in
+    //    // iOS 7 and iOS 8. We need to compensate for this to be able to handle both
+    //    // OS versions correctly.
+    //    BOOL isRunningiOS7 = [UIDevice currentDevice].systemVersion.floatValue < 8.0f;
+    //    float sqSize;
+    //    float dy = isIpad ? 50.0f : 64.0f;
+    //    if (isIpad && isRunningiOS7) dy -= 34.0f;
+    //
+    //
+    //    if (isIpad) {
+    //        sqSize = 40.0f;
+    //
+    //    } else {
+    //        sqSize = [UIScreen mainScreen].applicationFrame.size.width / 8.0f;
+    //
+    //    }
+    //
+    //    // Setup board view
+    //    dy = isIpad ? 40.0f : 64.0f;
+    //    if (isIpad && isRunningiOS7) dy -= 34.0f;
     
 }
 
@@ -272,12 +270,17 @@
 }
 
 -(void)timerFired {
-   if(currSeconds>0){
-       [progress setText:[NSString stringWithFormat:@"%d",currSeconds]];
-       currSeconds-=1;
+    if(currSeconds>0){
+        [progress setText:[NSString stringWithFormat:@"%d",currSeconds]];
+        currSeconds-=1;
     }
     else{
-        [self editPositionWithFen:fen];
+        if (fen) {
+            [self editPositionWithFen:fen];
+        }else{
+            [self loadGameWithPgn:pgn];
+        }
+        
     }
 }
 
@@ -328,7 +331,7 @@
     }];
     
     // Optionally set a rectangle of interest to scan codes. Only codes within this rect will be scanned.
-//    self.scanner.scanRect = viewOfInterest.frame;
+    //    self.scanner.scanRect = viewOfInterest.frame;
     
     [toggleScanningButton setTitle:@"STOP" forState:UIControlStateNormal];
     toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.91 green:0.30 blue:0.24 alpha:1.0];
@@ -367,24 +370,32 @@
                 
             } else {
                 // First time seeing this code
-                BOOL isValidCode = [self isValidCodeString:codeString];
+                NSString *kindOfGame = [self whatKindOfGameIs:codeString];
                 
                 // Create an overlay
                 UIView *overlayView = [self overlayForCodeString:codeString
                                                           bounds:code.bounds
-                                                           valid:isValidCode];
+                                                            kind:kindOfGame];
                 self.overlayViews[codeString] = overlayView;
                 
                 // Add the overlay to the preview view
                 [self.previewView addSubview:overlayView];
                 
-                if(isValidCode && codeAlreadyRead == NO){
+                if(codeAlreadyRead == NO){
                     
-                    fen = codeString;
-                    [progress setHidden:NO];
-                    [self startCountDown];
-                    codeAlreadyRead = YES;
-                    
+                    if([kindOfGame isEqualToString:@"fen"]){
+                        
+                        fen = codeString;
+                        [progress setHidden:NO];
+                        [self startCountDown];
+                        codeAlreadyRead = YES;
+                        
+                    }else if([kindOfGame isEqualToString:@"pgn"]){
+                        pgn = codeString;
+                        [progress setHidden:NO];
+                        [self startCountDown];
+                        codeAlreadyRead = YES;
+                    }
                 }
                 
             }
@@ -393,43 +404,37 @@
 }
 
 
-- (BOOL)isValidCodeString:(NSString *)codeString {
-//    BOOL stringIsValid = ([codeString rangeOfString:@"/"].location != NSNotFound);
-    BOOL stringIsValid;
+- (NSString *)whatKindOfGameIs:(NSString *)codeString {
+    //    BOOL stringIsValid = ([codeString rangeOfString:@"/"].location != NSNotFound);
+    NSString *kindOfGame;
     if (Position::is_valid_fen([codeString UTF8String])) {
-        stringIsValid = YES;
-    } else {
-        stringIsValid = NO;
+        kindOfGame = @"fen";
+    }else if(1 == 1){
+        //AQUI IRÁ A LÓGICA PARA VALIDAR SE É UMA STRING PGN VÁLIDA
+        kindOfGame = @"pgn";
+    }else {
+        kindOfGame = @"invalid";
     }
-    return stringIsValid;
+    return kindOfGame;
 }
 
-- (UIView *)overlayForCodeString:(NSString *)codeString bounds:(CGRect)bounds valid:(BOOL)valid {
+- (UIView *)overlayForCodeString:(NSString *)codeString bounds:(CGRect)bounds kind:(NSString *)aKind {
     
-//    if (!valid) {
-//        [[[UIAlertView alloc] initWithTitle:@"Error"
-//                                    message:@"Invalid Chess Code"
-//                                   delegate:nil
-//                          cancelButtonTitle:@"Ok"
-//                          otherButtonTitles:nil] show];
-//    }
-    
-    UIColor *viewColor = valid ? [UIColor greenColor] : [UIColor redColor];
     UIView *view = [[UIView alloc] initWithFrame:bounds];
     
     
-    if(!valid){
+    if([aKind isEqualToString:@"invalid"]){
         
         UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
         
         // Configure the view
         view.layer.borderWidth = 5.0;
-        view.backgroundColor = [viewColor colorWithAlphaComponent:0.75];
-        view.layer.borderColor = viewColor.CGColor;
+        view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.75];
+        view.layer.borderColor = [UIColor redColor].CGColor;
         
         // Configure the label
         label.font = [UIFont boldSystemFontOfSize:12];
-        label.text = @"INVÁLIDO";
+        label.text = @"INVALID";
         //    label.text = codeString;
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
@@ -440,27 +445,45 @@
         // Add the label to the view
         [view addSubview:label];
         
-    }else{
+    }else if([aKind isEqualToString:@"fen"]){
         
         
-    //    float width = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 320.0f : self.view.frame.size.width;
-    //    BOOL tallScreen = UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad &&
-    //    [UIScreen mainScreen].applicationFrame.size.height > 480.0f;
-    //    BOOL bigScreen = tallScreen &&
-    //    [UIScreen mainScreen].applicationFrame.size.width > 320.0f;
-    //    float boardWidth = bigScreen ? 0.75f * width : tallScreen ? 0.65f * width : 0.5f * width;
-    //    float dy = bigScreen ? 14.0f : tallScreen ? 6.0f : 0.0f;
+        //    float width = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 320.0f : self.view.frame.size.width;
+        //    BOOL tallScreen = UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad &&
+        //    [UIScreen mainScreen].applicationFrame.size.height > 480.0f;
+        //    BOOL bigScreen = tallScreen &&
+        //    [UIScreen mainScreen].applicationFrame.size.width > 320.0f;
+        //    float boardWidth = bigScreen ? 0.75f * width : tallScreen ? 0.65f * width : 0.5f * width;
+        //    float dy = bigScreen ? 14.0f : tallScreen ? 6.0f : 0.0f;
         
         
         Game *g = [[Game alloc] initWithGameController: nil FEN:codeString];
         AnimatedGameView *agv = [[AnimatedGameView alloc]
                                  initWithGame: g
                                  frame: view.bounds];
-    
+        
         [view addSubview:agv];
-
+        
+    }else{
+        //Então é um PGN
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+        
+        view.layer.borderWidth = 5.0;
+        view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.75];
+        view.layer.borderColor = [UIColor greenColor].CGColor;
+        
+        // Configure the label
+        label.font = [UIFont boldSystemFontOfSize:12];
+        label.text = @"PGN";
+        //    label.text = codeString;
+        label.textColor = [UIColor blackColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.numberOfLines = 0;
+        
+        [view addSubview:label];
+        
     }
-    
     
     return view;
 }
@@ -549,19 +572,27 @@
                      completion:^(BOOL finished){ [self.navigationController.view removeFromSuperview]; }];
 }
 
-- (void)editPositionWithFen:(NSString *)afen {
 
+- (void)loadGameWithPgn:(NSString *)aPgn{
+    
+    BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
+    [bvc loadMenuDonePressedWithGame:aPgn];
+    
+}
+
+- (void)editPositionWithFen:(NSString *)afen {
+    
     [self stopScanning];
     [self.previewView setHidden:YES];
     [progress setHidden:YES];
     [viewOfInterest setHidden:YES];
     [aimIv setHidden:YES];
     
-//    SetupViewController *svc = [[SetupViewController alloc]initWithBoardViewController:(BoardViewController *)self fen:fen];
-//    navigationController = [[UINavigationController alloc] initWithRootViewController: svc];
+    //    SetupViewController *svc = [[SetupViewController alloc]initWithBoardViewController:(BoardViewController *)self fen:fen];
+    //    navigationController = [[UINavigationController alloc] initWithRootViewController: svc];
     
-//    SetupViewController *svc = [[SetupViewController alloc]initWithScanViewController:self fen:afen];
-//    [[self navigationController]  pushViewController:svc animated:YES];
+    //    SetupViewController *svc = [[SetupViewController alloc]initWithScanViewController:self fen:afen];
+    //    [[self navigationController]  pushViewController:svc animated:YES];
     
     SideToMoveController *stmc = [[SideToMoveController alloc]initWithFen: afen];
     [[self navigationController] pushViewController: stmc animated: YES];

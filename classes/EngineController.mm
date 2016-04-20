@@ -58,7 +58,7 @@ EngineController *GlobalEngineController; // HACK
 
       engineThreadIsRunning = YES;
       engineThreadShouldStop = NO;
-
+       
       engine_init();
 
       //engine_uci_loop();
@@ -86,6 +86,7 @@ EngineController *GlobalEngineController; // HACK
       engine_exit();
 
    }
+
    engineThreadIsRunning = NO;
 }
 
@@ -149,6 +150,9 @@ EngineController *GlobalEngineController; // HACK
 
 - (void)sendBestMove:(NSString *)bestMove ponderMove:(NSString *)ponderMove {
    NSLog(@"received best move: %@ ponder move: %@", bestMove, ponderMove);
+
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"stopActivityIndicator" object:nil];
+    
    engineIsThinking = NO;
    if (!ignoreBestmove)
       [gameController performSelectorOnMainThread: @selector(engineMadeMove:)

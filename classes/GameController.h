@@ -56,6 +56,7 @@
 @property (nonatomic, assign) GameMode gameMode;
 @property (nonatomic, readonly) BOOL rotated;
 
+
 - (id)initWithBoardView:(BoardView *)bv
            moveListView:(MoveListView *)mlv
            analysisView:(UILabel *)av

@@ -35,7 +35,6 @@
    MoveListView *moveListView;
    GameController *__weak gameController;
    UINavigationController *navigationController;
-   UIActivityIndicatorView *activityIndicator;
    UIActionSheet *gameMenu, *newGameMenu, *moveMenu;
    UIBarButtonItem *gameButton, *optionsButton, *moveButton;
    UIPopoverController *optionsMenu, *saveMenu, *emailMenu, *levelsMenu, *loadMenu, *moveListMenu;
@@ -58,6 +57,7 @@
 @property (nonatomic, readonly) MoveListView *moveListView;
 @property (nonatomic, readonly) UILabel *searchStatsView;
 @property (nonatomic, weak) GameController *gameController;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 #pragma-mark CRIEI UMA VIEW PARA ADICIONAR OS BOTÕES DE NAVEGAÇÃO ENTRE AS JOGADAS
 @property (nonatomic, strong) UIView *movesHistoryView;
@@ -85,6 +85,7 @@
 - (void)emailMenuDonePressed;
 - (void)emailMenuCancelPressed;
 - (void)stopActivityIndicator;
+- (void)startActivityIndicator;
 - (void)hideAnalysis;
 - (void)hideBookMoves;
 - (void)showBookMoves;
