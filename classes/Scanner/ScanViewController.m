@@ -574,6 +574,7 @@
 
 - (void)loadGameWithPgn:(NSString *)aPgn{
     
+    [[Options sharedOptions] setGameMode: GAME_MODE_TWO_PLAYER];
     BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
     [bvc loadMenuDonePressedWithGame:aPgn];
     
