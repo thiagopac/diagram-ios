@@ -300,7 +300,7 @@
        UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
        [btnBack addTarget:self action:@selector(threadTakeBackMove) forControlEvents:UIControlEventTouchUpInside];
        [btnBack setTitle:@"\u25C2" forState:UIControlStateNormal];
-       btnBack.titleLabel.font = [UIFont systemFontOfSize: 40];
+       btnBack.titleLabel.font = [UIFont systemFontOfSize: 30];
        [btnBack setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnBack setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnBack.frame = CGRectMake(100.0f, 0, 40.0f, 30.0f);
@@ -311,7 +311,7 @@
        UIButton *btnForward = [UIButton buttonWithType:UIButtonTypeCustom];
        [btnForward addTarget:self action:@selector(threadReplayMove) forControlEvents:UIControlEventTouchUpInside];
        [btnForward setTitle:@"\u25B8" forState:UIControlStateNormal];
-       btnForward.titleLabel.font = [UIFont systemFontOfSize: 40];
+       btnForward.titleLabel.font = [UIFont systemFontOfSize: 30];
        [btnForward setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnForward setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnForward.frame = CGRectMake(180.0f, 0, 40.0f, 30.0f);
@@ -322,7 +322,7 @@
        UIButton *btnForwardAll = [UIButton buttonWithType:UIButtonTypeCustom];
        [btnForwardAll addTarget:self action:@selector(threadReplayAllMoves) forControlEvents:UIControlEventTouchUpInside];
        [btnForwardAll setTitle:@"\u25B8\u25B8" forState:UIControlStateNormal];
-       btnForwardAll.titleLabel.font = [UIFont systemFontOfSize: 40];
+       btnForwardAll.titleLabel.font = [UIFont systemFontOfSize: 30];
        [btnForwardAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
        [btnForwardAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnForwardAll.frame = CGRectMake(240.0f, 0, 60.0f, 30.0f);

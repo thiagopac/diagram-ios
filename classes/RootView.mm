@@ -38,7 +38,7 @@
 - (void)flipSubviewsLeft {
    CGContextRef context = UIGraphicsGetCurrentContext();
    [UIView beginAnimations: nil context: context];
-   [UIView setAnimationTransition: UIViewAnimationTransitionCurlUp /*UIViewAnimationTransitionFlipFromLeft*/
+   [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft /*UIViewAnimationTransitionFlipFromLeft*/
                           forView: self cache: YES];
    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
    [UIView setAnimationDuration: 0.5];
@@ -50,7 +50,7 @@
 - (void)flipSubviewsRight {
    CGContextRef context = UIGraphicsGetCurrentContext();
    [UIView beginAnimations: nil context: context];
-   [UIView setAnimationTransition: UIViewAnimationTransitionCurlDown /*UIViewAnimationTransitionFlipFromRight*/
+   [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight /*UIViewAnimationTransitionFlipFromRight*/
                           forView: self cache: YES];
    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
    [UIView setAnimationDuration: 0.5];

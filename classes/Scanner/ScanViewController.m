@@ -567,9 +567,8 @@
 
 -(void)cancelPressed{
     
-    [UIView animateWithDuration:0.5
-                     animations:^{self.navigationController.view.alpha = 0.0;}
-                     completion:^(BOOL finished){ [self.navigationController.view removeFromSuperview]; }];
+    BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
+    [bvc editPositionCancelPressed];
 }
 
 

@@ -1468,9 +1468,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             m = [game getBookMove];
          else
             m = MOVE_NONE;
-         if (m != MOVE_NONE)
+          if (m != MOVE_NONE){
             [self doEngineMove: m];
-         else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"stopActivityIndicator" object:nil];
+          }else {
             // Update play style, if necessary
             if ([[Options sharedOptions] playStyleWasChanged]) {
                NSLog(@"play style was changed to: %@",
@@ -1553,6 +1554,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    [self playMoveSound: [game pieceOn: move_from(m)]
                capture: [game pieceOn: move_to(m)] != EMPTY];
    [self doEngineMove: m];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"stopActivityIndicator" object:nil];
    if ([array count] == 2 && ![array[1] isEqualToString:@"(none)"]) {
       ponderMove = [game moveFromString:array[1]];
       [game setHintForCurrentPosition: ponderMove];
