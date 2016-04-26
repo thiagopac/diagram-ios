@@ -364,7 +364,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                  delegate: self
             cancelButtonTitle: nil
             destructiveButtonTitle: nil
-            otherButtonTitles: @"Queen", @"Rook", @"Knight", @"Bishop", nil];
+            otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil];
       [menu showInView: [boardView superview]];
       return;
    }
@@ -456,7 +456,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             delegate: self
        cancelButtonTitle: nil
        destructiveButtonTitle: nil
-       otherButtonTitles: @"Queen", @"Rook", @"Knight", @"Bishop", nil]
+       otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil]
       showInView: [boardView superview]];
 }
 
