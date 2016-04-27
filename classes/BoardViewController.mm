@@ -282,15 +282,16 @@
       
 #pragma-mark CRIEI UMA VIEW PARA ADICIONAR OS BOTÕES DE NAVEGAÇÃO ENTRE AS JOGADAS
        
-       movesHistoryView = [[UIView alloc] initWithFrame: CGRectMake(0, appRect.size.width, appRect.size.width, 30.0f)];
-//       [movesHistoryView setBackgroundColor:[UIColor blueColor]];
+       movesHistoryView = [[UIView alloc] initWithFrame: CGRectMake(0, appRect.size.width, appRect.size.width, 40.0f)];
+       
+       [movesHistoryView setBackgroundColor:[UIColor colorWithRed:0.13 green:0.18 blue:0.22 alpha:1.0]];
 
        //Botão para voltar tudo
        UIButton *btnBackAll = [UIButton buttonWithType:UIButtonTypeCustom];
        [btnBackAll addTarget:self action:@selector(threadTakeBackAllMoves) forControlEvents:UIControlEventTouchUpInside];
        [btnBackAll setTitle:@"\u25C2\u25C2" forState:UIControlStateNormal];
        btnBackAll.titleLabel.font = [UIFont systemFontOfSize: 30];
-       [btnBackAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnBackAll setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
        [btnBackAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnBackAll.frame = CGRectMake(20.0f, 0, 60.0f, 30.0f);
        [movesHistoryView addSubview:btnBackAll];
@@ -301,7 +302,7 @@
        [btnBack addTarget:self action:@selector(threadTakeBackMove) forControlEvents:UIControlEventTouchUpInside];
        [btnBack setTitle:@"\u25C2" forState:UIControlStateNormal];
        btnBack.titleLabel.font = [UIFont systemFontOfSize: 30];
-       [btnBack setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnBack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
        [btnBack setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnBack.frame = CGRectMake(100.0f, 0, 40.0f, 30.0f);
        [movesHistoryView addSubview:btnBack];
@@ -312,7 +313,7 @@
        [btnForward addTarget:self action:@selector(threadReplayMove) forControlEvents:UIControlEventTouchUpInside];
        [btnForward setTitle:@"\u25B8" forState:UIControlStateNormal];
        btnForward.titleLabel.font = [UIFont systemFontOfSize: 30];
-       [btnForward setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnForward setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
        [btnForward setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnForward.frame = CGRectMake(180.0f, 0, 40.0f, 30.0f);
        [movesHistoryView addSubview:btnForward];
@@ -323,7 +324,7 @@
        [btnForwardAll addTarget:self action:@selector(threadReplayAllMoves) forControlEvents:UIControlEventTouchUpInside];
        [btnForwardAll setTitle:@"\u25B8\u25B8" forState:UIControlStateNormal];
        btnForwardAll.titleLabel.font = [UIFont systemFontOfSize: 30];
-       [btnForwardAll setTitleColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] forState:UIControlStateNormal];
+       [btnForwardAll setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
        [btnForwardAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
        btnForwardAll.frame = CGRectMake(240.0f, 0, 60.0f, 30.0f);
        [movesHistoryView addSubview:btnForwardAll];
@@ -372,10 +373,16 @@
 #pragma-mark RETIRANDO ALGUNS BOTÕES DA TOOLBAR
        
       //[buttons addObject: spacer];
-      button = [[UIBarButtonItem alloc] initWithTitle: @"Game"
-                                                style: UIBarButtonItemStyleBordered
-                                               target: self
-                                               action: @selector(toolbarButtonPressed:)];
+//      button = [[UIBarButtonItem alloc] initWithTitle: @"Game"
+//                                                style: UIBarButtonItemStyleBordered
+//                                               target: self
+//                                               action: @selector(toolbarButtonPressed:)];
+       
+       UIImage *imageGame = [UIImage imageNamed:@"btnGame.png"];
+       
+       button = [[UIBarButtonItem alloc] initWithImage:imageGame style:UIBarButtonItemStylePlain target:self action:@selector(toolbarButtonPressed:)];
+       [button setTag:10];
+       
       [buttons addObject: button];
 //      button = [[UIBarButtonItem alloc] initWithTitle: @"Options"
 //                                                style: UIBarButtonItemStyleBordered
@@ -383,10 +390,24 @@
 //                                               action: @selector(toolbarButtonPressed:)];
 //      [buttons addObject: button];
       [buttons addObject: spacer];
-      button = [[UIBarButtonItem alloc] initWithTitle: @"Flip"
-                                                style: UIBarButtonItemStyleBordered
-                                               target: self
-                                               action: @selector(toolbarButtonPressed:)];
+       
+       UIImage *imageName = [UIImage imageNamed:@"name.png"];
+       button = [[UIBarButtonItem alloc] initWithImage:imageName style:UIBarButtonItemStylePlain target:self action:nil];
+       
+
+       [buttons addObject: button];
+       [buttons addObject: spacer];
+       
+//      button = [[UIBarButtonItem alloc] initWithTitle: @"Flip"
+//                                                style: UIBarButtonItemStyleBordered
+//                                               target: self
+//                                               action: @selector(toolbarButtonPressed:)];
+       
+       UIImage *imageFlip = [[UIImage imageNamed:@"btnFlip.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+       
+       button = [[UIBarButtonItem alloc] initWithImage:imageFlip style:UIBarButtonItemStylePlain target:self action:@selector(toolbarButtonPressed:)];
+       [button setTag:20];
+       
 //      [buttons addObject: button];
 //      [buttons addObject: spacer];
 //      button = [[UIBarButtonItem alloc] initWithTitle: @"Move"
@@ -404,7 +425,7 @@
 
       [toolbar setItems: buttons animated: NO];
       [toolbar setTranslucent:NO];
-      [toolbar setBarTintColor:[UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0]];
+      [toolbar setBarTintColor:[UIColor colorWithRed:0.86 green:0.33 blue:0.22 alpha:1.0]];
        
        [toolbar setTintColor:[UIColor whiteColor]];
       toolbar.frame = CGRectMake(0.0f, frameHeight-44.0f, appRect.size.width, 44.0f);
@@ -420,7 +441,7 @@
          [[UIActivityIndicatorView alloc] initWithFrame: CGRectMake(0,0,30,30)];
       [self.activityIndicator setCenter: CGPointMake(0.5f * appRect.size.width, appRect.size.width + 18.0f)];
       [self.activityIndicator
-         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
+         setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite];
       [contentView addSubview: self.activityIndicator];
       [self.activityIndicator setHidesWhenStopped:YES];
       [self startActivityIndicator];
@@ -678,6 +699,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (void)toolbarButtonPressed:(id)sender {
    NSString *title = [sender title];
+   NSInteger tag = [sender tag];
 
    // Ignore duplicate presses on the "Game" and "Move" buttons:
    if (([gameMenu isVisible] && [title isEqualToString: @"Game"]) ||
@@ -719,8 +741,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
       [popoverMenu dismissPopoverAnimated: YES];
       popoverMenu = nil;
    }
-
-   if ([title isEqualToString: @"Game"]) {
+//if ([title isEqualToString: @"Game"]) {
+   if (tag == 10) {
       if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
          [gameMenu showFromBarButtonItem: sender animated: YES];
       else
@@ -728,7 +750,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    }
    else if ([title isEqualToString: @"Options"])
       [self showOptionsMenu];
-   else if ([title isEqualToString: @"Flip"])
+//    else if ([title isEqualToString: @"Flip"])
+   else if (tag == 20)
       [gameController rotateBoard];
    else if ([title isEqualToString: @"Move"]) {
       if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

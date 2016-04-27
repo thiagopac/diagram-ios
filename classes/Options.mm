@@ -238,7 +238,7 @@
    else if ([scheme isEqualToString: @"Gray"])
 //      return [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 1.0];
 #pragma-mark ALTEREI A COR DAS CASAS ESCURAS NO TEMA CINZA
-       return [UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0];
+       return [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
    else if ([scheme isEqualToString: @"Red"])
       return [UIColor colorWithRed: 0.6 green: 0.28 blue: 0.28 alpha: 1.0];
    else if ([scheme isEqualToString: @"Green"])

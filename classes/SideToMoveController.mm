@@ -83,7 +83,7 @@
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [nextButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventTouchUpInside];
     [nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
-    [nextButton setBackgroundColor:[UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0]];
+    [nextButton setBackgroundColor:[UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0]];
     nextButton.titleLabel.font = [UIFont systemFontOfSize: 20];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];

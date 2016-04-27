@@ -103,7 +103,7 @@
     [self setView: rootView];
     CGPoint superCenter = CGPointMake(CGRectGetMidX([rootView bounds]), CGRectGetMidY([rootView bounds]));
     
-    self.previewView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, appRect.size.width-40, 427.0f)];
+    self.previewView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, appRect.size.width, 460.0f)];
     [self.previewView setHidden:YES];
     [self.previewView setCenter:superCenter];
     
@@ -208,19 +208,19 @@
     switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [switchCameraButton setBackgroundImage:[UIImage imageNamed:@"reverse"] forState:UIControlStateNormal];
     [switchCameraButton addTarget:self action:@selector(switchCameraTapped) forControlEvents:UIControlEventTouchUpInside];
-    switchCameraButton.frame = CGRectMake(appRect.size.width-80.0f, 2.0f, 30.0f, 30.0f);
+    switchCameraButton.frame = CGRectMake(appRect.size.width-45.0f, 8.0f, 30.0f, 30.0f);
     [self.previewView addSubview:switchCameraButton];
     
     toggleTorchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [toggleTorchButton setBackgroundImage:[UIImage imageNamed:@"flashlight"] forState:UIControlStateNormal];
     [toggleTorchButton addTarget:self action:@selector(toggleTorchTapped) forControlEvents:UIControlEventTouchUpInside];
-    toggleTorchButton.frame = CGRectMake(5.0f, 5.0f, 20.0f, 20.0f);
+    toggleTorchButton.frame = CGRectMake(10.0f, 15.0f, 20.0f, 20.0f);
     [self.previewView addSubview:toggleTorchButton];
     
     toggleScanningButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [toggleScanningButton addTarget:self action:@selector(toggleScanningTapped) forControlEvents:UIControlEventTouchUpInside];
     [toggleScanningButton setTitle:@"SCAN" forState:UIControlStateNormal];
-    [toggleScanningButton setBackgroundColor:[UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0]];
+    [toggleScanningButton setBackgroundColor:[UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0]];
     toggleScanningButton.titleLabel.font = [UIFont systemFontOfSize: 20];
     [toggleScanningButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [toggleScanningButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
@@ -334,7 +334,7 @@
     //    self.scanner.scanRect = viewOfInterest.frame;
     
     [toggleScanningButton setTitle:@"STOP" forState:UIControlStateNormal];
-    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.91 green:0.30 blue:0.24 alpha:1.0];
+    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.90 green:0.49 blue:0.13 alpha:1.0];
 }
 
 - (void)drawOverlaysOnCodes:(NSArray *)codes {
@@ -492,7 +492,7 @@
     [self.scanner stopScanning];
     
     [toggleScanningButton setTitle:@"SCAN" forState:UIControlStateNormal];
-    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0];
+    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
     
     for (NSString *code in self.overlayViews.allKeys) {
         [self.overlayViews[code] removeFromSuperview];
@@ -566,6 +566,8 @@
 }
 
 -(void)cancelPressed{
+    
+    [self.scanner stopScanning];
     
     BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
     [bvc editPositionCancelPressed];
