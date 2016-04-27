@@ -626,6 +626,11 @@
 		17EB9AFD15C4430500AFF87A /* Capture8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 17EB9AF515C4430500AFF87A /* Capture8.wav */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		1E788A141CD12DF200230ED1 /* SGActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0B1CD12DF200230ED1 /* SGActionView.m */; };
+		1E788A151CD12DF200230ED1 /* SGAlertMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0D1CD12DF200230ED1 /* SGAlertMenu.m */; };
+		1E788A161CD12DF200230ED1 /* SGBaseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0F1CD12DF200230ED1 /* SGBaseMenu.m */; };
+		1E788A171CD12DF200230ED1 /* SGGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A111CD12DF200230ED1 /* SGGridMenu.m */; };
+		1E788A181CD12DF200230ED1 /* SGSheetMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A131CD12DF200230ED1 /* SGSheetMenu.m */; };
 		1EE176F21CBFD23200DDAD41 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE176EE1CBFD23200DDAD41 /* ScanViewController.m */; };
 		1EE176F31CBFD23200DDAD41 /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE176F11CBFD23200DDAD41 /* MTBBarcodeScanner.m */; };
 		1EE176F51CBFD42C00DDAD41 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE176F41CBFD42C00DDAD41 /* AVFoundation.framework */; };
@@ -1349,6 +1354,16 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Diagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1E788A0A1CD12DF200230ED1 /* SGActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGActionView.h; sourceTree = "<group>"; };
+		1E788A0B1CD12DF200230ED1 /* SGActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGActionView.m; sourceTree = "<group>"; };
+		1E788A0C1CD12DF200230ED1 /* SGAlertMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAlertMenu.h; sourceTree = "<group>"; };
+		1E788A0D1CD12DF200230ED1 /* SGAlertMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAlertMenu.m; sourceTree = "<group>"; };
+		1E788A0E1CD12DF200230ED1 /* SGBaseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBaseMenu.h; sourceTree = "<group>"; };
+		1E788A0F1CD12DF200230ED1 /* SGBaseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBaseMenu.m; sourceTree = "<group>"; };
+		1E788A101CD12DF200230ED1 /* SGGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGGridMenu.h; sourceTree = "<group>"; };
+		1E788A111CD12DF200230ED1 /* SGGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGridMenu.m; sourceTree = "<group>"; };
+		1E788A121CD12DF200230ED1 /* SGSheetMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSheetMenu.h; sourceTree = "<group>"; };
+		1E788A131CD12DF200230ED1 /* SGSheetMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSheetMenu.m; sourceTree = "<group>"; };
 		1EE176EE1CBFD23200DDAD41 /* ScanViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ScanViewController.m; sourceTree = "<group>"; };
 		1EE176EF1CBFD23200DDAD41 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		1EE176F01CBFD23200DDAD41 /* MTBBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTBBarcodeScanner.h; sourceTree = "<group>"; };
@@ -1384,6 +1399,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1E788A091CD12DF200230ED1 /* SGActionView */,
 				1EE176E71CBFD18300DDAD41 /* Scanner */,
 				1796FEF611D3921A0074E5B7 /* AboutController.h */,
 				1796FEF711D3921A0074E5B7 /* AboutController.mm */,
@@ -2160,6 +2176,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1E788A091CD12DF200230ED1 /* SGActionView */ = {
+			isa = PBXGroup;
+			children = (
+				1E788A0A1CD12DF200230ED1 /* SGActionView.h */,
+				1E788A0B1CD12DF200230ED1 /* SGActionView.m */,
+				1E788A0C1CD12DF200230ED1 /* SGAlertMenu.h */,
+				1E788A0D1CD12DF200230ED1 /* SGAlertMenu.m */,
+				1E788A0E1CD12DF200230ED1 /* SGBaseMenu.h */,
+				1E788A0F1CD12DF200230ED1 /* SGBaseMenu.m */,
+				1E788A101CD12DF200230ED1 /* SGGridMenu.h */,
+				1E788A111CD12DF200230ED1 /* SGGridMenu.m */,
+				1E788A121CD12DF200230ED1 /* SGSheetMenu.h */,
+				1E788A131CD12DF200230ED1 /* SGSheetMenu.m */,
+			);
+			path = SGActionView;
+			sourceTree = "<group>";
+		};
 		1EE176E71CBFD18300DDAD41 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -2830,16 +2863,20 @@
 				1796FF5211D3921A0074E5B7 /* AboutController.mm in Sources */,
 				1796FF5311D3921A0074E5B7 /* BoardView.mm in Sources */,
 				1796FF5411D3921A0074E5B7 /* BoardViewController.mm in Sources */,
+				1E788A171CD12DF200230ED1 /* SGGridMenu.m in Sources */,
 				1796FF5511D3921A0074E5B7 /* CastleRightsController.mm in Sources */,
 				1796FF5611D3921A0074E5B7 /* ChessClock.mm in Sources */,
 				1796FF5711D3921A0074E5B7 /* ChessMove.mm in Sources */,
 				1796FF5811D3921A0074E5B7 /* DateTagViewController.mm in Sources */,
+				1E788A181CD12DF200230ED1 /* SGSheetMenu.m in Sources */,
 				1796FF5911D3921A0074E5B7 /* EditUserNameController.mm in Sources */,
 				1796FF5A11D3921A0074E5B7 /* EmailAddressController.mm in Sources */,
+				1E788A141CD12DF200230ED1 /* SGActionView.m in Sources */,
 				1796FF5B11D3921A0074E5B7 /* EngineController.mm in Sources */,
 				1796FF5C11D3921A0074E5B7 /* EpSquareController.mm in Sources */,
 				1796FF5D11D3921A0074E5B7 /* Game.mm in Sources */,
 				1796FF5E11D3921A0074E5B7 /* GameController.mm in Sources */,
+				1E788A161CD12DF200230ED1 /* SGBaseMenu.m in Sources */,
 				1796FF5F11D3921A0074E5B7 /* GameDetailsTableController.mm in Sources */,
 				1796FF6011D3921A0074E5B7 /* GameListController.mm in Sources */,
 				1796FF6111D3921A0074E5B7 /* GameParser.mm in Sources */,
@@ -2870,6 +2907,7 @@
 				1740653518DB5DD5000C4C74 /* Util.mm in Sources */,
 				1796FF7E11D3921A0074E5B7 /* StrengthOptionController.mm in Sources */,
 				1773FD6B17E78C0B00CB6DD3 /* PiecePreview.mm in Sources */,
+				1E788A151CD12DF200230ED1 /* SGAlertMenu.m in Sources */,
 				1796FF7F11D3921A0074E5B7 /* TypeFileNameController.mm in Sources */,
 				1796008011D393A60074E5B7 /* bitboard.cpp in Sources */,
 				1796008111D393A60074E5B7 /* book.cpp in Sources */,

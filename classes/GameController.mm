@@ -23,6 +23,7 @@
 #import "Options.h"
 #import "PieceImageView.h"
 #import "PGN.h"
+#import "SGActionView.h"
 
 #include "../Chess/misc.h"
 #import "Util.h"
@@ -365,7 +366,46 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             cancelButtonTitle: nil
             destructiveButtonTitle: nil
             otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil];
-      [menu showInView: [boardView superview]];
+//      [menu showInView: [boardView superview]];
+       
+       NSString *pieceSet = [[Options sharedOptions] pieceSet];
+       
+       if ([game sideToMove] == WHITE) {
+           
+           strImgQUEEN = [NSString stringWithFormat: @"%@WQueen.png", pieceSet];
+           strImgROOK = [NSString stringWithFormat: @"%@WRook.png", pieceSet];
+           strImgKNIGHT = [NSString stringWithFormat: @"%@WKnight.png", pieceSet];
+           strImgBISHOP = [NSString stringWithFormat: @"%@WBishop.png", pieceSet];
+       }else{
+           strImgQUEEN = [NSString stringWithFormat: @"%@BQueen.png", pieceSet];
+           strImgROOK = [NSString stringWithFormat: @"%@BRook.png", pieceSet];
+           strImgKNIGHT = [NSString stringWithFormat: @"%@BKnight.png", pieceSet];
+           strImgBISHOP = [NSString stringWithFormat: @"%@BBishop.png", pieceSet];
+       }
+       
+       [SGActionView showGridMenuWithTitle:@"Promote to"
+                                itemTitles:@[@"Queen", @"Rook", @"Knight", @"Bishop"]
+                                    images:@[[UIImage imageNamed:strImgQUEEN],
+                                             [UIImage imageNamed:strImgROOK],
+                                             [UIImage imageNamed:strImgKNIGHT],
+                                             [UIImage imageNamed:strImgBISHOP]]
+                            selectedHandle:^(NSInteger index) {
+                                NSLog(@"Indice %lu",index);
+                                
+                                if (index>0) {
+                                    
+                                    index = index-1;
+                                    
+                                    static const PieceType prom[4] = { QUEEN, ROOK, KNIGHT, BISHOP };
+                                    assert(index >= 0 && index < 4);
+                                    //[actionSheet release];
+                                    [self doMoveFrom: pendingFrom to: pendingTo promotion: prom[index]];
+                                    
+                                }
+                                
+                            }];
+    
+       
       return;
    }
 
@@ -451,13 +491,69 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 
 - (void)promotionMenu {
-   [[[UIActionSheet alloc]
-       initWithTitle: @"Promote to:"
-            delegate: self
-       cancelButtonTitle: nil
-       destructiveButtonTitle: nil
-       otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil]
-      showInView: [boardView superview]];
+//   [[[UIActionSheet alloc]
+//       initWithTitle: @"Promote to:"
+//            delegate: self
+//       cancelButtonTitle: nil
+//       destructiveButtonTitle: nil
+//       otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil]
+//      showInView: [boardView superview]];
+    
+    NSString *pieceSet = [[Options sharedOptions] pieceSet];
+    
+    if ([game sideToMove] == WHITE) {
+        
+        strImgQUEEN = [NSString stringWithFormat: @"%@WQueen.png", pieceSet];
+        strImgROOK = [NSString stringWithFormat: @"%@WRook.png", pieceSet];
+        strImgKNIGHT = [NSString stringWithFormat: @"%@WKnight.png", pieceSet];
+        strImgBISHOP = [NSString stringWithFormat: @"%@WBishop.png", pieceSet];
+    }else{
+        strImgQUEEN = [NSString stringWithFormat: @"%@BQueen.png", pieceSet];
+        strImgROOK = [NSString stringWithFormat: @"%@BRook.png", pieceSet];
+        strImgKNIGHT = [NSString stringWithFormat: @"%@BKnight.png", pieceSet];
+        strImgBISHOP = [NSString stringWithFormat: @"%@BBishop.png", pieceSet];
+    }
+    
+    [SGActionView showGridMenuWithTitle:@"Promote to:"
+                             itemTitles:@[@"Queen", @"Rook", @"Knight", @"Bishop"]
+                                 images:@[[UIImage imageNamed:strImgQUEEN],
+                                          [UIImage imageNamed:strImgROOK],
+                                          [UIImage imageNamed:strImgKNIGHT],
+                                          [UIImage imageNamed:strImgBISHOP]]
+                         selectedHandle:^(NSInteger index) {
+                             NSLog(@"Indice %lu",index);
+                             if (index>0) {
+                                 index = index-1;
+                                 
+                                 // Another ugly hack: We use a colon at the end of the string to
+                                 // distinguish between promotions in the two move input methods.
+                                 static const PieceType prom[4] = { QUEEN, ROOK, KNIGHT, BISHOP };
+                                 assert(buttonIndex >= 0 && buttonIndex < 4);
+                                 //[actionSheet release];
+                                 
+                                 // HACK to fix annoying UIActionSheet behavior in iOS 8. Of course we should
+                                 // use UIAlertControllers instead of UIActionSheets in iOS 8, but unfortunately
+                                 // that wouldn't work in iOS 7. Later on, we should probably roll our own
+                                 // modal dialogs that uses UIActionSheets or UIAlertControllers depending on
+                                 // the iOS version.
+                                 if ([game pieceOn: pendingFrom] == EMPTY) {
+                                     return;
+                                 }
+                                 
+                                 Move m = make_promotion_move(pendingFrom, pendingTo, prom[index]);
+                                 BOOL isCapture = [game pieceOn: pendingTo] != EMPTY;
+                                 [self animateMove: m];
+                                 [game doMove: m];
+                                 
+                                 [self updateMoveList];
+                                 [self showBookMoves];
+                                 [self playMoveSound: piece_of_color_and_type(WHITE, prom[index]) capture: isCapture];
+                                 [self gameEndTest];
+                                 [self engineGo];
+                             }
+
+                             
+                         }];
 }
 
 

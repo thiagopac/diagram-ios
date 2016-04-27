@@ -30,6 +30,7 @@
 #import "PGN.h"
 #import "SetupViewController.h"
 #import "ScanViewController.h"
+#import "SGActionView.h"
 
 @implementation BoardViewController
 
@@ -1193,6 +1194,32 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    [gameController showBookMoves];
 }
 
+- (void)showMenu {
+    
+    [SGActionView showGridMenuWithTitle:@"Menu"
+                             itemTitles:@[@"Scan", @"Edit", @"Create", @"Help"]
+                                 images:@[[UIImage imageNamed:@"twitter"],
+                                         [UIImage imageNamed:@"dropbox"],
+                                         [UIImage imageNamed:@"dropbox"],
+                                         [UIImage imageNamed:@"dropbox"]]
+                         selectedHandle:^(NSInteger index) {
+                             NSLog(@"Indice %lu",index);
+                             
+                             switch (index) {
+                                 case 1:
+                                     [self scanNewPosition];
+                                     break;
+                                 case 2:
+                                     [self editPosition];
+                                     break;
+                                 default:
+                                     break;
+                             }
+                             
+                         }];
+    
+    
+}
 
 
 @end

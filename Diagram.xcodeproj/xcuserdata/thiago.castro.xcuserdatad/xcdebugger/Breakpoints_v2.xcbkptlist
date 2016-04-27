@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "482783968.539647"
+            timestampString = "483481095.532118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1693"
-            endingLineNumber = "1693"
+            startingLineNumber = "1787"
+            endingLineNumber = "1787"
             landmarkName = "-gameFromFEN:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "482783968.539647"
+            timestampString = "483481095.532118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1691"
-            endingLineNumber = "1691"
+            startingLineNumber = "1785"
+            endingLineNumber = "1785"
             landmarkName = "-gameFromFEN:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,12 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/BoardViewController.mm"
-            timestampString = "482874225.224598"
+            timestampString = "483471018.118188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1140"
-            endingLineNumber = "1140"
-            landmarkName = "-startActivityIndicator"
+            startingLineNumber = "1141"
+            endingLineNumber = "1141"
+            landmarkName = "-moveListMenuDonePressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

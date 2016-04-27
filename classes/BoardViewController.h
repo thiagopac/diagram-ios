@@ -20,6 +20,7 @@
 
 #import "BoardView.h"
 #import "RootView.h"
+#import "SGBaseMenu.h"
 
 @class GameController;
 @class MoveListView;

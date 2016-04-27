@@ -47,6 +47,11 @@
    BOOL engineIsPlaying;
    BOOL isPondering;
    LastMoveView *lastMoveView;
+   NSString *strImgQUEEN;
+   NSString *strImgROOK;
+   NSString *strImgKNIGHT;
+   NSString *strImgBISHOP;
+    
 }
 
 @property (weak, nonatomic, readonly) UILabel *whiteClockView;
