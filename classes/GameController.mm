@@ -370,8 +370,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
        
        NSString *pieceSet = [[Options sharedOptions] pieceSet];
        
-       __block BOOL promoted = NO;
-       
        if ([game sideToMove] == WHITE) {
            
            strImgQUEEN = [NSString stringWithFormat: @"%@WQueen.png", pieceSet];
@@ -398,12 +396,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                 
                                 if (index>0) {
                                     
-                                    promoted = YES;
-                                    
                                     index = index-1;
-                                    
-                                    promoted = YES;
-                                    
+
                                     static const PieceType prom[4] = { QUEEN, ROOK, KNIGHT, BISHOP };
                                     assert(index >= 0 && index < 4);
                                     //[actionSheet release];
@@ -521,7 +515,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         strImgBISHOP = [NSString stringWithFormat: @"%@BBishop.png", pieceSet];
     }
     
-    [SGActionView showGridMenuWithTitle:@"Promote to:"
+    [SGActionView showGridMenuWithTitle:@"Promote to"
                              itemTitles:@[@"Queen", @"Rook", @"Knight", @"Bishop"]
                                  images:@[[UIImage imageNamed:strImgQUEEN],
                                           [UIImage imageNamed:strImgROOK],

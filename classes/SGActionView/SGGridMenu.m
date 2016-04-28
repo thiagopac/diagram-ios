@@ -95,7 +95,7 @@
                           action:@selector(tapAction:)
                 forControlEvents:UIControlEventTouchUpInside];
         [_cancelButton setTitle:@"Close" forState:UIControlStateNormal];
-        [self addSubview:_cancelButton];
+//        [self addSubview:_cancelButton];
     }
     return self;
 }

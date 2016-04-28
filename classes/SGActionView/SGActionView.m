@@ -64,10 +64,10 @@
 //        }
 //    }else{
     SGBaseMenu *menu = self.menus.lastObject;
-    if (!CGRectContainsPoint(menu.frame, touchPoint)) {
-        [[SGActionView sharedActionView] dismissMenu:menu Animated:YES];
-        [self.menus removeObject:menu];
-    }
+//    if (!CGRectContainsPoint(menu.frame, touchPoint)) {
+//        [[SGActionView sharedActionView] dismissMenu:menu Animated:YES];
+//        [self.menus removeObject:menu];
+//    }
 //    }
 }
 
@@ -306,9 +306,12 @@
                                               itemTitles:itemTitles
                                                   images:images];
     [menu triggerSelectedAction:^(NSInteger index){
-        [[SGActionView sharedActionView] dismissMenu:menu Animated:YES];
+        
         if (handler) {
+            
             handler(index);
+            [[SGActionView sharedActionView] dismissMenu:menu Animated:YES];
+
         }
     }];
     [[SGActionView sharedActionView] setMenu:menu animation:YES];

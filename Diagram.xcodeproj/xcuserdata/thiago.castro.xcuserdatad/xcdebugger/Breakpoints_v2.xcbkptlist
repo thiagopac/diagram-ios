@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "483481095.532118"
+            timestampString = "483546840.690874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1787"
-            endingLineNumber = "1787"
+            startingLineNumber = "1794"
+            endingLineNumber = "1794"
             landmarkName = "-gameFromFEN:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "483481095.532118"
+            timestampString = "483546840.690874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1785"
-            endingLineNumber = "1785"
+            startingLineNumber = "1792"
+            endingLineNumber = "1792"
             landmarkName = "-gameFromFEN:"
             landmarkType = "5">
          </BreakpointContent>
