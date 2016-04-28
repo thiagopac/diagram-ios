@@ -370,6 +370,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
        
        NSString *pieceSet = [[Options sharedOptions] pieceSet];
        
+       __block BOOL promoted = NO;
+       
        if ([game sideToMove] == WHITE) {
            
            strImgQUEEN = [NSString stringWithFormat: @"%@WQueen.png", pieceSet];
@@ -383,6 +385,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
            strImgBISHOP = [NSString stringWithFormat: @"%@BBishop.png", pieceSet];
        }
        
+       
+           
        [SGActionView showGridMenuWithTitle:@"Promote to"
                                 itemTitles:@[@"Queen", @"Rook", @"Knight", @"Bishop"]
                                     images:@[[UIImage imageNamed:strImgQUEEN],
@@ -394,7 +398,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                 
                                 if (index>0) {
                                     
+                                    promoted = YES;
+                                    
                                     index = index-1;
+                                    
+                                    promoted = YES;
                                     
                                     static const PieceType prom[4] = { QUEEN, ROOK, KNIGHT, BISHOP };
                                     assert(index >= 0 && index < 4);
@@ -404,7 +412,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                 }
                                 
                             }];
-    
        
       return;
    }
@@ -528,7 +535,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                  // Another ugly hack: We use a colon at the end of the string to
                                  // distinguish between promotions in the two move input methods.
                                  static const PieceType prom[4] = { QUEEN, ROOK, KNIGHT, BISHOP };
-                                 assert(buttonIndex >= 0 && buttonIndex < 4);
+                                 assert(index >= 0 && index < 4);
                                  //[actionSheet release];
                                  
                                  // HACK to fix annoying UIActionSheet behavior in iOS 8. Of course we should
