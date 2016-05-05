@@ -631,6 +631,8 @@
 		1E788A161CD12DF200230ED1 /* SGBaseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0F1CD12DF200230ED1 /* SGBaseMenu.m */; };
 		1E788A171CD12DF200230ED1 /* SGGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A111CD12DF200230ED1 /* SGGridMenu.m */; };
 		1E788A181CD12DF200230ED1 /* SGSheetMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A131CD12DF200230ED1 /* SGSheetMenu.m */; };
+		1EBC3E781CDB6F1100E9A896 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBC3E771CDB6F1100E9A896 /* HexColors.m */; };
+		1EBC3E7B1CDB77B500E9A896 /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBC3E7A1CDB77B500E9A896 /* constants.m */; };
 		1EE176F21CBFD23200DDAD41 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE176EE1CBFD23200DDAD41 /* ScanViewController.m */; };
 		1EE176F31CBFD23200DDAD41 /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE176F11CBFD23200DDAD41 /* MTBBarcodeScanner.m */; };
 		1EE176F51CBFD42C00DDAD41 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE176F41CBFD42C00DDAD41 /* AVFoundation.framework */; };
@@ -1364,6 +1366,10 @@
 		1E788A111CD12DF200230ED1 /* SGGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGGridMenu.m; sourceTree = "<group>"; };
 		1E788A121CD12DF200230ED1 /* SGSheetMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSheetMenu.h; sourceTree = "<group>"; };
 		1E788A131CD12DF200230ED1 /* SGSheetMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSheetMenu.m; sourceTree = "<group>"; };
+		1EBC3E761CDB6F1100E9A896 /* HexColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColors.h; sourceTree = "<group>"; };
+		1EBC3E771CDB6F1100E9A896 /* HexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColors.m; sourceTree = "<group>"; };
+		1EBC3E791CDB77B500E9A896 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		1EBC3E7A1CDB77B500E9A896 /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
 		1EE176EE1CBFD23200DDAD41 /* ScanViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ScanViewController.m; sourceTree = "<group>"; };
 		1EE176EF1CBFD23200DDAD41 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		1EE176F01CBFD23200DDAD41 /* MTBBarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTBBarcodeScanner.h; sourceTree = "<group>"; };
@@ -1399,6 +1405,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1EBC3E751CDB6F1100E9A896 /* HexColors */,
 				1E788A091CD12DF200230ED1 /* SGActionView */,
 				1EE176E71CBFD18300DDAD41 /* Scanner */,
 				1796FEF611D3921A0074E5B7 /* AboutController.h */,
@@ -2193,6 +2200,18 @@
 			path = SGActionView;
 			sourceTree = "<group>";
 		};
+		1EBC3E751CDB6F1100E9A896 /* HexColors */ = {
+			isa = PBXGroup;
+			children = (
+				1EBC3E761CDB6F1100E9A896 /* HexColors.h */,
+				1EBC3E771CDB6F1100E9A896 /* HexColors.m */,
+				1EBC3E791CDB77B500E9A896 /* constants.h */,
+				1EBC3E7A1CDB77B500E9A896 /* constants.m */,
+			);
+			name = HexColors;
+			path = classes/HexColors;
+			sourceTree = SOURCE_ROOT;
+		};
 		1EE176E71CBFD18300DDAD41 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -2915,6 +2934,7 @@
 				1796008311D393A60074E5B7 /* direction.cpp in Sources */,
 				1796008411D393A60074E5B7 /* mersenne.cpp in Sources */,
 				1796008511D393A60074E5B7 /* misc.cpp in Sources */,
+				1EBC3E7B1CDB77B500E9A896 /* constants.m in Sources */,
 				1796008611D393A60074E5B7 /* move.cpp in Sources */,
 				1796008711D393A60074E5B7 /* movegen.cpp in Sources */,
 				1773FD7117E9FD7A00CB6DD3 /* SelectPieceSetController.mm in Sources */,
@@ -2950,6 +2970,7 @@
 				17DCB81B15C54A2D005ADD54 /* uci.cpp in Sources */,
 				17DCB81C15C54A2D005ADD54 /* ucioption.cpp in Sources */,
 				1799C31615DA7AEF0042DE41 /* ECO.mm in Sources */,
+				1EBC3E781CDB6F1100E9A896 /* HexColors.m in Sources */,
 				3669E881C221C4E64F0C2F9E /* ColorUtils.mm in Sources */,
 				3669EEA85F37F07344CF192F /* ArrowView.mm in Sources */,
 			);

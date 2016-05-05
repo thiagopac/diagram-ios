@@ -226,6 +226,8 @@
     [toggleScanningButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     toggleScanningButton.frame = CGRectMake(0.0f, appRect.size.height-45, appRect.size.width, 45.0f);
     [contentView addSubview:toggleScanningButton];
+    //inicializando já com scanner ligado
+    [self toggleScanningTapped];
     
     progress=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
     [progress setTextAlignment:NSTextAlignmentCenter];
@@ -285,7 +287,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    currSeconds = 3;
+    currSeconds = 2;
     [progress setText:@"3"];
     codeAlreadyRead = NO;
 }
@@ -334,7 +336,7 @@
     //    self.scanner.scanRect = viewOfInterest.frame;
     
     [toggleScanningButton setTitle:@"STOP" forState:UIControlStateNormal];
-    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.90 green:0.49 blue:0.13 alpha:1.0];
+    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.86 green:0.33 blue:0.22 alpha:1.0];
 }
 
 - (void)drawOverlaysOnCodes:(NSArray *)codes {
@@ -467,21 +469,33 @@
     }else{
         //Então é um PGN
         
-        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+//        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+//        
+//        view.layer.borderWidth = 5.0;
+//        view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.75];
+//        view.layer.borderColor = [UIColor greenColor].CGColor;
+//        
+//        // Configure the label
+//        label.font = [UIFont boldSystemFontOfSize:12];
+//        label.text = @"PGN";
+//        //    label.text = codeString;
+//        label.textColor = [UIColor blackColor];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.numberOfLines = 0;
+//        
+//        [view addSubview:label];
         
-        view.layer.borderWidth = 5.0;
-        view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.75];
-        view.layer.borderColor = [UIColor greenColor].CGColor;
         
-        // Configure the label
-        label.font = [UIFont boldSystemFontOfSize:12];
-        label.text = @"PGN";
-        //    label.text = codeString;
-        label.textColor = [UIColor blackColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.numberOfLines = 0;
         
-        [view addSubview:label];
+        
+        Game *g = [[Game alloc] initWithGameController: nil PGNString:codeString];
+        AnimatedGameView *agv = [[AnimatedGameView alloc]
+                                 initWithGame: g
+                                 frame: view.bounds];
+        
+        [view addSubview:agv];
+        [agv startAnimation];
+        
         
     }
     
@@ -507,6 +521,7 @@
         [self.previewView setHidden:YES];
         [aimIv setHidden:YES];
         [viewOfInterest setHidden:YES];
+        [self cancelPressed];
     } else {
         [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
             if (success) {

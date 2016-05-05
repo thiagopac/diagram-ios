@@ -169,7 +169,7 @@
             UndoInfo u;
             currentPosition->do_move(m, u);
             ChessMove *cm = [[ChessMove alloc] initWithMove: m undoInfo: u];
-            [moves addObject: cm];
+            [moves addObject: cm];  
             currentMoveIndex++;
          }
          else {

@@ -17,7 +17,7 @@
 */
 
 #import <QuartzCore/QuartzCore.h>
-
+#import "constants.h"
 #import "BoardViewController.h"
 #import "GameController.h"
 #import "GameDetailsTableController.h"
@@ -426,7 +426,7 @@
 
       [toolbar setItems: buttons animated: NO];
       [toolbar setTranslucent:NO];
-      [toolbar setBarTintColor:[UIColor colorWithRed:0.86 green:0.33 blue:0.22 alpha:1.0]];
+      [toolbar setBarTintColor:[constants colorRED]];
        
        [toolbar setTintColor:[UIColor whiteColor]];
       toolbar.frame = CGRectMake(0.0f, frameHeight-44.0f, appRect.size.width, 44.0f);
