@@ -25,6 +25,7 @@
 #import "ScanViewController.h"
 #import "Options.h"
 #import "GameController.h"
+#import "Constants.h"
 
 @implementation SideToMoveController
 
@@ -65,7 +66,7 @@
     [warningLabel setTextColor:[UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1.0]];
     [warningLabel setTextAlignment:NSTextAlignmentCenter];
     [warningLabel setText:@"Leave empty to play with both sides"];
-    [contentView addSubview: warningLabel];
+//    [contentView addSubview: warningLabel];
 
    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
    BOOL isRunningiOS7 = [UIDevice currentDevice].systemVersion.floatValue < 8.0f;
@@ -81,9 +82,9 @@
    }
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [nextButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventTouchUpInside];
-    [nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
-    [nextButton setBackgroundColor:[UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0]];
+    [nextButton addTarget:self action:@selector(bothPressed) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setTitle:@"PLAY BOTH SIDES" forState:UIControlStateNormal];
+    [nextButton setBackgroundColor:[constants colorRED]];
     nextButton.titleLabel.font = [UIFont systemFontOfSize: 20];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
@@ -108,6 +109,30 @@
    } else {
       frame = CGRectMake(20.0f, 380.0f, 280.0f, 10.0f);
    }
+    
+    btnWhite = [[UIButton alloc]init];
+    [btnWhite setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnWhite setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+//    UIImage *btnImageWhite = [UIImage imageNamed:@"AlphaWKing.png"];
+//    [btnWhite setImage:btnImageWhite forState:UIControlStateNormal];
+    [btnWhite setTitle:@"WHITE" forState:UIControlStateNormal];
+    [btnWhite setBackgroundColor:[UIColor whiteColor]];
+    [btnWhite addTarget:self action:@selector(btnWhiteTapped:) forControlEvents:UIControlEventTouchUpInside];
+    btnWhite.frame = CGRectMake(0.0f, r.size.height-70, r.size.width/2, 45.0f);
+    
+    btnBlack = [[UIButton alloc]init];
+    [btnBlack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnBlack setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+//    UIImage *btnImageBlack = [UIImage imageNamed:@"AlphaBKing.png"];
+//    [btnBlack setImage:btnImageBlack forState:UIControlStateNormal];
+    [btnBlack setTitle:@"BLACK" forState:UIControlStateNormal];
+    [btnBlack setBackgroundColor:[constants colorBLACK]];
+    [btnBlack addTarget:self action:@selector(btnBlackTapped:) forControlEvents:UIControlEventTouchUpInside];
+    btnBlack.frame = CGRectMake(r.size.width/2, r.size.height-70, r.size.width/2, 45.0f);
+    
+    [contentView addSubview:btnWhite];
+    [contentView addSubview:btnBlack];
+    
     
    NSArray *buttonNames = @[@"♔", @"♚"];
     
@@ -134,8 +159,28 @@
 //   else [segmentedControl setSelectedSegmentIndex: -1];
     
     [segmentedControl setSelectedSegmentIndex: -1];
-    [contentView addSubview: segmentedControl];
+//    [contentView addSubview: segmentedControl];
     
+}
+
+- (void)btnWhiteTapped:(UIButton *)sender {
+    
+    [btnWhite setSelected:YES];
+    [btnBlack setSelected:NO];
+    [[Options sharedOptions] setGameMode: GAME_MODE_COMPUTER_BLACK];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool: 0 forKey: @"rotateBoard"];
+    [self goToBoard];
+}
+
+- (void)btnBlackTapped:(UIButton *)sender {
+    
+    [btnWhite setSelected:NO];
+    [btnBlack setSelected:YES];
+    [[Options sharedOptions] setGameMode: GAME_MODE_COMPUTER_WHITE];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool: 1 forKey: @"rotateBoard"];
+    [self goToBoard];
 }
 
 
@@ -145,76 +190,19 @@
 }
 
 
-- (void)donePressed {
-   NSLog(@"Done");
-    if ([segmentedControl selectedSegmentIndex] == -1){
-//      [[[UIAlertView alloc] initWithTitle: @"Please select your side!"
-//                                   message: @""
-//                                  delegate: self
-//                         cancelButtonTitle: nil
-//                         otherButtonTitles: @"OK", nil]
-//         show];
-        [[Options sharedOptions] setGameMode: GAME_MODE_TWO_PLAYER];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool: 0 forKey: @"rotateBoard"];
+- (void)bothPressed {
+   
+    [[Options sharedOptions] setGameMode: GAME_MODE_TWO_PLAYER];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool: 0 forKey: @"rotateBoard"];
+    
+    [self goToBoard];
         
-        BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
-        [bvc editPositionDonePressed:fen];
-        
-    }else {
-//      if ([[boardView maybeCastleString] isEqualToString: @"-"]) {
-//         Square sqs[8];
-//         int i;
-//         i = [boardView epCandidateSquaresForColor:
-//                           (Color)[segmentedControl selectedSegmentIndex]
-//                                           toArray: sqs];
-//         if (i == 0) {
-       
-             
-            BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
-             
-//             [[Options sharedOptions] setGameMode: GAME_MODE_TWO_PLAYER];
-             
-             
-             
-             if ([segmentedControl selectedSegmentIndex] == 0) {
-                 [[Options sharedOptions] setGameMode: GAME_MODE_COMPUTER_BLACK];
-                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                 [defaults setBool: 0 forKey: @"rotateBoard"];
-             }else{
-                 [[Options sharedOptions] setGameMode: GAME_MODE_COMPUTER_WHITE];
-                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                 [defaults setBool: 1 forKey: @"rotateBoard"];
-             }
+}
 
-//[bvc editPositionDonePressed:[NSString stringWithFormat: @"%@%c %@ -",[boardView boardString],(([segmentedControl selectedSegmentIndex] == 0)? 'w' : 'b'),[boardView maybeCastleString]]];
-             [bvc editPositionDonePressed:fen];
-             
-//         }
-       
-#pragma-mark RETIREI A POSSIBILIDADE DE IR PARA A TELA DE MARCAR A CASA DE CAPTURA EN-PASSANT
-//         else {
-//            EpSquareController *epc =
-//               [[EpSquareController alloc]
-//                  initWithFen: [NSString stringWithFormat: @"%@%c %@ -",
-//                                         [boardView boardString],
-//                                         (([segmentedControl selectedSegmentIndex] == 0)? 'w' : 'b'),
-//                                         [boardView maybeCastleString]]];
-//            [[self navigationController] pushViewController: epc animated: YES];
-//         }
-//      }
-       
-#pragma-mark RETIREI A POSSIBILIDADE DE IR PARA A TELA DE MARCAR OS DIREITOS DE FAZER O ROQUE
-//      else {
-//         CastleRightsController *crc =
-//            [[CastleRightsController alloc]
-//               initWithFen: [NSString stringWithFormat: @"%@%c %@ -",
-//                                      [boardView boardString],
-//                                      (([segmentedControl selectedSegmentIndex] == 0)? 'w' : 'b'),
-//                                      [boardView maybeCastleString]]];
-//         [[self navigationController] pushViewController: crc animated: YES];
-//      }
-   }
+-(void)goToBoard{
+    BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
+    [bvc editPositionDonePressed:fen];
 }
 
 @end

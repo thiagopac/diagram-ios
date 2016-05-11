@@ -23,10 +23,12 @@
 
 @interface SideToMoveController : UIViewController {
    SetupBoardView *boardView;
-   UISegmentedControl *segmentedControl;
-   NSString *fen;
-   UILabel *warningLabel;
-   GameController *gameController;
+    UISegmentedControl *segmentedControl;
+    UIButton *btnWhite;
+    UIButton *btnBlack;
+    NSString *fen;
+    UILabel *warningLabel;
+    GameController *gameController;
 }
 
 @property (nonatomic, readonly) Game *game;

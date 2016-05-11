@@ -14,6 +14,7 @@
 #import "Game.h"
 #import "AnimatedGameView.h"
 #import "SideToMoveController.h"
+#import "Constants.h"
 
 #include "../../Chess/position.h"
 
@@ -34,7 +35,6 @@
 @property (nonatomic, assign) BOOL didShowCaptureWarning;
 @property (nonatomic, strong) AnimatedGameView *animatedGameView;
 @property (nonatomic, strong) UILabel *progress;
-@property (nonatomic, strong) UIWebView *webViewGif;
 
 
 @end
@@ -57,10 +57,9 @@
     NSTimer *timer;
     int currSeconds;
     BOOL codeAlreadyRead;
-    UIWebView *webViewGif;
 }
 
-@synthesize boardViewController, animatedGameView, viewOfInterest, aimIv, toggleScanningButton, toggleTorchButton, didShowCaptureWarning, gameController, captureIsFrozen, previewView, switchCameraButton, progress, webViewGif;
+@synthesize boardViewController, animatedGameView, viewOfInterest, aimIv, toggleScanningButton, toggleTorchButton, didShowCaptureWarning, gameController, captureIsFrozen, previewView, switchCameraButton, progress;
 
 #pragma mark - Lifecycle
 
@@ -72,7 +71,6 @@
 
 - (id)initWithBoardViewController:(BoardViewController *)bvc{
     if (self = [super init]) {
-        [self setTitle: @"Scan new board"];
         boardViewController = bvc;
         [self setPreferredContentSize: CGSizeMake(320.0f, 418.0f)];
     }
@@ -84,12 +82,6 @@
     // iPhone or iPod touch
     // Content view
     CGRect appRect = [[UIScreen mainScreen] applicationFrame];
-    
-    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithTitle: @"Cancel" style: UIBarButtonItemStylePlain target: self action: @selector(cancelPressed)];
-    
-    [cancelBtn setTintColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0]];
-    
-    [[self navigationItem]setLeftBarButtonItem: cancelBtn];
     
     rootView = [[RootView alloc] initWithFrame: appRect];
     //[rootView setBackgroundColor: [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha: 1.0]];
@@ -106,87 +98,6 @@
     self.previewView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, appRect.size.width, 460.0f)];
     [self.previewView setHidden:YES];
     [self.previewView setCenter:superCenter];
-    
-    UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 250.0f, 250.0f)];
-    animatedImageView.animationImages = [NSArray arrayWithObjects:
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan2"],
-                                         [UIImage imageNamed:@"scan3"],
-                                         [UIImage imageNamed:@"scan4"],
-                                         [UIImage imageNamed:@"scan5"],
-                                         [UIImage imageNamed:@"scan6"],
-                                         [UIImage imageNamed:@"scan7"],
-                                         [UIImage imageNamed:@"scan8"],
-                                         [UIImage imageNamed:@"scan9"],
-                                         [UIImage imageNamed:@"scan10"],
-                                         [UIImage imageNamed:@"scan11"],
-                                         [UIImage imageNamed:@"scan12"],
-                                         [UIImage imageNamed:@"scan13"],
-                                         [UIImage imageNamed:@"scan14"],
-                                         [UIImage imageNamed:@"scan15"],
-                                         [UIImage imageNamed:@"scan16"],
-                                         [UIImage imageNamed:@"scan17"],
-                                         [UIImage imageNamed:@"scan18"],
-                                         [UIImage imageNamed:@"scan19"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan20"],
-                                         [UIImage imageNamed:@"scan19"],
-                                         [UIImage imageNamed:@"scan18"],
-                                         [UIImage imageNamed:@"scan17"],
-                                         [UIImage imageNamed:@"scan16"],
-                                         [UIImage imageNamed:@"scan15"],
-                                         [UIImage imageNamed:@"scan14"],
-                                         [UIImage imageNamed:@"scan13"],
-                                         [UIImage imageNamed:@"scan12"],
-                                         [UIImage imageNamed:@"scan11"],
-                                         [UIImage imageNamed:@"scan10"],
-                                         [UIImage imageNamed:@"scan9"],
-                                         [UIImage imageNamed:@"scan8"],
-                                         [UIImage imageNamed:@"scan7"],
-                                         [UIImage imageNamed:@"scan6"],
-                                         [UIImage imageNamed:@"scan5"],
-                                         [UIImage imageNamed:@"scan4"],
-                                         [UIImage imageNamed:@"scan3"],
-                                         [UIImage imageNamed:@"scan2"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         [UIImage imageNamed:@"scan1"],
-                                         
-                                         nil];
-    animatedImageView.animationDuration = 5.0f;
-    [animatedImageView setCenter:superCenter];
-    animatedImageView.animationRepeatCount = 0;
-    [animatedImageView startAnimating];
-    [contentView addSubview: animatedImageView];
-    
     
     [self.previewView setBackgroundColor:[UIColor lightGrayColor]];
     [contentView addSubview:self.previewView];
@@ -219,15 +130,14 @@
     
     toggleScanningButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [toggleScanningButton addTarget:self action:@selector(toggleScanningTapped) forControlEvents:UIControlEventTouchUpInside];
-    [toggleScanningButton setTitle:@"SCAN" forState:UIControlStateNormal];
-    [toggleScanningButton setBackgroundColor:[UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0]];
+    [toggleScanningButton setTitle:@"STOP" forState:UIControlStateNormal];
+    [toggleScanningButton setBackgroundColor:[constants colorORANGE]];
     toggleScanningButton.titleLabel.font = [UIFont systemFontOfSize: 20];
     [toggleScanningButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [toggleScanningButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     toggleScanningButton.frame = CGRectMake(0.0f, appRect.size.height-45, appRect.size.width, 45.0f);
     [contentView addSubview:toggleScanningButton];
-    //inicializando já com scanner ligado
-    [self toggleScanningTapped];
+
     
     progress=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
     [progress setTextAlignment:NSTextAlignmentCenter];
@@ -238,33 +148,8 @@
     progress.backgroundColor=[UIColor clearColor];
     [self.view addSubview:progress];
     [progress setHidden:YES];
-    currSeconds=3;
+    currSeconds= 3;
     [contentView addSubview:progress];
-    
-    //    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
-    //
-    //
-    //    // I have no idea why, but the vertical view coordinates are different in
-    //    // iOS 7 and iOS 8. We need to compensate for this to be able to handle both
-    //    // OS versions correctly.
-    //    BOOL isRunningiOS7 = [UIDevice currentDevice].systemVersion.floatValue < 8.0f;
-    //    float sqSize;
-    //    float dy = isIpad ? 50.0f : 64.0f;
-    //    if (isIpad && isRunningiOS7) dy -= 34.0f;
-    //
-    //
-    //    if (isIpad) {
-    //        sqSize = 40.0f;
-    //
-    //    } else {
-    //        sqSize = [UIScreen mainScreen].applicationFrame.size.width / 8.0f;
-    //
-    //    }
-    //
-    //    // Setup board view
-    //    dy = isIpad ? 40.0f : 64.0f;
-    //    if (isIpad && isRunningiOS7) dy -= 34.0f;
-    
 }
 
 -(void)startCountDown {
@@ -286,10 +171,16 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [[self navigationItem]setTitle:@"Scan new board"];;
+    
     currSeconds = 2;
     [progress setText:@"3"];
     codeAlreadyRead = NO;
+    
+    //inicializando já com scanner ligado
+    [self toggleScanningTapped];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -331,12 +222,6 @@
     [self.scanner startScanningWithResultBlock:^(NSArray *codes) {
         [self drawOverlaysOnCodes:codes];
     }];
-    
-    // Optionally set a rectangle of interest to scan codes. Only codes within this rect will be scanned.
-    //    self.scanner.scanRect = viewOfInterest.frame;
-    
-    [toggleScanningButton setTitle:@"STOP" forState:UIControlStateNormal];
-    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.86 green:0.33 blue:0.22 alpha:1.0];
 }
 
 - (void)drawOverlaysOnCodes:(NSArray *)codes {
@@ -450,15 +335,6 @@
     }else if([aKind isEqualToString:@"fen"]){
         
         
-        //    float width = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 320.0f : self.view.frame.size.width;
-        //    BOOL tallScreen = UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad &&
-        //    [UIScreen mainScreen].applicationFrame.size.height > 480.0f;
-        //    BOOL bigScreen = tallScreen &&
-        //    [UIScreen mainScreen].applicationFrame.size.width > 320.0f;
-        //    float boardWidth = bigScreen ? 0.75f * width : tallScreen ? 0.65f * width : 0.5f * width;
-        //    float dy = bigScreen ? 14.0f : tallScreen ? 6.0f : 0.0f;
-        
-        
         Game *g = [[Game alloc] initWithGameController: nil FEN:codeString];
         AnimatedGameView *agv = [[AnimatedGameView alloc]
                                  initWithGame: g
@@ -467,26 +343,7 @@
         [view addSubview:agv];
         
     }else{
-        //Então é um PGN
-        
-//        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
-//        
-//        view.layer.borderWidth = 5.0;
-//        view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.75];
-//        view.layer.borderColor = [UIColor greenColor].CGColor;
-//        
-//        // Configure the label
-//        label.font = [UIFont boldSystemFontOfSize:12];
-//        label.text = @"PGN";
-//        //    label.text = codeString;
-//        label.textColor = [UIColor blackColor];
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.numberOfLines = 0;
-//        
-//        [view addSubview:label];
-        
-        
-        
+ 
         
         Game *g = [[Game alloc] initWithGameController: nil PGNString:codeString];
         AnimatedGameView *agv = [[AnimatedGameView alloc]
@@ -504,9 +361,6 @@
 
 - (void)stopScanning {
     [self.scanner stopScanning];
-    
-    [toggleScanningButton setTitle:@"SCAN" forState:UIControlStateNormal];
-    toggleScanningButton.backgroundColor = [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
     
     for (NSString *code in self.overlayViews.allKeys) {
         [self.overlayViews[code] removeFromSuperview];

@@ -12,5 +12,7 @@
 
 +(UIColor *) colorRED;
 +(UIColor *) colorBLUE;
-
++(UIColor *) colorWHITE;
++(UIColor *) colorBLACK;
++(UIColor *) colorORANGE;
 @end
