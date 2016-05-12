@@ -109,7 +109,7 @@
     [viewOfInterest setBackgroundColor:[UIColor clearColor]];
     
     aimIv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim"]];
-    [aimIv setFrame:CGRectMake(0, 0, 180.0f, 180.0f)];
+    [aimIv setFrame:CGRectMake(0, 0, 250.0f, 250.0f)];
     [aimIv setCenter:superCenter];
     [aimIv setAlpha:0.3f];
     [contentView addSubview:aimIv];
