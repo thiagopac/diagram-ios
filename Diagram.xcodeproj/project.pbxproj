@@ -583,7 +583,6 @@
 		17C81EE517E314FA00A47866 /* notation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17C81EE317E314FA00A47866 /* notation.cpp */; };
 		17C81EE717E4835000A47866 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C81EE617E4835000A47866 /* QuartzCore.framework */; };
 		17CD831A17E6041A00D4B532 /* book.bin in Resources */ = {isa = PBXBuildFile; fileRef = 17CD831917E6041A00D4B532 /* book.bin */; };
-		17D23EF2127C162B0018E053 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 17D23EF1127C162B0018E053 /* iTunesArtwork */; };
 		17DC4770132B938B00C48450 /* CoordinatesView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17DC476F132B938B00C48450 /* CoordinatesView.mm */; };
 		17DCB80915C54A2D005ADD54 /* benchmark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17DCB7DF15C54A2D005ADD54 /* benchmark.cpp */; };
 		17DCB80A15C54A2D005ADD54 /* bitbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17DCB7E015C54A2D005ADD54 /* bitbase.cpp */; };
@@ -627,6 +626,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1E2D82171CE36E0F0082E001 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E2D82161CE36E0F0082E001 /* images.xcassets */; };
+		1E2D821A1CE6225B0082E001 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E2D82181CE6225B0082E001 /* iTunesArtwork.png */; };
+		1E2D821B1CE6225B0082E001 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E2D82191CE6225B0082E001 /* iTunesArtwork@2x.png */; };
 		1E788A141CD12DF200230ED1 /* SGActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0B1CD12DF200230ED1 /* SGActionView.m */; };
 		1E788A151CD12DF200230ED1 /* SGAlertMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0D1CD12DF200230ED1 /* SGAlertMenu.m */; };
 		1E788A161CD12DF200230ED1 /* SGBaseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E788A0F1CD12DF200230ED1 /* SGBaseMenu.m */; };
@@ -1291,7 +1292,6 @@
 		17C81EE417E314FA00A47866 /* notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = notation.h; path = Engine/notation.h; sourceTree = SOURCE_ROOT; };
 		17C81EE617E4835000A47866 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		17CD831917E6041A00D4B532 /* book.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = book.bin; sourceTree = "<group>"; };
-		17D23EF1127C162B0018E053 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = text; path = iTunesArtwork; sourceTree = "<group>"; };
 		17DC476E132B938B00C48450 /* CoordinatesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinatesView.h; sourceTree = "<group>"; };
 		17DC476F132B938B00C48450 /* CoordinatesView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoordinatesView.mm; sourceTree = "<group>"; };
 		17DCB7DF15C54A2D005ADD54 /* benchmark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = benchmark.cpp; path = Engine/benchmark.cpp; sourceTree = SOURCE_ROOT; };
@@ -1357,6 +1357,8 @@
 		1D6058910D05DD3D006BFB54 /* Diagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1E2D82161CE36E0F0082E001 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		1E2D82181CE6225B0082E001 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		1E2D82191CE6225B0082E001 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		1E788A0A1CD12DF200230ED1 /* SGActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGActionView.h; sourceTree = "<group>"; };
 		1E788A0B1CD12DF200230ED1 /* SGActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGActionView.m; sourceTree = "<group>"; };
 		1E788A0C1CD12DF200230ED1 /* SGAlertMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAlertMenu.h; sourceTree = "<group>"; };
@@ -2259,7 +2261,8 @@
 				17510064127325D800A59D5B /* Images-iPad */,
 				1796004511D392740074E5B7 /* Sounds */,
 				8D1107310486CEB800E47090 /* Diagram-Info.plist */,
-				17D23EF1127C162B0018E053 /* iTunesArtwork */,
+				1E2D82181CE6225B0082E001 /* iTunesArtwork.png */,
+				1E2D82191CE6225B0082E001 /* iTunesArtwork@2x.png */,
 				17CD831917E6041A00D4B532 /* book.bin */,
 				1799C31715DA88310042DE41 /* eco.txt */,
 			);
@@ -2456,7 +2459,6 @@
 				177300DB17EC9AA300CB6DD3 /* MeridaWPawn96@2x.png in Resources */,
 				177F566419DB012D001D2F20 /* USCFWPawn@3x.png in Resources */,
 				1773008217EC9AA300CB6DD3 /* CheqWKnight96.png in Resources */,
-				17D23EF2127C162B0018E053 /* iTunesArtwork in Resources */,
 				172D6C8918D84B60003A7303 /* RussianBBishop96@2x.png in Resources */,
 				1773FF2817EC9A7D00CB6DD3 /* ModernBQueen.png in Resources */,
 				177300DF17EC9AA300CB6DD3 /* MeridaWRook96@2x.png in Resources */,
@@ -2602,6 +2604,7 @@
 				1773006B17EC9AA300CB6DD3 /* BerlinWKnight96@2x.png in Resources */,
 				177300F417EC9AA300CB6DD3 /* ModernWQueen96.png in Resources */,
 				1773FEB217EC9A7D00CB6DD3 /* CheqBQueen@2x.png in Resources */,
+				1E2D821B1CE6225B0082E001 /* iTunesArtwork@2x.png in Resources */,
 				177300B617EC9AA300CB6DD3 /* MayaBPawn96.png in Resources */,
 				177300F017EC9AA300CB6DD3 /* ModernWKnight96.png in Resources */,
 				1773FF3B17EC9A7D00CB6DD3 /* USCFBKing@2x.png in Resources */,
@@ -2615,6 +2618,7 @@
 				1773FF4317EC9A7D00CB6DD3 /* USCFBRook@2x.png in Resources */,
 				1773FEC017EC9A7D00CB6DD3 /* CheqWRook@2x.png in Resources */,
 				177300A317EC9AA300CB6DD3 /* LeipzigWPawn96.png in Resources */,
+				1E2D821A1CE6225B0082E001 /* iTunesArtwork.png in Resources */,
 				1773FF1B17EC9A7D00CB6DD3 /* MeridaWPawn@2x.png in Resources */,
 				1773005417EC9AA300CB6DD3 /* AlphaWPawn96.png in Resources */,
 				1773005917EC9AA300CB6DD3 /* AlphaWRook96@2x.png in Resources */,

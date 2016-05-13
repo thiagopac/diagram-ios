@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "483546840.690874"
+            timestampString = "484844175.181691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1794"
-            endingLineNumber = "1794"
-            landmarkName = "-gameFromFEN:"
+            startingLineNumber = "1764"
+            endingLineNumber = "1764"
+            landmarkName = "-gameFromPGNString:loadFromBeginning:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/GameController.mm"
-            timestampString = "483546840.690874"
+            timestampString = "484844175.181691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1792"
-            endingLineNumber = "1792"
-            landmarkName = "-gameFromFEN:"
+            startingLineNumber = "1762"
+            endingLineNumber = "1762"
+            landmarkName = "-gameFromPGNString:loadFromBeginning:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -52,12 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/BoardViewController.mm"
-            timestampString = "484150144.711446"
+            timestampString = "484844175.181691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1141"
-            endingLineNumber = "1141"
-            landmarkName = "-moveListMenuDonePressed:"
+            startingLineNumber = "1111"
+            endingLineNumber = "1111"
+            landmarkName = "-showMoveListMenu"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,3 +1,9 @@
+/*
+ Diagram
+ Created by Thiago Castro
+ Copyright (c) 2016 Thiago Castro. All rights reserved.
+ */
+
 #import "Util.h"
 
 #include <sys/sysctl.h>
