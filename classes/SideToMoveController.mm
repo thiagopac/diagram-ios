@@ -5,15 +5,13 @@
  */
 
 #import "BoardViewController.h"
-#import "CastleRightsController.h"
-#import "EpSquareController.h"
 #import "SetupBoardView.h"
-#import "SetupViewController.h"
 #import "SideToMoveController.h"
 #import "ScanViewController.h"
 #import "Options.h"
 #import "GameController.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @implementation SideToMoveController
 
@@ -39,14 +37,6 @@
     
    [self setView: contentView];
    [contentView setBackgroundColor: [UIColor colorWithRed: 0.934 green: 0.934 blue: 0.953 alpha: 1.0]];
-
-//   [self setTitle: @"Side to move"];
-//   [[self navigationItem]
-//      setRightBarButtonItem: [[UIBarButtonItem alloc]
-//                                 initWithTitle: @"Done"
-//                                         style: UIBarButtonItemStylePlain
-//                                        target: self
-//                                        action: @selector(donePressed)]];
     
     
     warningLabel = [[UILabel alloc] initWithFrame: CGRectMake(0.0f, /*20.0f*/385.0f, r.size.width, 18.0f)];
@@ -135,19 +125,7 @@
     segmentedControl.layer.borderWidth = 1.0f;
     segmentedControl.layer.masksToBounds = YES;
     
-    
-//   if ([boardView whiteIsInCheck]) {
-//      [segmentedControl setSelectedSegmentIndex: 0];
-//      [segmentedControl setEnabled: NO forSegmentAtIndex: 1];
-//   }
-//   else if ([boardView blackIsInCheck]) {
-//      [segmentedControl setSelectedSegmentIndex: 1];
-//      [segmentedControl setEnabled: NO forSegmentAtIndex: 0];
-//   }
-//   else [segmentedControl setSelectedSegmentIndex: -1];
-    
     [segmentedControl setSelectedSegmentIndex: -1];
-//    [contentView addSubview: segmentedControl];
     
 }
 
@@ -189,8 +167,10 @@
 }
 
 -(void)goToBoard{
+    
     BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
     [bvc editPositionDonePressed:fen];
+    
 }
 
 @end

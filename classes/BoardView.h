@@ -10,7 +10,6 @@
 
 using namespace Chess;
 
-@class ArrowView;
 @class CoordinatesView;
 @class GameController;
 @class HighlightedSquaresView;
@@ -26,7 +25,6 @@ using namespace Chess;
    SelectedSquareView *selectedSquareView;
    Square fromSquare, selectedSquare;
    LastMoveView *lastMoveView;
-   ArrowView *arrowView;
    float sqSize;
    CoordinatesView *coordinatesView;
 }
@@ -44,9 +42,6 @@ using namespace Chess;
 - (void)colorsChanged:(NSNotification *)aNotification;
 - (void)showLastMoveWithFrom:(Square)s1 to:(Square)s2;
 - (void)hideLastMove;
-- (void)showArrowFrom:(Square)s1 to:(Square)s2;
-- (void)hideArrow;
-- (void)bringArrowToFront;
 - (void)pieceTouchedAtSquare:(Square)s;
 - (void)setRotated:(BOOL)rotated;
 - (void)showCoordinates:(BOOL)show;

@@ -15,7 +15,7 @@
 
 @implementation Game
 
-@synthesize clock, event, site, date, round, whitePlayer, blackPlayer, result, eco, opening, variation, currentMoveIndex, startPosition, moves, openingString;
+@synthesize round, whitePlayer, blackPlayer, result, eco, opening, variation, currentMoveIndex, startPosition, moves, openingString;
 
 
 /// initWithGameController:FEN: initializes a game from a FEN representing the
@@ -34,12 +34,12 @@
       currentMoveIndex = 0;
 
       if (currentPosition->side_to_move() == WHITE) {
-         whitePlayer = [[[Options sharedOptions] fullUserName] copy];
+         whitePlayer = ENGINE_NAME;
          blackPlayer = ENGINE_NAME;
       }
       else {
          whitePlayer = ENGINE_NAME;
-         blackPlayer = [[[Options sharedOptions] fullUserName] copy];
+         blackPlayer = ENGINE_NAME;
       }
       event = @"?";
       // TODO: Decide site by using GPS?
@@ -58,9 +58,6 @@
       
       if (gc != nil) {
          book = [[OpeningBook alloc] init];
-         clock = [[ChessClock alloc] initWithTime: 300000 increment: 0
-                                   whiteClockView: [gameController whiteClockView]
-                                   blackClockView: [gameController blackClockView]];
          memset(hintHashTable, 0, HINT_HASH_TABLE_SIZE*sizeof(HintHashentry));
       }
    }
@@ -104,35 +101,6 @@
                                   reason: @"Invalid PGN header"
                                 userInfo: nil]
             raise];
-
-      // OK, now we have a PGN tag consisting of a (name, value) pair.  Is
-      // it one of the tags we care about?
-      if (NO) {
-      } else if (strcmp(name, "White") == 0) {
-         [self setWhitePlayer: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Black") == 0) {
-         [self setBlackPlayer: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Event") == 0) {
-         [self setEvent: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Site") == 0) {
-         [self setSite: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Round") == 0) {
-         [self setRound: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Date") == 0) {
-         [self setDate: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Result") == 0) {
-         [self setResult: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "ECO") == 0) {
-         [self setEco: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Opening") == 0) {
-         [self setOpening: [NSString stringWithUTF8String: value]];
-      } else if (strcmp(name, "Variation") == 0) {
-         [self setVariation: [NSString stringWithUTF8String: value]];
-      } else if (strncmp(name, "FEN", 3) == 0) {
-         startFEN = [NSString stringWithUTF8String: value];
-         startPosition->from_fen([startFEN UTF8String]);
-         currentPosition->copy(*startPosition);
-      }
    }
 
    int depth = 0;
@@ -157,7 +125,7 @@
             UndoInfo u;
             currentPosition->do_move(m, u);
             ChessMove *cm = [[ChessMove alloc] initWithMove: m undoInfo: u];
-            [moves addObject: cm];  
+            [moves addObject: cm];
             currentMoveIndex++;
          }
          else {
@@ -293,8 +261,6 @@
 
    [self computeOpeningString];
 
-   [self pushClock];
-
    assert([self atEnd]);
 }
 
@@ -336,8 +302,6 @@
    currentMoveIndex++;
 
    [self computeOpeningString];
-
-   [self pushClock];
 
    assert([self atEnd]);
 
@@ -547,19 +511,6 @@ static NSString* breakLinesInString(NSString *string) {
 }
 
 
-/// emailPgnString is similar to pgnString, but returns a string that can be
-/// used as a mailto: URL.
-
-- (NSString *)emailPgnString {
-   return
-      [[NSString stringWithFormat:
-                         @"mailto:%@?subject=&Chess game&body=%@",
-                 [[Options sharedOptions] emailAddress],
-                 [self pgnString]]
-         stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-}
-
-
 /// uciGameString returns a string representing the game in a format suitable
 /// for input to an UCI engine, e.g. "position startpos moves e2e4 e7e5 ..."
 
@@ -627,65 +578,6 @@ static NSString* breakLinesInString(NSString *string) {
 - (Move)moveFromString:(NSString *)string {
    return safe_move_from_string(*currentPosition, [string UTF8String]);
 }
-
-
-- (void)startClock {
-   if ([self sideToMove] == WHITE)
-      [clock startClockForWhite];
-   else
-      [clock startClockForBlack];
-}
-
-
-- (void)stopClock {
-   [clock stopClock];
-}
-
-
-- (int)whiteRemainingTime {
-   return [clock whiteRemainingTime];
-}
-
-
-- (int)blackRemainingTime {
-   return [clock blackRemainingTime];
-}
-
-
-- (void)pushClock {
-   if (![clock isRunning]) {
-      if ([self sideToMove] == WHITE)
-         [clock startClockForWhite];
-      else
-         [clock startClockForBlack];
-   }
-   else [clock pushClock];
-}
-
-
-- (NSString *)whiteClockString {
-   return [clock whiteRemainingTimeString];
-}
-
-
-- (NSString *)blackClockString {
-   return [clock blackRemainingTimeString];
-}
-
-
-- (void)setTimeControlWithTime:(int)time increment:(int)increment {
-   [clock resetWithTime: time increment: increment];
-}
-
-
-- (void)setTimeControlWithTime:(int)time movesPerSession:(int)mps {
-   [clock resetWithTime: time forMoves: mps];
-}
-
-- (void)setTimeControlWithFixedTime:(int)time {
-   [clock resetWithFixedTime: time];
-}
-
 
 - (void)setHintForCurrentPosition:(Move)hintMove {
    HintHashentry *hhe =
@@ -876,9 +768,6 @@ static NSString* breakLinesInString(NSString *string) {
 
    delete startPosition;
    delete currentPosition;
-
-   [clock stopTimer];
-
 }
 
 @end

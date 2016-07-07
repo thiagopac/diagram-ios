@@ -9,14 +9,17 @@
 #import "BoardViewController.h"
 #import "GameController.h"
 
+
+
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
    UIWindow *window;
-   BoardViewController *viewController;
+   BoardViewController *boardViewController;
    GameController *gameController;
+    UINavigationController *navigationController;
 }
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, readonly) BoardViewController *viewController;
+@property (nonatomic, readonly) BoardViewController *boardViewController;
 @property (nonatomic, readonly) GameController *gameController;
 
 - (void)backgroundInit:(id)anObject;

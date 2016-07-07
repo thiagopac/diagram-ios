@@ -5,8 +5,6 @@
 */
 
 #import <Foundation/Foundation.h>
-
-#import "ChessClock.h"
 #import "ChessMove.h"
 #import "OpeningBook.h"
 
@@ -31,7 +29,6 @@ typedef struct {
    NSMutableArray *moves;
    int currentMoveIndex;
    OpeningBook *book;
-   ChessClock *clock;
 
    NSString *event;
    NSString *site;
@@ -50,10 +47,6 @@ typedef struct {
    HintHashentry hintHashTable[HINT_HASH_TABLE_SIZE];
 }
 
-@property (nonatomic, readonly) ChessClock *clock;
-@property (nonatomic, strong) NSString *event;
-@property (nonatomic, strong) NSString *site;
-@property (nonatomic, strong) NSString *date;
 @property (nonatomic, strong) NSString *round;
 @property (nonatomic, strong) NSString *whitePlayer;
 @property (nonatomic, strong) NSString *blackPlayer;
@@ -99,16 +92,6 @@ typedef struct {
 - (void)getAllBookMoves:(Move *)moveArray;
 - (NSString *)bookMovesAsString;
 - (Move)moveFromString:(NSString *)string;
-- (void)startClock;
-- (void)stopClock;
-- (void)pushClock;
-- (int)whiteRemainingTime;
-- (int)blackRemainingTime;
-- (NSString *)whiteClockString;
-- (NSString *)blackClockString;
-- (void)setTimeControlWithTime:(int)time increment:(int)increment;
-- (void)setTimeControlWithTime:(int)time movesPerSession:(int)mps;
-- (void)setTimeControlWithFixedTime:(int)time;
 - (void)setHintForCurrentPosition:(Move)hintMove;
 - (Move)getHintForCurrentPosition;
 - (BOOL)positionIsMate;

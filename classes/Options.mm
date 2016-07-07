@@ -10,22 +10,19 @@
 
 @implementation Options
 
-@synthesize darkSquareColor, lightSquareColor, highlightColor, selectedSquareColor, arrowColor, arrowOutlineColor;
+@synthesize darkSquareColor, lightSquareColor, highlightColor, selectedSquareColor;
 @synthesize darkSquareImage, lightSquareImage;
 @dynamic colorScheme, pieceSet, figurineNotation;
 @dynamic playStyle, bookVariety, bookVarietyWasChanged, moveSound;
-@dynamic showAnalysis, showArrow, showBookMoves, showLegalMoves, permanentBrain, showCoordinates;
+@dynamic showAnalysis, showBookMoves, showLegalMoves, permanentBrain, showCoordinates;
 @dynamic gameMode, gameLevel, gameModeWasChanged, gameLevelWasChanged;
-@dynamic saveGameFile, emailAddress, fullUserName;
 @dynamic displayMoveGestureStepForwardHint, displayMoveGestureTakebackHint;
 @dynamic playStyleWasChanged, strength, strengthWasChanged;
-@dynamic loadGameFile, loadGameFileGameNumber;
 @dynamic displayGameListSearchFieldHint, displayGamePreviewSwipingHint;
 
 #define KEY_LOAD_GAME_FILE @"loadGameFile"
 #define KEY_LOAD_GAME_FILE_NUMBER @"loadGameFileGameNumber"
 #define KEY_SHOW_ANALYSIS @"showAnalysis2"
-#define KEY_SHOW_ARROW @"showArrow2"
 #define KEY_SHOW_BOOK_MOVES @"showBookMoves2"
 #define KEY_SHOW_LEGAL_MOVES @"showLegalMoves2"
 #define KEY_SHOW_COORDINATES @"showCoordinates2"
@@ -49,15 +46,6 @@
 - (id)init {
    if (self = [super init]) {
       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-      loadGameFile = [defaults objectForKey: KEY_LOAD_GAME_FILE];
-      if (!loadGameFile) {
-         loadGameFile = @"";
-      }
-      loadGameFileGameNumber = (int)[defaults integerForKey: KEY_LOAD_GAME_FILE_NUMBER];
-      if (!loadGameFileGameNumber) {
-         loadGameFileGameNumber = 0;
-      }
        
 #pragma-mark ALTEREI A MOSTRAGEM DA ANÁLISE DE YES PARA NO
       if (![defaults objectForKey: KEY_SHOW_ANALYSIS]) {
@@ -66,14 +54,6 @@
       }
       else
          showAnalysis = [defaults boolForKey: KEY_SHOW_ANALYSIS];
-
-#pragma-mark ALTEREI A MOSTRAGEM DAS SETAS DE DICAS DE YES PARA NO
-      if (![defaults objectForKey:KEY_SHOW_ARROW]) {
-         showArrow = NO;
-         [defaults setBool: NO forKey:KEY_SHOW_ARROW];
-      } else {
-         showArrow = [defaults boolForKey:KEY_SHOW_ARROW];
-      }
 
 #pragma-mark ALTEREI A MOSTRAGEM DOS BOOK MOVES DE YES PARA NO
       if (![defaults objectForKey: KEY_SHOW_BOOK_MOVES]) {
@@ -157,24 +137,6 @@
       playStyleWasChanged = NO;
       strengthWasChanged = NO;
 
-      saveGameFile = [defaults objectForKey: KEY_SAVE_GAME_FILE];
-      if (!saveGameFile) {
-         saveGameFile = @"My games.pgn";
-         [defaults setObject: @"My Games.pgn" forKey: KEY_SAVE_GAME_FILE];
-      }
-
-      emailAddress = [defaults objectForKey: KEY_EMAIL_ADDRESS];
-      if (!emailAddress) {
-         emailAddress = @"";
-         [defaults setObject: @"" forKey: KEY_EMAIL_ADDRESS];
-      }
-
-      fullUserName = [defaults objectForKey: KEY_FULL_USER_NAME];
-      if (!fullUserName) {
-         fullUserName = @"Me";
-         [defaults setObject: @"Me" forKey: KEY_FULL_USER_NAME];
-      }
-
       strength = (int)[defaults integerForKey: KEY_STRENGTH];
       if (!strength) {
          strength = 20;
@@ -220,39 +182,15 @@
 
 
 - (UIColor *)darkSquareColorForColorScheme:(NSString *)scheme {
-   if ([scheme isEqualToString: @"Blue"])
-      // return [UIColor colorWithRed: 0.2 green: 0.4 blue: 0.7 alpha: 1.0];
-      return [UIColor colorWithRed: 0.24 green: 0.48 blue: 0.84 alpha: 1.0];
-   else if ([scheme isEqualToString: @"Gray"])
-//      return [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 1.0];
 #pragma-mark ALTEREI A COR DAS CASAS ESCURAS NO TEMA CINZA
-       return [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
-   else if ([scheme isEqualToString: @"Red"])
-      return [UIColor colorWithRed: 0.6 green: 0.28 blue: 0.28 alpha: 1.0];
-   else if ([scheme isEqualToString: @"Green"])
-      //return [UIColor colorWithRed: 0.22 green: 0.31 blue: 0.22 alpha: 1.0];
-      return [UIColor colorWithRed: 0.26 green: 0.37 blue: 0.26 alpha: 1.0];
-   else // Default, brown
-      return [UIColor colorWithRed: 0.74 green: 0.49 blue: 0.32 alpha: 1.0];
+   return [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
 }
 
 
 - (UIColor *)lightSquareColorForColorScheme:(NSString *)scheme {
-   if ([scheme isEqualToString: @"Blue"])
-      // return [UIColor colorWithRed: 0.69 green: 0.78 blue: 1.0 alpha: 1.0];
-      return [UIColor colorWithRed: 0.7 green: 0.8 blue: 1.0 alpha: 1.0];
-   else if ([scheme isEqualToString: @"Gray"])
 #pragma-mark ALTEREI A COR DAS CASAS CLARAS NO TEMA CINZA
-//      return [UIColor colorWithRed: 0.8 green: 0.8 blue: 0.8 alpha: 1.0];
-//    return [UIColor colorWithRed:0.94 green:0.94 blue:0.95 alpha:1.0];
     return [UIColor whiteColor];
-   else if ([scheme isEqualToString: @"Red"])
-      return [UIColor colorWithRed: 1.0 green: 0.8 blue: 0.8 alpha: 1.0];
-   else if ([scheme isEqualToString: @"Green"])
-      // return [UIColor colorWithRed: 0.47 green: 0.59 blue: 0.43 alpha: 1.0];
-      return [UIColor colorWithRed: 0.56 green: 0.71 blue: 0.52 alpha: 1.0];
-   else // Default, brown
-      return [UIColor colorWithRed: 0.96 green: 0.84 blue: 0.66 alpha: 1.0];
+
 }
 
 
@@ -295,37 +233,13 @@
 
 
 - (UIColor *)highlightColorForColorScheme:(NSString *)scheme {
-   if ([scheme isEqualToString: @"Green"]) {
-      return [UIColor colorWithRed:0.6 green:0.0 blue:0.3 alpha:1.0];
-   } else if ([scheme isEqualToString: @"Blue"]) {
-      return [UIColor orangeColor];
-   } else if ([scheme isEqualToString: @"Gray"]) {
-      return [UIColor colorWithRed:0.45 green:0.63 blue:0.55 alpha:1.0];
-   } else {
-      return [[self darkSquareColorForColorScheme:scheme] complementaryColor];
-   }
+  return [UIColor colorWithRed:0.95 green:0.93 blue:0.29 alpha:1.0];
+
 }
 
 
 - (UIColor *)selectedSquareColorForColorScheme:(NSString *)scheme {
-   if ([scheme isEqualToString: @"Newspaper"])
-      return [UIColor colorWithRed: 0.2 green: 0.6 blue: 1.0 alpha: 0.4];
-   else
-       
-#pragma COR DA VIEW REDONDA QUE APARECE AO ESCOLHER CASA PARA ONDE IRÁ MOVER A PEÇA
       return [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha: 0.4];
-}
-
-
-- (UIColor *)arrowColorForColorScheme:(NSString *)scheme {
-   return [[self highlightColorForColorScheme:scheme] colorWithAlphaComponent:0.5f];
-}
-
-
-- (UIColor *)arrowOutlineColorForColorScheme:(NSString *)scheme {
-   return [[[self highlightColorForColorScheme:scheme]
-         interpolateTowardsColor:[UIColor blackColor] atPoint:0.5f]
-         colorWithAlphaComponent:0.8f];
 }
 
 
@@ -339,8 +253,6 @@
    lightSquareColor = [self lightSquareColorForColorScheme: colorScheme];
    highlightColor = [self highlightColorForColorScheme: colorScheme];
    selectedSquareColor = [self selectedSquareColorForColorScheme: colorScheme];
-   arrowColor = [self arrowColorForColorScheme: colorScheme];
-   arrowOutlineColor = [self arrowOutlineColorForColorScheme:colorScheme];
    darkSquareImage = [self darkSquareImageForColorScheme: colorScheme
                                                     large: large];
    lightSquareImage = [self lightSquareImageForColorScheme: colorScheme
@@ -379,8 +291,6 @@
 
 
 - (UIColor *)brightHighlightColor {
-    
-//    return [highlightColor interpolateTowardsColor:[UIColor redColor] atPoint:0.1f];
 #pragma-mark ALTEREI A COR DAS VIEWS QUE APARECEM NAS CASAS DE MOVIMENTOS POSSÍVEIS DE CADA PEÇA
     return [UIColor colorWithRed:0.40 green:0.49 blue:0.57 alpha:1.0];
 }
@@ -473,19 +383,6 @@
    showAnalysis = shouldShowAnalysis;
    [[NSUserDefaults standardUserDefaults] setBool: showAnalysis
                                            forKey: KEY_SHOW_ANALYSIS];
-   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (BOOL)showArrow {
-   return showArrow;
-}
-
-
-- (void)setShowArrow:(BOOL)shouldShowArrow {
-   showArrow = shouldShowArrow;
-   [[NSUserDefaults standardUserDefaults] setBool:showArrow
-                                           forKey:KEY_SHOW_ARROW];
    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -589,46 +486,6 @@
    return result;
 }
 
-
-- (NSString *)saveGameFile {
-   return saveGameFile;
-}
-
-
-- (void)setSaveGameFile:(NSString *)newFileName {
-   saveGameFile = newFileName;
-   [[NSUserDefaults standardUserDefaults] setObject: saveGameFile
-                                             forKey: KEY_SAVE_GAME_FILE];
-   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (NSString *)emailAddress {
-   return emailAddress;
-}
-
-
-- (void)setEmailAddress:(NSString *)newEmailAddress {
-   emailAddress = newEmailAddress;
-   [[NSUserDefaults standardUserDefaults] setObject: emailAddress
-                                             forKey: KEY_EMAIL_ADDRESS];
-   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (NSString *)fullUserName {
-   return fullUserName;
-}
-
-
-- (void)setFullUserName:(NSString *)name {
-   fullUserName = name;
-   [[NSUserDefaults standardUserDefaults] setObject: fullUserName
-                                             forKey: KEY_FULL_USER_NAME];
-   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
 - (int)strength {
    return strength;
 }
@@ -650,28 +507,6 @@
    BOOL result = strengthWasChanged;
    strengthWasChanged = NO;
    return result;
-}
-
-
-- (NSString *)loadGameFile {
-   return loadGameFile;
-}
-
-- (void)setLoadGameFile:(NSString *)lgf {
-   loadGameFile = lgf;
-   [[NSUserDefaults standardUserDefaults] setObject: loadGameFile
-                                             forKey: KEY_LOAD_GAME_FILE];
-   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (int)loadGameFileGameNumber {
-   return loadGameFileGameNumber;
-}
-
-- (void)setLoadGameFileGameNumber:(int)lgfgn {
-   loadGameFileGameNumber = lgfgn;
-   [[NSUserDefaults standardUserDefaults] setInteger: loadGameFileGameNumber
-                                              forKey: KEY_LOAD_GAME_FILE_NUMBER];
 }
 
 - (BOOL)displayMoveGestureTakebackHint {

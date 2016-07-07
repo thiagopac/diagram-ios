@@ -27,8 +27,6 @@ using namespace Chess;
            moveListView:(MoveListView *)mlv
            analysisView:(UILabel *)av
           bookMovesView:(UILabel *)bmv
-         whiteClockView:(UILabel *)wcv
-         blackClockView:(UILabel *)bcv
         searchStatsView:(UILabel *)ssv {
    if (self = [super init]) {
       boardView = bv;
@@ -37,8 +35,6 @@ using namespace Chess;
       [moveListView setWebViewDelegate: self];
       analysisView = av;
       bookMovesView = bmv;
-      whiteClockView = wcv;
-      blackClockView = bcv;
       searchStatsView = ssv;
 
       game = [[Game alloc] initWithGameController: self];
@@ -125,7 +121,6 @@ using namespace Chess;
    //NSLog(@"startNewGame");
 
    [boardView hideLastMove];
-   [boardView hideArrow];
    [boardView stopHighlighting];
 
    for (PieceImageView *piv in pieceViews)
@@ -134,19 +129,7 @@ using namespace Chess;
    game = [[Game alloc] initWithGameController: self];
    gameLevel = [[Options sharedOptions] gameLevel];
    gameMode = [[Options sharedOptions] gameMode];
-   if ([[Options sharedOptions] isFixedTimeLevel])
-      [game setTimeControlWithFixedTime: [[Options sharedOptions] timeIncrement]];
-   else
-      [game setTimeControlWithTime: [[Options sharedOptions] baseTime]
-                         increment: [[Options sharedOptions] timeIncrement]];
-
-   [game setWhitePlayer:
-            ((gameMode == GAME_MODE_COMPUTER_BLACK)?
-             [[[Options sharedOptions] fullUserName] copy] : ENGINE_NAME)];
-   [game setBlackPlayer:
-            ((gameMode == GAME_MODE_COMPUTER_BLACK)?
-             ENGINE_NAME : [[[Options sharedOptions] fullUserName] copy])];
-
+  
    pieceViews = [[NSMutableArray alloc] init];
    pendingFrom = SQ_NONE;
    pendingTo = SQ_NONE;
@@ -719,7 +702,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
       // Don't show the last move played any more:
       [boardView hideLastMove];
-      [boardView hideArrow];
       [boardView stopHighlighting];
 
       // Stop engine:
@@ -740,9 +722,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
          [engineController sendCommand: @"go infinite"];
          [engineController commitCommands];
       }
-
-      // Stop the clock:
-      [game stopClock];
    }
    [self updateMoveList];
    [self showBookMoves];
@@ -753,7 +732,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    if (![game atBeginning]) {
 
       [boardView hideLastMove];
-      [boardView hideArrow];
       [boardView stopHighlighting];
 
       // Release piece images
@@ -782,9 +760,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
          [engineController sendCommand: @"go infinite"];
          [engineController commitCommands];
       }
-
-      // Stop the clock:
-      [game stopClock];
 
       [self updateMoveList];
       [self showBookMoves];
@@ -860,7 +835,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
       // Don't show the last move played any more:
       [boardView hideLastMove];
-      [boardView hideArrow];
       [boardView stopHighlighting];
 
       // If in analyse mode, send new position to engine, and tell it to start
@@ -882,7 +856,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    if (![game atEnd]) {
 
       [boardView hideLastMove];
-      [boardView hideArrow];
       [boardView stopHighlighting];
 
       // Release piece images
@@ -911,10 +884,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
          [engineController sendCommand: @"go infinite"];
          [engineController commitCommands];
       }
-
-      // Stop the clock:
-      [game stopClock];
-
+       
       [self updateMoveList];
       [self showBookMoves];
    }
@@ -1136,14 +1106,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (void)jumpToPly:(int)ply animate:(BOOL)animate {
    [boardView hideLastMove];
-   [boardView hideArrow];
    [boardView stopHighlighting];
 
    if (ply == [game currentMoveIndex])
       return;
-
-   // Stop the clock:
-   [game stopClock];
 
    // If the engine is pondering, stop it before unmaking the move.
    if (isPondering) {
@@ -1204,9 +1170,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
       [engineController commitCommands];
    }
    
-   // Stop the clock:
-   [game stopClock];
-   
    [self updateMoveList];
    [self showBookMoves];
 }
@@ -1263,7 +1226,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    for (PieceImageView *piv in pieceViews)
       [piv moveToSquare: Square(SQ_H8 - [piv square]) animate: animate];
    [boardView hideLastMove];
-   [boardView hideArrow];
    [boardView stopHighlighting];
    [boardView setRotated: rotated];
 
@@ -1370,19 +1332,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
          } else {
             [analysisView setText: prettyPV];
          }
-
-         if ([Options sharedOptions].showArrow) {
-            Move move = [game moveFromString:pv];
-            // As usual, we need to adjust Stockfish's castling moves:
-            Square from = move_from(move);
-            Square to = move_to(move);
-            if (type_of_piece([game pieceOn:from]) == KING
-                  && square_distance(from, to) > 1) {
-               to = (to > from) ? from + 2 * DELTA_E : from + 2 * DELTA_W;
-            }
-            [boardView showArrowFrom:[self rotateSquare:from]
-                                  to:[self rotateSquare:to]];
-         }
       }
    }
 }
@@ -1439,14 +1388,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    gameLevel = newGameLevel;
    if ([[Options sharedOptions] isFixedTimeLevel]) {
       NSLog(@"fixed time: %d", [[Options sharedOptions] timeIncrement]);
-      [game setTimeControlWithFixedTime: [[Options sharedOptions] timeIncrement]];
    }
    else {
       NSLog(@"base time: %d increment: %d",
             [[Options sharedOptions] baseTime],
             [[Options sharedOptions] timeIncrement]);
-      [game setTimeControlWithTime: [[Options sharedOptions] baseTime]
-                         increment: [[Options sharedOptions] timeIncrement]];
    }
 }
 
@@ -1465,12 +1411,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
       [engineController pondermiss];
       isPondering = NO;
    }
-   [game setWhitePlayer:
-            ((newGameMode == GAME_MODE_COMPUTER_BLACK)?
-             [[[Options sharedOptions] fullUserName] copy] : ENGINE_NAME)];
-   [game setBlackPlayer:
-            ((newGameMode == GAME_MODE_COMPUTER_BLACK)?
-             ENGINE_NAME : [[[Options sharedOptions] fullUserName] copy])];
+   [game setWhitePlayer:ENGINE_NAME];
+   [game setBlackPlayer:ENGINE_NAME];
    gameMode = newGameMode;
 
    // If in analyse mode, automatically switch on "Show analysis"
@@ -1498,7 +1440,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    else if (move_is_short_castle(m)) to -= 1;
    [boardView showLastMoveWithFrom: [self rotateSquare: move_from(m)]
                                 to: [self rotateSquare: to]];
-   [boardView hideArrow];
 
    [self animateMove: m];
    [game doMove: m];
@@ -1580,14 +1521,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                [engineController
                   sendCommand: [NSString stringWithFormat: @"go movetime %d",
                                          [[Options sharedOptions] timeIncrement]]];
-            else
-               [engineController
-                  sendCommand: [NSString stringWithFormat: @"go wtime %d btime %d winc %d binc %d",
-                                         [[game clock] whiteRemainingTime],
-                                         [[game clock] blackRemainingTime],
-                                         [[game clock] whiteIncrement],
-                                         [[game clock] blackIncrement]]];
-            [engineController commitCommands];
+              [engineController commitCommands];
          }
       }
    }
@@ -1609,12 +1543,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [NSString stringWithFormat: @"%@ %s",
                       [game uciGameString], move_to_string(pMove).c_str()]];
       isPondering = YES;
-      [engineController
-         sendCommand: [NSString stringWithFormat: @"go ponder wtime %d btime %d winc %d binc %d",
-                                [[game clock] whiteRemainingTime],
-                                [[game clock] blackRemainingTime],
-                                [[game clock] whiteIncrement],
-                                [[game clock] blackIncrement]]];
       [engineController commitCommands];
    }
 }
@@ -1752,8 +1680,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
    gameLevel = [[Options sharedOptions] gameLevel];
    gameMode = [[Options sharedOptions] gameMode];
-   [game setTimeControlWithTime: [[Options sharedOptions] baseTime]
-                      increment: [[Options sharedOptions] timeIncrement]];
    pieceViews = [[NSMutableArray alloc] init];
    pendingFrom = SQ_NONE;
    pendingTo = SQ_NONE;
@@ -1778,8 +1704,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
    game = [[Game alloc] initWithGameController: self FEN: fen];
    gameLevel = [[Options sharedOptions] gameLevel];
    gameMode = [[Options sharedOptions] gameMode];
-   [game setTimeControlWithTime: [[Options sharedOptions] baseTime]
-                      increment: [[Options sharedOptions] timeIncrement]];
    pieceViews = [[NSMutableArray alloc] init];
    pendingFrom = SQ_NONE;
    pendingTo = SQ_NONE;

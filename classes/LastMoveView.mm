@@ -23,26 +23,25 @@
 - (void)drawRect:(CGRect)rect {
    int i;
    Square s;
-
+    //contorno amarelo em volta da casa selecionada
+    
    for (i = 0, s = square1; i < 2; i++, s = square2) {
       int f = int(square_file(s)), r = 7 - int(square_rank(s));
+       
+       
       CGRect frame = CGRectMake(f * sqSize, r * sqSize, sqSize, sqSize);
-      if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-         [[[Options sharedOptions] brightHighlightColor] set];
-         UIRectFrame(CGRectInset(frame, -1.0f, -1.0f));
-         [[[Options sharedOptions] highlightColor] set];
-         UIRectFrame(frame);
-         UIRectFrame(CGRectInset(frame, 1.0f, 1.0f));
-         [[[Options sharedOptions] brightHighlightColor] set];
-         UIRectFrame(CGRectInset(frame, 2.0f, 2.0f));
-      } else {
-         [[[Options sharedOptions] brightHighlightColor] set];
-         UIRectFrame(CGRectInset(frame, -1.0f, -1.0f));
-         [[[Options sharedOptions] highlightColor] set];
-         UIRectFrame(frame);
-         [[[Options sharedOptions] brightHighlightColor] set];
-         UIRectFrame(CGRectInset(frame, 1.0f, 1.0f));
-      }
+//       [[[Options sharedOptions] highlightColor] set];
+//       UIRectFrame(CGRectInset(frame, -1.0f, -1.0f));
+//       [[[Options sharedOptions] highlightColor] set];
+//       UIRectFrame(frame);
+//       [[[Options sharedOptions] highlightColor] set];
+//       UIRectFrame(CGRectInset(frame, 1.0f, 1.0f));
+//       UIRectFrame(CGRectInset(frame, 2.0f, 2.0f));
+//       UIRectFill(rect);
+       [[UIColor colorWithRed:0.95 green:0.93 blue:0.29 alpha:.5] set];
+//       CGContextFillRect(context, rect);
+       UIRectFill(frame);
+
    }
 }
 

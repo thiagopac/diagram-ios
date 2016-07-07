@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "SetupBoardView.h"
 
 @class GameController;
 
@@ -23,6 +24,5 @@
 @property (nonatomic, readonly) GameController *gameController;
 
 - (id)initWithFen:(NSString *)aFen;
-- (void)donePressed;
 
 @end

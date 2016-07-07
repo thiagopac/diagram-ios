@@ -9,7 +9,6 @@
 #import "ScanViewController.h"
 #import "MTBBarcodeScanner.h"
 #import "GameController.h"
-#import "SetupViewController.h"
 #import "BoardViewController.h"
 #import "Game.h"
 #import "AnimatedGameView.h"
@@ -470,6 +469,9 @@
     
     [[Options sharedOptions] setGameLevel: LEVEL_2S_PER_MOVE];
     [boardViewController levelWasChanged];
+    
+//    BoardViewController *bvc = [(ScanViewController *)[[self navigationController] viewControllers][0]boardViewController];
+//    [bvc editPositionDonePressed:fen];
     
 }
 

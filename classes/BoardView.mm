@@ -4,7 +4,6 @@
   Copyright (c) 2016 Thiago Castro. All rights reserved.
 */
 
-#import "ArrowView.h"
 #import "BoardView.h"
 #import "CoordinatesView.h"
 #import "GameController.h"
@@ -38,7 +37,6 @@ using namespace Chess;
                                                    name: @"StockfishColorSchemeChanged"
                                                  object: nil];
       lastMoveView = nil;
-      arrowView = nil;
       sqSize = frame.size.width / 8;
       [[NSNotificationCenter defaultCenter] addObserver: self
                                                selector: @selector(showCoordinatesChanged:)
@@ -58,7 +56,6 @@ using namespace Chess;
    selectedSquare = SQ_NONE;
    fromSquare = SQ_NONE;
    lastMoveView = nil;
-   arrowView = nil;
    sqSize = frame.size.width / 8;
 
    CGRect rect = frame;
@@ -132,7 +129,6 @@ using namespace Chess;
          initWithFrame: CGRectMake(0.0f, 0.0f, 5.0f * sqSize, 5.0f * sqSize)];
    [selectedSquareView setOpaque: NO];
    [self addSubview: selectedSquareView];
-   [self bringArrowToFront];
 }
 
 
@@ -181,8 +177,6 @@ using namespace Chess;
    lightSquareImage = [[Options sharedOptions] lightSquareImage];
    if (lastMoveView)
       [lastMoveView setNeedsDisplay];
-   if (arrowView)
-      [arrowView setNeedsDisplay];
    [self setNeedsDisplay];
 }
 
@@ -197,7 +191,6 @@ using namespace Chess;
    [lastMoveView setUserInteractionEnabled: NO];
    [lastMoveView setOpaque: NO];
    [self addSubview: lastMoveView];
-   [self bringArrowToFront];
 }
 
 
@@ -208,36 +201,6 @@ using namespace Chess;
    }
    fromSquare = SQ_NONE;
 }
-
-
-- (void)showArrowFrom:(Square)s1 to:(Square)s2 {
-   if (arrowView) {
-      [arrowView removeFromSuperview];
-   }
-   arrowView = [[ArrowView alloc]
-         initWithFrame:CGRectMake(0.0f, 0.0f, 8.0f * sqSize, 8.0f * sqSize)
-                fromSq:s1
-                  toSq:s2];
-   arrowView.userInteractionEnabled = NO;
-   arrowView.opaque = NO;
-   [self addSubview:arrowView];
-}
-
-
-- (void)bringArrowToFront {
-   if (arrowView) {
-      [self bringSubviewToFront:arrowView];
-   }
-}
-
-
-- (void)hideArrow {
-   if (arrowView) {
-      [arrowView removeFromSuperview];
-      arrowView = nil;
-   }
-}
-
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
    if (fromSquare == SQ_NONE)

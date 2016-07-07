@@ -11,6 +11,7 @@
 #import "ECO.h"
 #import "MoveListView.h"
 #import "Options.h"
+#import "SideToMoveController.h"
 
 #include "../Chess/mersenne.h"
 #include "../Chess/movepick.h"
@@ -19,17 +20,17 @@ using namespace Chess;
 
 @implementation AppDelegate
 
-@synthesize window, viewController, gameController;
+@synthesize window, boardViewController, gameController;
 
 
 - (BOOL)application :(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
 
-   viewController = [[BoardViewController alloc] init];
-   [viewController loadView];
-   [window addSubview: [viewController view]];
-   [window setRootViewController: viewController];
+   boardViewController = [[BoardViewController alloc] init];
+   [boardViewController loadView];
+   [window addSubview: [boardViewController view]];
+   [window setRootViewController: boardViewController];
    [window makeKeyAndVisible];
 
    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
@@ -50,10 +51,6 @@ using namespace Chess;
                  forKey: @"gameLevel"];
    [defaults setInteger: ((int)[[Options sharedOptions] gameMode] + 1)
                  forKey: @"gameMode"];
-   [defaults setInteger: [[[gameController game] clock] whiteRemainingTime] + 1
-                 forKey: @"whiteRemainingTime"];
-   [defaults setInteger: [[[gameController game] clock] blackRemainingTime] + 1
-                 forKey: @"blackRemainingTime"];
    [defaults setBool: [gameController rotated]
               forKey: @"rotateBoard"];
    [defaults setInteger: [[gameController game] currentMoveIndex]
@@ -81,15 +78,47 @@ using namespace Chess;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-   
-    NSString *homeDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-   NSString *fileName = [url.absoluteString componentsSeparatedByString:@"/"].lastObject;
-   NSURL *url2 = [NSURL fileURLWithPath: [homeDir stringByAppendingPathComponent: fileName]];
-   [[NSFileManager defaultManager] moveItemAtURL:url toURL:url2 error:NULL];
+    
+    NSLog(@"url recieved: %@", url);
+    NSLog(@"query string: %@", [url query]);
+    NSLog(@"host: %@", [url host]);
+    NSLog(@"url path: %@", [url path]);
+    NSDictionary *dict = [self parseQueryString:[url query]];
+    NSLog(@"query dict: %@", dict);
+    
+    
+    /* Chess init */
+    init_mersenne();
+    init_direction_table();
+    init_bitboards();
+    Position::init_zobrist();
+    Position::init_piece_square_tables();
+    MovePicker::init_phase_table();
+    
+    // Make random number generation less deterministic, for book moves
+    int i = abs(get_system_time() % 10000);
+    for (int j = 0; j < i; j++)
+    genrand_int32();
+    
+    [gameController loadPieceImages];
+    
+    [gameController showPiecesAnimate: NO];
+    [boardViewController stopActivityIndicator];
+    
+    [boardViewController setGameController: gameController];
+    [[boardViewController boardView] setGameController: gameController];
+    [[boardViewController moveListView] setGameController: gameController];
 
-   [[Options sharedOptions] setLoadGameFile: [url2 absoluteString]];
-   [[Options sharedOptions] setLoadGameFileGameNumber:NSIntegerMax]; // HACK
-   [viewController showLoadGameMenu];
+    [gameController startNewGame];
+    
+    if (Position::is_valid_fen([dict[@"v"] UTF8String])) {
+        [gameController gameFromFEN:dict[@"v"]];
+    }else if(1 == 1){ //TO-DO criar teste válido para PGN
+        [gameController gameFromPGNString:dict[@"v"] loadFromBeginning: NO];
+    }
+    
+    [boardViewController hideLastMove];
+    
    return YES;
 }
 
@@ -97,13 +126,11 @@ using namespace Chess;
    @autoreleasepool {
 
       gameController =
-         [[GameController alloc] initWithBoardView: [viewController boardView]
-                                      moveListView: [viewController moveListView]
-                                      analysisView: [viewController analysisView]
-                                     bookMovesView: [viewController bookMovesView]
-                                    whiteClockView: [viewController whiteClockView]
-                                    blackClockView: [viewController blackClockView]
-                                   searchStatsView: [viewController searchStatsView]];
+         [[GameController alloc] initWithBoardView: [boardViewController boardView]
+                                      moveListView: [boardViewController moveListView]
+                                      analysisView: [boardViewController analysisView]
+                                     bookMovesView: [boardViewController bookMovesView]
+                                   searchStatsView: [boardViewController searchStatsView]];
 
       /* Chess init */
       init_mersenne();
@@ -130,15 +157,16 @@ using namespace Chess;
 - (void)backgroundInitFinished:(id)anObject {
    
    [gameController showPiecesAnimate: NO];
-   [viewController stopActivityIndicator];
+   [boardViewController stopActivityIndicator];
 
-   [viewController setGameController: gameController];
-   [[viewController boardView] setGameController: gameController];
-   [[viewController moveListView] setGameController: gameController];
+   [boardViewController setGameController: gameController];
+   [[boardViewController boardView] setGameController: gameController];
+   [[boardViewController moveListView] setGameController: gameController];
 
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
    NSString *lastGamePGNString = [defaults objectForKey: @"lastGame"];
+    
    if (lastGamePGNString) {
       [gameController gameFromPGNString: lastGamePGNString
                       loadFromBeginning: NO];
@@ -154,14 +182,6 @@ using namespace Chess;
       [[Options sharedOptions] setGameLevel: (GameLevel)((int)gameLevel - 1)];
       [gameController setGameLevel: [[Options sharedOptions] gameLevel]];
    }
-
-   NSInteger whiteRemainingTime = [defaults integerForKey: @"whiteRemainingTime"];
-   NSInteger blackRemainingTime = [defaults integerForKey: @"blackRemainingTime"];
-   ChessClock *clock = [[gameController game] clock];
-   if (whiteRemainingTime)
-      [clock addTimeForWhite: ((int)whiteRemainingTime - [clock whiteRemainingTime])];
-   if (blackRemainingTime)
-      [clock addTimeForBlack: ((int)blackRemainingTime - [clock blackRemainingTime])];
 
    if ([defaults objectForKey: @"rotateBoard"])
       [gameController rotateBoard: [defaults boolForKey: @"rotateBoard"] animate: NO];
@@ -183,5 +203,18 @@ using namespace Chess;
    NSLog(@"AppDelegate dealloc");
 }
 
+- (NSDictionary *)parseQueryString:(NSString *)query {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:6];
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [dict setObject:val forKey:key];
+    }
+    return dict;
+}
 
 @end

@@ -8,7 +8,7 @@
 #import "TargetConditionals.h"
 
 #define PGN_DIRECTORY [NSHomeDirectory() stringByAppendingPathComponent: @"Documents"]
-#define ENGINE_NAME @"Stockfish"
+#define ENGINE_NAME @"Diagram"
 
 #define PGN_STRING_SIZE 256
 

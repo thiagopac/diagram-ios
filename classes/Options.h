@@ -31,7 +31,6 @@ enum GameLevel {
 
 @interface Options : NSObject {
    UIColor *__strong darkSquareColor, *__strong lightSquareColor, *__strong highlightColor, *__strong selectedSquareColor;
-   UIColor *__strong arrowColor, *__strong arrowOutlineColor;
    UIImage *__weak darkSquareImage, *__weak lightSquareImage;
    NSString *colorScheme;
    NSString *playStyle;
@@ -43,7 +42,6 @@ enum GameLevel {
    BOOL showAnalysis;
    BOOL showBookMoves;
    BOOL showLegalMoves;
-   BOOL showArrow;
    BOOL permanentBrain;
 
    GameMode gameMode;
@@ -53,13 +51,6 @@ enum GameLevel {
 
    BOOL playStyleWasChanged;
    BOOL strengthWasChanged;
-
-   NSString *saveGameFile;
-   NSString *loadGameFile;
-   int loadGameFileGameNumber;
-
-   NSString *fullUserName;
-   NSString *emailAddress;
 
    BOOL displayMoveGestureStepForwardHint;
    BOOL displayMoveGestureTakebackHint;
@@ -76,8 +67,6 @@ enum GameLevel {
 @property (strong, nonatomic, readonly) UIColor *lightSquareColor;
 @property (strong, nonatomic, readonly) UIColor *highlightColor;
 @property (strong, nonatomic, readonly) UIColor *selectedSquareColor;
-@property (strong, nonatomic, readonly) UIColor *arrowColor;
-@property (strong, nonatomic, readonly) UIColor *arrowOutlineColor;
 @property (weak, nonatomic, readonly) UIImage *darkSquareImage;
 @property (weak, nonatomic, readonly) UIImage *lightSquareImage;
 @property (nonatomic, strong) NSString *colorScheme;
@@ -88,7 +77,6 @@ enum GameLevel {
 @property (nonatomic, readwrite) BOOL moveSound;
 @property (nonatomic, readwrite) BOOL figurineNotation;
 @property (nonatomic, readwrite) BOOL showAnalysis;
-@property (nonatomic, readwrite) BOOL showArrow;
 @property (nonatomic, readwrite) BOOL showBookMoves;
 @property (nonatomic, readwrite) BOOL showLegalMoves;
 @property (nonatomic, readwrite) BOOL showCoordinates;
@@ -98,11 +86,6 @@ enum GameLevel {
 @property (nonatomic, readonly) BOOL gameModeWasChanged;
 @property (nonatomic, readonly) BOOL gameLevelWasChanged;
 @property (nonatomic, readonly) BOOL playStyleWasChanged;
-@property (nonatomic, strong) NSString *saveGameFile;
-@property (nonatomic, strong) NSString *loadGameFile;
-@property (nonatomic, assign) int loadGameFileGameNumber;
-@property (nonatomic, strong) NSString *emailAddress;
-@property (nonatomic, strong) NSString *fullUserName;
 @property (nonatomic, readonly) BOOL displayMoveGestureStepForwardHint;
 @property (nonatomic, readonly) BOOL displayMoveGestureTakebackHint;
 @property (nonatomic, assign) int strength;
@@ -118,8 +101,6 @@ enum GameLevel {
 - (UIImage *)lightSquareImageForColorScheme:(NSString *)scheme large:(BOOL)large;
 - (UIColor *)highlightColorForColorScheme:(NSString *)scheme;
 - (UIColor *)selectedSquareColorForColorScheme:(NSString *)scheme;
-- (UIColor *)arrowColorForColorScheme:(NSString *)scheme;
-- (UIColor *)arrowOutlineColorForColorScheme:(NSString *)scheme;
 - (UIColor *)brightHighlightColor;
 - (void)updateColors;
 - (BOOL)isFixedTimeLevel;

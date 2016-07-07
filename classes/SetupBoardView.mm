@@ -9,7 +9,6 @@
 #import "SelectedPieceView.h"
 #import "SelectedSquareView.h"
 #import "SetupBoardView.h"
-#import "SetupViewController.h"
 
 #import "position.h"
 
@@ -128,11 +127,6 @@
          [iv removeFromSuperview];
       for (Square s = SQ_A1; s <= SQ_H8; s++)
          board[s] = EMPTY;
-      for (int i = 0; i < 2; i++)
-         for (int j = 0; j < 16; j++)
-            bitboards[i][j] = 0ULL;
-      [pieceViews removeAllObjects];
-      [(SetupViewController *)controller disableDoneButton];
    }
 }
 
@@ -240,16 +234,6 @@
       }
       [selectedSquareView removeFromSuperview];
 
-      int whiteIsInCheck = [self whiteIsInCheck];
-      int blackIsInCheck = [self blackIsInCheck];
-      if ([self pieceCountsOK]
-          && !(whiteIsInCheck && blackIsInCheck)
-          && whiteIsInCheck <= 2 && blackIsInCheck <= 2)
-         [(SetupViewController *)controller enableDoneButton];
-      else
-         [(SetupViewController *)controller disableDoneButton];
-
-      NSLog(@"%@", [self fen]);
    }
    else if (phase == PHASE_EDIT_EP) {
       [selectedSquareView removeFromSuperview];

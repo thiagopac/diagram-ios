@@ -54,8 +54,6 @@
            moveListView:(MoveListView *)mlv
            analysisView:(UILabel *)av
           bookMovesView:(UILabel *)bmv
-         whiteClockView:(UILabel *)wcv
-         blackClockView:(UILabel *)bcv
         searchStatsView:(UILabel *)ssv;
 - (void)startEngine;
 - (void)startNewGame;

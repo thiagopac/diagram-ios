@@ -128,7 +128,6 @@
    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
    [UIView setAnimationDuration: 0.06];
    [self setFrame: [boardView rectForSquare: square]];
-   [boardView bringArrowToFront];
    [UIView commitAnimations];
 }
 
@@ -269,7 +268,6 @@ static BOOL APieceIsBeingTouched = NO;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
    APieceIsBeingTouched = NO;
-   [boardView bringArrowToFront];
    if (isBeingDragged) {
       isBeingDragged = NO;
       CGPoint releasePoint = [[touches anyObject]

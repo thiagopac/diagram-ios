@@ -63,8 +63,6 @@
             [(((i + j) & 1)? darkSquareColor : lightSquareColor) set];
             UIRectFill(CGRectMake(i*sqSize, j*sqSize, sqSize, sqSize));
          }
-         //CGRect r = CGRectMake(i * sqSize, j * sqSize, sqSize, sqSize);
-         //[(((i + j) & 1)? darkSquareImage : lightSquareImage) drawInRect: r];
       }
 }
 

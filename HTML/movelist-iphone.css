@@ -9,8 +9,8 @@ strong {
     font-weight: bold;
     color: #D2527F;
     text-decoration: none;
-    border-bottom: 1px dotted #D2527F;
-    /*background: rgb(200, 200, 200);*/
+ /* border-bottom: 1px dotted #D2527F;
+    background: rgb(200, 200, 200);*/
 }
 
 .move.moves {
