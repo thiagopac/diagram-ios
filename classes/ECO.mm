@@ -54,20 +54,7 @@
 }
 
 
-@end // @implementation Opening
-
-
-/*
-static NSInteger compareOpenings(Opening *o1, Opening *o2, void *context) {
-   if ([o1 key] < [o2 key])
-      return NSOrderedAscending;
-   else if ([o1 key] > [o2 key])
-      return NSOrderedDescending;
-   else
-      return NSOrderedSame;
-}
-*/
-   
+@end
 
 @implementation ECO
 

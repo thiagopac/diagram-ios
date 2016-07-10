@@ -16,7 +16,7 @@
 
 @implementation BoardViewController
 
-@synthesize analysisView, bookMovesView, boardView, contentView, moveListView, gameController, searchStatsView, movesHistoryView, activityIndicator;
+@synthesize boardView, contentView, moveListView, gameController, movesHistoryView, activityIndicator;
 
 - (void)loadView {
     
@@ -86,8 +86,6 @@
 //    [btnForwardAll setBackgroundColor:[UIColor redColor]];
        [movesHistoryView addSubview:btnForwardAll];
        [contentView addSubview: movesHistoryView];
-
-      bookMovesView = analysisView;
 
       // Move list
       float frameHeight = appRect.size.height;
@@ -213,15 +211,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (void)loadMenuDonePressedWithGame:(NSString *)gameString {
     NSLog(@"load menu done, gameString = %@", gameString);
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [loadMenu dismissPopoverAnimated: YES];
-        loadMenu = nil;
-    } else {
-        [rootView flipSubviewsRight];
-        [[navigationController view] removeFromSuperview];
-    }
-    [gameController gameFromPGNString: gameString
-                    loadFromBeginning: YES];
+    [rootView flipSubviewsRight];
+    [[navigationController view] removeFromSuperview];
+    [gameController gameFromPGNString: gameString loadFromBeginning: YES];
     [boardView hideLastMove];
 }
 
@@ -259,13 +251,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (void)editPositionCancelPressed {
    NSLog(@"edit position cancel");
-   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-      [popoverMenu dismissPopoverAnimated: YES];
-      popoverMenu = nil;
-   } else {
-      [rootView flipSubviewsRight];
-      [[navigationController view] removeFromSuperview];
-   }
+  [rootView flipSubviewsRight];
+  [[navigationController view] removeFromSuperview];
 }
 
 - (void)editPositionDonePressed:(NSString *)fen {

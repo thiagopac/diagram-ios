@@ -19,7 +19,7 @@
 @interface GameController : NSObject <UIActionSheetDelegate> {
    EngineController *engineController;
    BoardView *boardView;
-   UILabel *analysisView, *bookMovesView, *__weak whiteClockView, *__weak blackClockView, *__weak searchStatsView;
+   UILabel *analysisView, *bookMovesView, *__weak searchStatsView;
    MoveListView *moveListView;
    Game *game;
    NSMutableArray *pieceViews;
@@ -42,19 +42,13 @@
     
 }
 
-@property (weak, nonatomic, readonly) UILabel *whiteClockView;
-@property (weak, nonatomic, readonly) UILabel *blackClockView;
-@property (weak, nonatomic, readonly) UILabel *searchStatsView;
 @property (nonatomic, readonly) Game *game;
 @property (nonatomic, assign) GameMode gameMode;
 @property (nonatomic, readonly) BOOL rotated;
 
 
 - (id)initWithBoardView:(BoardView *)bv
-           moveListView:(MoveListView *)mlv
-           analysisView:(UILabel *)av
-          bookMovesView:(UILabel *)bmv
-        searchStatsView:(UILabel *)ssv;
+           moveListView:(MoveListView *)mlv;
 - (void)startEngine;
 - (void)startNewGame;
 - (void)updateMoveList;
@@ -82,7 +76,6 @@
 - (void)rotateBoard:(BOOL)rotate animate:(BOOL)animate;
 - (void)rotateBoard:(BOOL)rotate;
 - (void)showHint;
-- (NSString *)emailPgnString;
 - (void)playMoveSound:(Piece)p capture:(BOOL)capture;
 - (void)displayPV:(NSString *)pv
             depth:(int)depth

@@ -8,17 +8,19 @@
 
 #import "BoardViewController.h"
 #import "GameController.h"
-
+#import "LaunchScreenViewController.h"
 
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
    UIWindow *window;
+    LaunchScreenViewController *launchScreenViewController;
    BoardViewController *boardViewController;
    GameController *gameController;
     UINavigationController *navigationController;
 }
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, readonly) LaunchScreenViewController *launchScreenViewController;
 @property (nonatomic, readonly) BoardViewController *boardViewController;
 @property (nonatomic, readonly) GameController *gameController;
 

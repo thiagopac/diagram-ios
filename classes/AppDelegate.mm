@@ -20,23 +20,34 @@ using namespace Chess;
 
 @implementation AppDelegate
 
-@synthesize window, boardViewController, gameController;
+@synthesize window, boardViewController, gameController, launchScreenViewController;
 
 
 - (BOOL)application :(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
 
-   boardViewController = [[BoardViewController alloc] init];
-   [boardViewController loadView];
-   [window addSubview: [boardViewController view]];
-   [window setRootViewController: boardViewController];
-   [window makeKeyAndVisible];
+    launchScreenViewController = [[LaunchScreenViewController alloc]init];
+    [launchScreenViewController loadView];
+    [window addSubview: [launchScreenViewController view]];
+    [window setRootViewController: launchScreenViewController];
+    [window makeKeyAndVisible];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [launchScreenViewController removeFromParentViewController];
+        boardViewController = [[BoardViewController alloc] init];
+        [boardViewController loadView];
+        [window addSubview: [boardViewController view]];
+        [window setRootViewController: boardViewController];
+        [window makeKeyAndVisible];
+        
+        [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
+        
+        [self performSelectorInBackground: @selector(backgroundInit:)
+                               withObject: nil];
+    });
 
-   [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
 
-   [self performSelectorInBackground: @selector(backgroundInit:)
-                          withObject: nil];
    return YES;
 }
 
@@ -127,10 +138,7 @@ using namespace Chess;
 
       gameController =
          [[GameController alloc] initWithBoardView: [boardViewController boardView]
-                                      moveListView: [boardViewController moveListView]
-                                      analysisView: [boardViewController analysisView]
-                                     bookMovesView: [boardViewController bookMovesView]
-                                   searchStatsView: [boardViewController searchStatsView]];
+                                      moveListView: [boardViewController moveListView]];
 
       /* Chess init */
       init_mersenne();

@@ -85,7 +85,6 @@ typedef struct {
 - (NSString *)moveListString;
 - (NSString *)partialMoveListString;
 - (NSString *)pgnString;
-- (NSString *)emailPgnString;
 - (NSString *)uciGameString;
 - (NSString *)htmlString;
 - (Move)getBookMove;

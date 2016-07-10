@@ -1,0 +1,12 @@
+PODS:
+  - UIImage+animatedGif (0.1.0)
+
+DEPENDENCIES:
+  - UIImage+animatedGif (~> 0.1)
+
+SPEC CHECKSUMS:
+  UIImage+animatedGif: 21cff7203edfb45ca0dd035505a4988cc0156356
+
+PODFILE CHECKSUM: 53d02175894d712ca1b988a1792a559c0487a9e1
+
+COCOAPODS: 1.0.0

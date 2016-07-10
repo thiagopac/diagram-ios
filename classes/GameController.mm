@@ -20,22 +20,16 @@ using namespace Chess;
 
 @implementation GameController
 
-@synthesize whiteClockView, blackClockView, searchStatsView, game, rotated;
+@synthesize game, rotated;
 @dynamic gameMode;
 
 - (id)initWithBoardView:(BoardView *)bv
-           moveListView:(MoveListView *)mlv
-           analysisView:(UILabel *)av
-          bookMovesView:(UILabel *)bmv
-        searchStatsView:(UILabel *)ssv {
+           moveListView:(MoveListView *)mlv{
    if (self = [super init]) {
       boardView = bv;
       moveListView = mlv;
       [moveListView setGameController: self];
       [moveListView setWebViewDelegate: self];
-      analysisView = av;
-      bookMovesView = bmv;
-      searchStatsView = ssv;
 
       game = [[Game alloc] initWithGameController: self];
       pieceViews = [[NSMutableArray alloc] init];
@@ -300,7 +294,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
    fSq = [self rotateSquare: fSq];
    tSq = [self rotateSquare: tSq];
-   
+    
    Piece movingPiece = [game pieceOn: fSq];
 
    // HACK to fix annoying UIActionSheet behavior in iOS 8. Of course we should
@@ -330,13 +324,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
       // promotion piece from the delegate method. This is really ugly.  :-(
       pendingFrom = [self rotateSquare: fSq];
       pendingTo = [self rotateSquare: tSq];
-      UIActionSheet *menu =
-         [[UIActionSheet alloc]
-            initWithTitle: @"Promote to"
-                 delegate: self
-            cancelButtonTitle: nil
-            destructiveButtonTitle: nil
-            otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil];
+//      UIActionSheet *menu =
+//         [[UIActionSheet alloc]
+//            initWithTitle: @"Promote to"
+//                 delegate: self
+//            cancelButtonTitle: nil
+//            destructiveButtonTitle: nil
+//            otherButtonTitles: @"♕ Queen", @"♖ Rook", @"♘ Knight", @"♗ Bishop", nil];
 //      [menu showInView: [boardView superview]];
        
        NSString *pieceSet = [[Options sharedOptions] pieceSet];
@@ -535,6 +529,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
    fSq = [self rotateSquare: fSq];
    tSq = [self rotateSquare: tSq];
+    
+//   [boardView showLastMoveWithFrom: fSq to: tSq]; //deixar marcado o último movimento do usuário
+    
    Piece movingPiece = [game pieceOn: fSq];
    BOOL isCapture = [game pieceOn: tSq] != EMPTY;
 
@@ -769,6 +766,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 - (void)animateMove:(Move)m {
    Square from = move_from(m), to = move_to(m);
+    
+    [boardView showLastMoveWithFrom: [self rotateSquare: from]
+                                 to: [self rotateSquare: to]];
 
    // HACK: Castling. Stockfish internally encodes castling moves as "king
    // captures rook", which means that the "to" square does not contain the
@@ -1291,14 +1291,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             show];
    }
 }
-
-
-/// emailPgnString returns an NSString representing a mailto: URL with the
-/// current game in PGN notation included in the body.
-- (NSString *)emailPgnString {
-   return [game emailPgnString];
-}
-
 
 - (void)playMoveSound:(Piece)p capture:(BOOL)capture {
    if ([[Options sharedOptions] moveSound]) {

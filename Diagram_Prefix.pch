@@ -1,6 +1,8 @@
-//
-// Prefix header for all source files of the 'Glaurung' target in the 'Glaurung' project
-//
+/*
+ Diagram
+ Created by Thiago Castro
+ Copyright (c) 2016 Thiago Castro. All rights reserved.
+ */
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
